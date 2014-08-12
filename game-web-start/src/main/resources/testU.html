@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <title>Cbr</title>
+    <script type="text/javascript">
+        var javawsInstalled = false;
+        var isIE = false;
+        var isICE = navigator.userAgent.indexOf("ICEBrowser") >= 0;
+        if (navigator.mimeTypes && navigator.mimeTypes.length)
+            javawsInstalled = navigator.mimeTypes['application/x-java-jnlp-file'];
+        else
+            isIE = true;
+        function insertLink(url, name) {
+            if (javawsInstalled) {
+                document.write("<a href=\"" + url + "\">"  + name + "</a>");
+            } else {
+                if (isICE) {
+                    document.write("JBuilder's Web View does not support Web Start (no appropriate Web Start plugin is available). ");
+                    document.write("Other popular (external) browsers are supported");
+                } else {
+                    document.write("Need to install Java Web Start");
+                }
+                document.write(" -- for more information, visit ");
+                document.write("<a href=\"http://java.sun.com/products/javawebstart/\">" );
+                document.write("the Java Web Start page");
+                document.write("</a>");
+            }
+        }
+    </script>
+    <script type="text/vbscript">
+        on error resume next
+        If isIE Then
+        If Not(IsObject(CreateObject("JavaWebStart.IsInstalled"))) Then
+        javawsInstalled = false
+        Else
+        javawsInstalled = true
+        End If
+        End If
+    </script>
+</head>
+<body>
+<h1>Java Web Start application</h1>
+<script type="text/javascript">
+    <!--
+    insertLink("testU.jnlp","WebStartTest");
+    // -->
+</script>
+<noscript>
+    <a href="testU.jnlp">WebStartTest</a>
+</noscript>
+</body>
+</html>

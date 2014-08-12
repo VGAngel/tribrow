@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>BasicGame</artifactId>
+        <groupId>BasicGame</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>game-web-start</artifactId>
+    <packaging>jar</packaging>
+    <name>EmbeddedTomcatWebstart</name>
+    <url>http://localhost/jnlp/</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tomcat.version>7.0.6</tomcat.version>
+    </properties>
+
+        <organization>
+            <name>Organisation</name>
+        </organization>
+
+        <repositories>
+            <repository>
+                <id>jboss</id>
+                <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            </repository>
+            <repository>
+                <id>sonatype</id>
+                <url>http://oss.sonatype.org/content/repositories/releases/</url>
+            </repository>
+        </repositories>
+
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-catalina</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-coyote</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.jnlp</groupId>
+                <artifactId>jnlp</artifactId>
+                <version>1.7</version>
+                <scope>system</scope>
+                <systemPath>${java.home}/lib/javaws.jar</systemPath>
+            </dependency>
+        </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <executable>${env.JAVA_HOME}/bin/javac</executable>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.pro.embeddedtomcat7.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo.webstart</groupId>
+                <artifactId>webstart-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jnlp-inline</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--outputDirectory></outputDirectory--> <!-- not required?? -->
+
+                    <!-- Set to true to exclude all transitive dependencies. Default is false. -->
+                    <excludeTransitive>false</excludeTransitive>
+
+                    <!-- The path where the libraries are stored within the jnlp structure. not required. by default the libraries are within the working directory -->
+                    <libPath>lib</libPath>
+                    <outputJarVersions>true</outputJarVersions>
+                    <!-- [optional] transitive dependencies filter - if omitted, all transitive dependencies are included -->
+                    <dependencies>
+                        <!-- Note that only groupId and artifactId must be specified here. because of a limitation of the Include/ExcludesArtifactFilter -->
+                        <!--
+                        <includes>
+                            <include>commons-logging:commons-logging</include>
+                            <include>commons-cli:commons-cli</include>
+                        </includes>
+                        -->
+                        <!--
+                        <excludes>
+                            <exclude></exclude>
+                        <excludes>
+                        -->
+                    </dependencies>
+
+                    <!--
+                    <resourcesDirectory>${project.basedir}/src/main/jnlp/resources</resourcesDirectory>
+                    -->
+                    <!-- default value -->
+
+                    <!-- JNLP generation -->
+                    <jnlp>
+                        <!-- default values -->
+                        <!--inputTemplateResourcePath>${project.basedir}</inputTemplateResourcePath-->
+                        <!--inputTemplate>src/main/jnlp/template.vm</inputTemplate--> <!-- relative to inputTemplateResourcePath -->
+                        <outputFile>app.jnlp</outputFile> <!-- defaults to launch.jnlp -->
+
+                        <!-- used to automatically identify the jar containing the main class. -->
+                        <!-- this is perhaps going to change -->
+                        <mainClass>com.pro.embeddedtomcat7.App</mainClass>
+                    </jnlp>
+
+                    <!-- SIGNING -->
+                    <!-- defining this will automatically sign the jar and its dependencies, if necessary -->
+                    <sign>
+                        <keystore>${basedir}/keystore</keystore>
+                        <keypass>password</keypass>  <!-- we need to override passwords easily from the command line. ${keypass} -->
+                        <storepass>password</storepass> <!-- ${storepass} -->
+                        <!--storetype>fillme</storetype-->
+                        <alias>EmbeddedTomcatWebstart</alias>
+
+                        <!--validity>fillme</validity-->
+
+                        <!-- only required for generating the keystore -->
+                        <dnameCn>EmbeddedTomcatWebstart</dnameCn>
+                        <dnameOu>Organisation Unit</dnameOu>
+                        <dnameO>Organisation</dnameO>
+                        <dnameL>Location</dnameL>
+                        <dnameSt>State</dnameSt>
+                        <dnameC>Country</dnameC>
+
+                        <verify>true</verify> <!-- verify that the signing operation succeeded -->
+
+                        <!-- KEYSTORE MANAGEMENT -->
+                        <keystoreConfig>
+                            <delete>true</delete> <!-- delete the keystore -->
+                            <gen>true</gen>       <!-- optional shortcut to generate the store. -->
+                        </keystoreConfig>
+                    </sign>
+
+                    <!-- BUILDING PROCESS -->
+
+                    <pack200>true</pack200>
+                    <gzip>true</gzip> <!-- default force when pack200 false, true when pack200 selected ?? -->
+
+                    <!-- causes a version attribute to be output in each jar resource element, optional, default is false -->
+                    <outputJarVersions>false</outputJarVersions>
+
+                    <!--install>false</install--> <!-- not yet supported -->
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

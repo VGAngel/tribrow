@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+        spec="1.0+"
+        codebase="http://192.168.0.100:8080/bgbilling/client"
+        href="bgclient.jnlp" >
+    <information>
+        <title>BGBilling GUI client</title>
+        <vendor>BiTel, Ltd.</vendor>
+        <description>BGBilling GUI client</description>
+    </information>
+    <resources>
+        <j2se version="1.6+" java-vm-args="-Xmx256m -Dlocal.setting.file.name=config_test"/>
+        <jar href="my_client.jar"/>
+        <jar href="client.jar"/>
+        <jar href="client_libs.jar"/>
+        <property name="db.server.0.title" value="BGBilling - test"/>
+        <property name="db.server.0.url" value="http://192.168.0.100:8080/bgbilling/executer"/>
+        <property name="db.server.0.proxy.host" value=""/>
+        <property name="db.server.0.proxy.port" value=""/>
+        <property name="look.and.feel.default" value="javax.swing.plaf.metal.MetalLookAndFeel"/>
+        <property name="look.and.feel.default.theme" value="OceanTheme"/>
+        <property name="user.country" value="RU"/>
+        <property name="user.language" value="ru"/>
+    </resources>
+    <security><all-permissions/></security>
+    <application-desc main-class="bitel.billing.ShellFrame" />
+</jnlp>

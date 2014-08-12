@@ -1,0 +1,607 @@
+
+With the nanotime adds in the inner loop:
+Collision check time:0.01313 ms.
+Results in:0.027377 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 78.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null]]
+Collision check time:0.013968 ms.
+Results in:0.030451 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 78.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null]]
+Collision check time:0.010057 ms.
+Results in:0.031289 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 78.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 514.8074951201677] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null], Contact[ cp:Vec3[512.0, 79.22077484428883, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012744140625045475 b1:mythruna.phys.CollisionMesh@af4627, b2:null]]
+Collision check time:0.009498 ms.
+
+
+
+Without the nanotime adds but computing the mask for each cell:
+Results in:0.010895 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.011454 ms.
+Results in:0.014248 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.017321 ms.
+Results in:0.014806 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.010896 ms.
+Results in:0.026539 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.012851 ms.
+Results in:0.01313 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.010336 ms.
+Results in:0.018158 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.055035 ms.
+Results in:0.013968 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 514.8073730498552] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 79.22742004692554, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.014086914062545475 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.038273 ms.
+
+
+
+With a forced mask so no mask computation:
+Results in:0.004749 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.011174 ms.
+Results in:0.012013 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.011733 ms.
+Results in:0.00838 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8079834014177] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.013110351562545475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.009778 ms.
+Results in:0.015086 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.01313 ms.
+Results in:0.005028 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.009499 ms.
+Results in:0.010337 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.010057 ms.
+Results in:0.016203 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 78.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 514.8076171904802] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null], Contact[ cp:Vec3[512.0, 79.23961944878101, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012500000000045475 b1:mythruna.phys.CollisionMesh@1a1b2f, b2:null]]
+Collision check time:0.010337 ms.
+
+The average is still much better but I guess it's kind of spikey.
+
+Moved the mask calculation into its own method so we might cache
+values:
+
+Results in:0.019555 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8079223662614] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8079223662614] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.013689 ms.
+Results in:0.021511 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8079223662614] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8079223662614] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012683105468795475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.012013 ms.
+Results in:0.020673 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.011454 ms.
+Results in:0.014807 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.009778 ms.
+Results in:0.01732 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.010616 ms.
+Results in:0.016482 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 78.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 514.8075561553239] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null], Contact[ cp:Vec3[512.0, 79.22014160454273, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.012133789062545475 b1:mythruna.phys.CollisionMesh@13c952f, b2:null]]
+Collision check time:0.010337 ms.
+
+
+Tried a 2x2x4 person mesh and fixed a bunch of related bugs...
+Results in:0.041346 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.010896 ms.
+Results in:0.04833 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.012851 ms.
+Results in:0.046095 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.009778 ms.
+Results in:0.048888 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.010616 ms.
+Results in:0.040228 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]]
+Collision check time:0.010896 ms.
+
+12 contacts, it looks like.
+[
+Contact[ cp:Vec3[512.0, 78.14170990139246, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.34170990437269, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.54170990735292, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.74170991033316, 514.8064941421151] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.14170990139246, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.34170990437269, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.54170990735292, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null], 
+Contact[ cp:Vec3[512.0, 78.74170991033316, 515.0064941450953] normal:Vec3[1.0, 0.0, 0.0] p:0.11259765624998863 b1:mythruna.phys.CollisionMesh@1220fd1, b2:null]
+]
+
+It's twelve because in the Y, one of our person mesh blocks intersects
+with 514 twice... the second time just outside the cell, clamped to 515.
+Then it intersects with 515 properly.  Something like that.
+Then multiple those three by the four-high mesh... and you get 12.
+
+Timeings are worse but not too horribly so.
+
+It is clear that we need to combine the contacts because all 12 of those could have been represented
+by just one contact.
+
+When the normal and penetration are the same then we should be able to average the
+contact points into just one contact.  It doesn't have to really be on the surface it
+just has to do the math.
+
+
+After combining the contacts:
+
+Results in:0.033244 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001956 ms.
+Results in:0.031568 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.054197 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001956 ms.
+Results in:0.055035 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001676 ms.
+Results in:0.029613 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.058946 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.031568 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44634857773781, 514.643737795949] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@666a53, b2:null]]
+Collision check time:0.001397 ms.
+
+1 contact each time.  Definitely more expensive but I think it should scale ok and
+fewer contacts is way better later.
+
+
+Just to check, I double the size of the person mesh again to 4x4x8
+
+Results in:0.173486 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.172647 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.172927 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.194997 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001676 ms.
+Results in:0.173206 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001117 ms.
+Results in:0.172369 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001118 ms.
+Results in:0.172089 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001118 ms.
+Results in:0.233549 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001396 ms.
+Results in:0.214831 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.179911 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001956 ms.
+Results in:0.206171 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.229638 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.207289 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.282159 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.215949 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001396 ms.
+Results in:0.283835 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.226565 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001396 ms.
+Results in:0.210082 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+Results in:0.200584 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40738525986671, 514.5200805693862] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1bde3d2, b2:null]]
+Collision check time:0.001397 ms.
+
+Looks like 3 to 5 times as long.  The thing is that most of that might not
+be in the accumulator but in the actual initial contact generation.
+
+
+Timing them both sort of bears that out:
+
+Results in:0.503696 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44352570176125, 514.5614013701675] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@681db8, b2:null]]
+Collision check time:0.001956 ms.
+Total mask creation time:0.255616 ms   accum time:0.011733 ms
+Results in:0.467377 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44352570176125, 514.5614013701675] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@681db8, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.238017 ms   accum time:0.012851 ms
+Results in:0.458159 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44352570176125, 514.5614013701675] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@681db8, b2:null]]
+Collision check time:0.001117 ms.
+Total mask creation time:0.242212 ms   accum time:0.01313 ms
+Results in:0.460673 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.44352570176125, 514.5614013701675] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@681db8, b2:null]]
+Collision check time:0.001397 ms.
+
+
+Of course, even when I stub out the mask calc the times are still kind of high:
+
+Total mask creation time:0.104204 ms   accum time:0.010615 ms
+Results in:0.284394 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.42816773056984, 514.6389770537612] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.103083 ms   accum time:0.021511 ms
+Results in:0.334679 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.42816773056984, 514.6389770537612] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.003073 ms.
+Total mask creation time:0.095542 ms   accum time:0.010895 ms
+Results in:0.287187 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.42816773056984, 514.6389770537612] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+
+
+Let me run it for a while to see if hotspot kicks in...
+
+Overall times are still highish:
+Total mask creation time:0.081572 ms   accum time:0.009777 ms
+Results in:0.257016 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40590515732765, 514.4444580107925] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1496e57, b2:null]]
+Collision check time:0.001676 ms.
+Total mask creation time:0.091358 ms   accum time:0.019835 ms
+Results in:0.338031 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40590515732765, 514.4444580107925] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1496e57, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.098897 ms   accum time:0.019276 ms
+Results in:0.307302 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40590515732765, 514.4444580107925] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1496e57, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.094157 ms   accum time:0.010336 ms
+Results in:0.276851 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40590515732765, 514.4444580107925] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1496e57, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.107281 ms   accum time:0.011174 ms
+Results in:0.522692 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40590515732765, 514.4444580107925] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@1496e57, b2:null]]
+Collision check time:0.001677 ms.
+
+...even after quite some time.
+
+Let's see how much work we're doing, though...
+
+Total mask creation time:0.132147 ms   accum time:0.011733 ms
+Total time:0.343898 ms   original contacts size:40
+Results in:0.359543 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001396 ms.
+Total mask creation time:0.136615 ms   accum time:0.011734 ms
+Total time:0.373232 ms   original contacts size:40
+Results in:0.390273 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.134937 ms   accum time:0.010895 ms
+Total time:0.352 ms   original contacts size:40
+Results in:0.367645 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001676 ms.
+Total mask creation time:0.101964 ms   accum time:0.021232 ms
+Total time:0.322108 ms   original contacts size:40
+Results in:0.369041 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.1056 ms   accum time:0.012571 ms
+Total time:0.344457 ms   original contacts size:40
+Results in:0.368762 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.12069 ms   accum time:0.012292 ms
+Total time:0.341943 ms   original contacts size:40
+Results in:0.361499 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.107275 ms   accum time:0.012292 ms
+Total time:0.310375 ms   original contacts size:40
+Results in:0.33412 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.41358795762062, 514.864013674259] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@12b9f14, b2:null]]
+Collision check time:0.001396 ms.
+
+40 contacts down to 1 in 0.0122 ms is pretty damn good, I think.
+
+
+The other large time is because of the shear number of times it's called, I think.
+We do that center loop at least 40 times and probably a whole lot more.
+
+Note also that this case is pretty excessive and still takes less than a third
+of a ms.
+
+4x8 blocks are directly facing 2-4 large cells.  Even a crate is only 4x4 and
+most objects won't sit flat like that.
+
+60 FPS is 16 ms... and we hard step the frames.  So a slow frame just makes
+the world slow down and become sluggish.
+
+We could do 32 object collisions in 16 ms at .5 ms each... and that's in this
+worst case scenario.
+
+
+Let me put the mask calculations back... I think it will make a difference.
+
+
+Total mask creation time:0.284112 ms   accum time:0.013131 ms
+Total time:0.509842 ms   original contacts size:40
+Results in:0.531632 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001396 ms.
+Total mask creation time:0.255061 ms   accum time:0.013409 ms
+Total time:0.465422 ms   original contacts size:40
+Results in:0.48861 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.268189 ms   accum time:0.018718 ms
+Total time:0.48833 ms   original contacts size:40
+Results in:0.529118 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001397 ms.
+Total mask creation time:0.261764 ms   accum time:0.013409 ms
+Total time:0.472127 ms   original contacts size:40
+Results in:0.491682 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001118 ms.
+Total mask creation time:0.254219 ms   accum time:0.012851 ms
+Total time:0.45732 ms   original contacts size:40
+Results in:0.477156 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001676 ms.
+Total mask creation time:0.259527 ms   accum time:0.013689 ms
+Total time:0.464025 ms   original contacts size:40
+Results in:0.485257 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.40978088974953, 514.863916018009] normal:Vec3[1.0, 0.0, 0.0] p:0.10002441406248863 b1:mythruna.phys.CollisionMesh@6c08b2, b2:null]]
+Collision check time:0.001118 ms.
+ 
+
+More than doubles the mask accumulation.
+
+
+Back to a 1x1x2 person mesh:
+Total mask creation time:0.011175 ms   accum time:0.01313 ms
+Total time:0.041067 ms   original contacts size:2
+Results in:0.087441 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22961731255054, 514.8034423843026] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@1ce0314, b2:null]]
+Collision check time:0.01285 ms.
+Total mask creation time:0.007263 ms   accum time:0.002515 ms
+Total time:0.015924 ms   original contacts size:2
+Results in:0.036038 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22961731255054, 514.8034423843026] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@1ce0314, b2:null]]
+Collision check time:0.009219 ms.
+Total mask creation time:0.006146 ms   accum time:0.002514 ms
+Total time:0.014527 ms   original contacts size:2
+Results in:0.031009 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22961731255054, 514.8034423843026] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@1ce0314, b2:null]]
+Collision check time:0.009778 ms.
+Total mask creation time:0.007264 ms   accum time:0.006984 ms
+Total time:0.025981 ms   original contacts size:2
+Results in:0.045257 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.22961731255054, 514.8034423843026] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@1ce0314, b2:null]]
+Collision check time:0.009219 ms.
+
+
+Moved the get world type into a private local method:
+Total mask creation time:0.010057 ms   accum time:0.024304 ms
+Total time:0.048888 ms   original contacts size:2
+Results in:0.102806 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.21288605034351, 514.8030761733651] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@feba21, b2:null]]
+Collision check time:0.012572 ms.
+Total mask creation time:0.008381 ms   accum time:0.00447 ms
+Total time:0.018997 ms   original contacts size:2
+Results in:0.036318 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.21288605034351, 514.8030761733651] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@feba21, b2:null]]
+Collision check time:0.008939 ms.
+Total mask creation time:0.006146 ms   accum time:0.003632 ms
+Total time:0.015644 ms   original contacts size:2
+Results in:0.036876 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.21288605034351, 514.8030761733651] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@feba21, b2:null]]
+Collision check time:0.02207 ms.
+Total mask creation time:0.006984 ms   accum time:0.009219 ms
+Total time:0.026261 ms   original contacts size:2
+Results in:0.044978 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.21288605034351, 514.8030761733651] normal:Vec3[1.0, 0.0, 0.0] p:0.11540527343748863 b1:mythruna.phys.CollisionMesh@feba21, b2:null]]
+Collision check time:0.00866 ms.
+
+basically the same performance... but we'll be able to cache differently
+
+
+Cache the tiles for type and mask lookups:
+
+Total mask creation time:0.004191 ms   accum time:0.012012 ms
+Total time:0.034641 ms   original contacts size:2
+Results in:0.085486 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.24520416557789, 514.8071655288338] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@194a8eb, b2:null]]
+Collision check time:0.011454 ms.
+Total mask creation time:0.003072 ms   accum time:0.003073 ms
+Total time:0.012851 ms   original contacts size:2
+Results in:0.034362 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.24520416557789, 514.8071655288338] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@194a8eb, b2:null]]
+Collision check time:0.011174 ms.
+Total mask creation time:0.002793 ms   accum time:0.003352 ms
+Total time:0.012292 ms   original contacts size:2
+Results in:0.0352 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.24520416557789, 514.8071655288338] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@194a8eb, b2:null]]
+Collision check time:0.010895 ms.
+Total mask creation time:0.002514 ms   accum time:0.008381 ms
+Total time:0.022629 ms   original contacts size:2
+Results in:0.051404 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.24520416557789, 514.8071655288338] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@194a8eb, b2:null]]
+Collision check time:0.00894 ms.
+
+
+Now trying with a big person mesh:
+
+Total mask creation time:0.112307 ms   accum time:0.011733 ms
+Total time:0.291937 ms   original contacts size:40
+Results in:0.311771 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.4079193174839, 514.924316408634] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@1c67b54, b2:null]]
+Collision check time:0.009498 ms.
+Total mask creation time:0.108677 ms   accum time:0.013968 ms
+Total time:0.275175 ms   original contacts size:40
+Results in:0.381054 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.4079193174839, 514.924316408634] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@1c67b54, b2:null]]
+Collision check time:0.010336 ms.
+Total mask creation time:0.134936 ms   accum time:0.027657 ms
+Total time:0.365409 ms   original contacts size:40
+Results in:0.419885 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.4079193174839, 514.924365236759] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@1c67b54, b2:null]]
+Collision check time:0.010896 ms.
+Total mask creation time:0.165388 ms   accum time:0.012851 ms
+Total time:0.377143 ms   original contacts size:40
+Results in:0.398654 ms Collisions:
+[Contact[ cp:Vec3[512.0, 78.4079193174839, 514.924365236759] normal:Vec3[1.0, 0.0, 0.0] p:0.11394042968748863 b1:mythruna.phys.CollisionMesh@1c67b54, b2:null]]
+Collision check time:0.012851 ms.
+
+
+It's faster, I guess.
+
+
+
+So now I'm going to do something different.  A baseline first:
+
+3 results in:0.016762 ms Collisions:
+[Contact[ cp:Vec3[529.9058532729745, 60.0, 477.0952148452401] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[530.0, 60.59947358071804, 477.19042969048024] normal:Vec3[-1.0, 0.0, 0.0] p:0.011706548929169003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8117065459489, 60.59947358071804, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009570312499988631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:1.76922 ms
+2 results in:0.034642 ms Collisions:
+[Contact[ cp:Vec3[530.0, 60.60000000397364, 477.19042969048024] normal:Vec3[-1.0, 0.0, 0.0] p:0.011706548929169003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8117065459489, 60.60000000397364, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009570312499988631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.07487 ms
+3 results in:0.016762 ms Collisions:
+[Contact[ cp:Vec3[529.9058532729745, 60.0, 477.0952148452401] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[530.0, 60.59947358071804, 477.19042969048024] normal:Vec3[-1.0, 0.0, 0.0] p:0.011706548929169003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8117065459489, 60.59947358071804, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009570312499988631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.721321 ms
+2 results in:0.028775 ms Collisions:
+[Contact[ cp:Vec3[530.0, 60.60000000397364, 477.18997192680837] normal:Vec3[-1.0, 0.0, 0.0] p:0.012255865335419003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8122558623552, 60.60000000397364, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.010028076171863631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.084089 ms
+3 results in:0.014248 ms Collisions:
+[Contact[ cp:Vec3[530.0, 60.59942398965359, 477.18997192680837] normal:Vec3[-1.0, 0.0, 0.0] p:0.012255865335419003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8122558623552, 60.59942398965359, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.010028076171863631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.9061279311776, 60.0, 477.09498596340416] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.309537 ms
+2 results in:0.012571 ms Collisions:
+[Contact[ cp:Vec3[530.0, 60.60000000397364, 477.18997192680837] normal:Vec3[-1.0, 0.0, 0.0] p:0.012255865335419003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8122558623552, 60.60000000397364, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.010028076171863631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.042463 ms
+3 results in:0.013968 ms Collisions:
+[Contact[ cp:Vec3[530.0, 60.59942398965359, 477.18997192680837] normal:Vec3[-1.0, 0.0, 0.0] p:0.012255865335419003 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.8122558623552, 60.59942398965359, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.010028076171863631 b1:mythruna.phys.CollisionMesh@fa9557, b2:null], Contact[ cp:Vec3[529.9061279311776, 60.0, 477.09498596340416] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@fa9557, b2:null]]
+Total contact resolution time:0.676901 ms
+
+
+
+That's with the collision system combining the contacts.
+
+This is with the camera task combining impulses...
+
+10 results in:0.010615 ms Collisions:
+[Contact[ cp:Vec3[529.8118896514177, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.19942398369312, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.0, 477.1901550322771] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.1901550322771] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.19942398369312, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.59942398965359, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.59942398965359, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.99942399561405, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.99942399561405, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:0.531352 ms
+6 results in:0.01285 ms Collisions:
+[Contact[ cp:Vec3[529.8118896514177, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:6.425956 ms
+10 results in:0.018997 ms Collisions:
+[Contact[ cp:Vec3[529.8118896514177, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.19942398369312, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.0, 477.1901550322771] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.1901550322771] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.19942398369312, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.59942398965359, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.59942398965359, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8118896514177, 60.99942399561405, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009844970703113631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.99942399561405, 477.1901550322771] normal:Vec3[-1.0, 0.0, 0.0] p:0.011889654397919003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:2.308673 ms
+6 results in:0.018717 ms Collisions:
+[Contact[ cp:Vec3[529.8113403350114, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:0.113422 ms
+10 results in:0.010616 ms Collisions:
+[Contact[ cp:Vec3[529.8113403350114, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.22613525390625E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.19947738945484, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.0, 477.190612795949] normal:Vec3[0.0, 1.0, 0.0] p:5.22613525390625E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.22613525390625E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.190612795949] normal:Vec3[0.0, 1.0, 0.0] p:5.22613525390625E-4 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.19947738945484, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.599477395415306, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.599477395415306, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.99947740137577, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.99947740137577, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:0.539455 ms
+6 results in:0.014527 ms Collisions:
+[Contact[ cp:Vec3[529.8113403350114, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[529.8113403350114, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.009387207031238631 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.190612795949] normal:Vec3[-1.0, 0.0, 0.0] p:0.011340337991669003 b1:mythruna.phys.CollisionMesh@18bbc98, b2:null]]
+Total contact resolution time:6.227328 ms
+
+
+Converted Math.min, etc. calls into inline conditionals:
+
+6 results in:0.016762 ms Collisions:
+[Contact[ cp:Vec3[529.8126831084489, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:1.81727 ms
+10 results in:0.014806 ms Collisions:
+[Contact[ cp:Vec3[529.8126831084489, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 60.19942398369312, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 60.0, 477.191101077199] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.191101077199] normal:Vec3[0.0, 1.0, 0.0] p:5.76019287109375E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.19942398369312, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 60.59942398965359, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.59942398965359, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8126831084489, 60.99942399561405, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008898925781238631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.99942399561405, 477.191101077199] normal:Vec3[-1.0, 0.0, 0.0] p:0.012683111429169003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:6.636039 ms
+6 results in:0.020394 ms Collisions:
+[Contact[ cp:Vec3[529.8120727568864, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:0.125994 ms
+10 results in:0.012292 ms Collisions:
+[Contact[ cp:Vec3[529.8120727568864, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.199473574757576, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.0, 477.1914978057146] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.1914978057146] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.199473574757576, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.59947358071804, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.59947358071804, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.999473586678505, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.999473586678505, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:0.520737 ms
+6 results in:0.020953 ms Collisions:
+[Contact[ cp:Vec3[529.8120727568864, 60.20000000298023, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.20000000298023, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.6000000089407, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.6000000089407, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 61.0, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 61.0, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:1.894655 ms
+10 results in:0.018438 ms Collisions:
+[Contact[ cp:Vec3[529.8120727568864, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.199473574757576, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.0, 477.1914978057146] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.0] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.0, 477.1914978057146] normal:Vec3[0.0, 1.0, 0.0] p:5.2642822265625E-4 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.199473574757576, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.59947358071804, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.59947358071804, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[529.8120727568864, 60.999473586678505, 477.0] normal:Vec3[0.0, 0.0, 1.0] p:0.008502197265613631 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null], Contact[ cp:Vec3[530.0, 60.999473586678505, 477.1914978057146] normal:Vec3[-1.0, 0.0, 0.0] p:0.012072759866669003 b1:mythruna.phys.CollisionMesh@1ecfeb, b2:null]]
+Total contact resolution time:3.657448 ms
+
+
+Removing the collection toString....
+
+10 results in:0.010895 ms
+Total contact resolution time:0.018997 ms
+6 results in:0.008381 ms
+Total contact resolution time:0.015644 ms
+10 results in:0.016203 ms
+Total contact resolution time:0.041625 ms
+6 results in:0.007823 ms
+Total contact resolution time:0.014248 ms
+10 results in:0.009219 ms
+Total contact resolution time:0.016482 ms
+6 results in:0.011733 ms
+Total contact resolution time:0.039391 ms
+10 results in:0.021511 ms
+Total contact resolution time:0.058108 ms
+6 results in:0.00894 ms
+Total contact resolution time:0.0176 ms
+10 results in:0.010337 ms
+Total contact resolution time:0.021511 ms
+6 results in:0.009219 ms
+Total contact resolution time:0.01732 ms
+
+
+Way more reasonable.  Heisenberg we salute you.
+
+
+After breaking colliders out into separate classes, cleaning up, etc.:
+Total contact resolution time:0.00894 ms
+Total contact resolution time:0.016482 ms
+Total contact resolution time:0.009499 ms
+Total contact resolution time:0.007543 ms
+Total contact resolution time:0.008939 ms
+Total contact resolution time:0.017321 ms
+Total contact resolution time:0.010057 ms
+Total contact resolution time:0.007823 ms
+Total contact resolution time:0.009219 ms
+Total contact resolution time:0.016761 ms
+Total contact resolution time:0.009219 ms
+Total contact resolution time:0.007543 ms
+Total contact resolution time:0.009499 ms
+Total contact resolution time:0.022908 ms
+Total contact resolution time:0.016762 ms
+Total contact resolution time:0.008102 ms
+Total contact resolution time:0.00894 ms
+Total contact resolution time:0.022629 ms
+Total contact resolution time:0.010895 ms
+Total contact resolution time:0.009498 ms
+Total contact resolution time:0.02654 ms
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://kofein-vrn.narod.ru/Java" href="testS.jnlp">
+    <information>
+        <title>WebStartTest</title>
+        <vendor>By AndyB</vendor>
+        <homepage href="testS.html" />
+        <description></description>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.3+" />
+        <jar href="TestS.jar" />
+    </resources>
+    <application-desc main-class="WebStart.WebStartTest" />
+</jnlp>

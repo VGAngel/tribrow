@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=/path/to/jnlp-api-1.5.0.jar -DgroupId=<group-id> -DartifactId=<artifact-id> -Dversion=1.5.0 -Dpackaging=<packaging>

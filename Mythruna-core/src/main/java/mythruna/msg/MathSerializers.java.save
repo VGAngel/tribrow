@@ -1,0 +1,95 @@
+/*
+ * $Id$
+ *
+ * Copyright (c) 2011, Paul Speed
+ * All rights reserved.
+ */
+
+package mythruna.msg;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+import com.jme3.network.serializing.*;
+
+import mythruna.mathd.*;
+
+/**
+ *
+ *  @version   $Revision$
+ *  @author    Paul Speed
+ */
+public class MathSerializers
+{
+
+    public static class Vec3dSerializer extends Serializer
+    {
+        public Vec3d readObject( ByteBuffer data, Class c ) throws IOException
+        {
+            Vec3d v = new Vec3d();
+            v.x = data.getDouble();
+            v.y = data.getDouble();
+            v.z = data.getDouble();
+            return v;
+        }
+        
+        public void writeObject( ByteBuffer data, Object object ) throws IOException
+        {
+            Vec3d o = (Vec3d)object;
+            buffer.putDouble( o.x );
+            buffer.putDouble( o.y );
+            buffer.putDouble( o.z );
+        }
+    }
+    
+    public static class Matrix3dSerializer extends Serializer
+    {
+        public Matrix3d readObject( ByteBuffer data, Class c ) throws IOException
+        {
+            Matrix3d m = new Matrix3d();
+            m.m00 = data.getDouble(); 
+            m.m01, 
+            m.m02;    
+            m.m10, 
+            m.m11, 
+            m.m12;    
+            m.m20, 
+            m.m21, 
+            m.m22;            
+        }
+        
+        public void writeObject( ByteBuffer data, Object object ) throws IOException
+        {
+            Matrix3d o = (Matrix3d)object;
+        }
+    }
+}
+
+package com.jme3.network.serializing.serializers;
+
+import com.jme3.math.Vector3f;
+import com.jme3.network.serializing.Serializer;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+/**
+ * @author Kirill Vainer
+ */
+@SuppressWarnings("unchecked")
+public class Vector3Serializer extends Serializer {
+
+    public Vector3f readObject(ByteBuffer data, Class c) throws IOException {
+        Vector3f vec3 = new Vector3f();
+        vec3.x = data.getFloat();
+        vec3.y = data.getFloat();
+        vec3.z = data.getFloat();
+        return vec3;
+    }
+
+    public void writeObject(ByteBuffer buffer, Object object) throws IOException {
+        Vector3f vec3 = (Vector3f) object;
+        buffer.putFloat(vec3.x);
+        buffer.putFloat(vec3.y);
+        buffer.putFloat(vec3.z);
+    }
+}
