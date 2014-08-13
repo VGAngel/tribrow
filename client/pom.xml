@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <repositories>
+        <repository>
+            <id>nifty-maven-repo.sourceforge.net</id>
+            <url>http://nifty-gui.sourceforge.net/nifty-maven-repo</url>
+        </repository>
+    </repositories>
+
     <groupId>client</groupId>
     <artifactId>client</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -14,6 +21,12 @@
             <artifactId>netty-all</artifactId>
             <version>4.0.7.Final</version>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>lessvoid</groupId>-->
+            <!--<artifactId>nifty</artifactId>-->
+            <!--<version>1.4.0</version>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>
