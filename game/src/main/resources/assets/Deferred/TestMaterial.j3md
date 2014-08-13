@@ -1,0 +1,25 @@
+MaterialDef My MaterialDef {
+
+    MaterialParameters {
+
+    }
+
+    Technique {
+        VertexShader GLSL100:   Common/MatDefs/Deferred/DeferredDepthPass.vert
+        FragmentShader GLSL100: Common/MatDefs/Deferred/DeferredDepthPass.frag
+
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+    }
+
+    Technique DeferredDepthPass{
+        VertexShader GLSL100:   Common/MatDefs/Deferred/DeferredDepthPass.vert
+        FragmentShader GLSL100: Common/MatDefs/Deferred/DeferredDepthPass.frag
+
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+    }
+
+}

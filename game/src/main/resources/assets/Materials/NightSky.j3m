@@ -1,0 +1,11 @@
+Material My Material : Common/MatDefs/Misc/Unshaded.j3md {
+     MaterialParameters {
+        Color : 0.03529412 0.043137256 0.043137256 1.0
+     }
+    AdditionalRenderState {
+      DepthWrite Off
+      DepthTest On
+      FaceCull Front
+      ColorWrite On
+    }
+}

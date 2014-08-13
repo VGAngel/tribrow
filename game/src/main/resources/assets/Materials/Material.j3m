@@ -1,0 +1,10 @@
+Material My Material : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+        ColorRamp : Materials/Road/road_COLOR1.png
+        NormalMap : Materials/Road/road_NRM.png
+        Diffuse : 0.91764706 1.0 0.9372549 1.0
+        UseMaterialColors : true
+     }
+    AdditionalRenderState {
+    }
+}

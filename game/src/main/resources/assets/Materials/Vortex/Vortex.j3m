@@ -1,0 +1,10 @@
+Material My Material : DMonkey/GBuffer.j3md {
+     MaterialParameters {
+        DiffuseTex : Textures/LoadWalls/LoamWalls0012_2_M_COLOR.png
+        NormalTex : Textures/LoadWalls/LoamWalls0012_2_M_NRM.png
+        SpecularAmount : 1.0
+        DiffuseColor : 0.6 1.0 1.0 1.0
+     }
+    AdditionalRenderState {
+    }
+}

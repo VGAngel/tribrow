@@ -1,0 +1,13 @@
+Material My Material : Common/MatDefs/Misc/Unshaded.j3md {
+     MaterialParameters {
+        ColorMap : Textures/uniformclouds1.jpg
+        Color : 0.14509805 0.14509805 0.24313726 1.0
+     }
+    AdditionalRenderState {
+      PointSprite Off
+      ColorWrite On
+      DepthTest On
+      Blend Additive
+      DepthWrite Off
+    }
+}

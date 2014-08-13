@@ -1,0 +1,1 @@
+print("Personal 'Hello World' from Lua!")

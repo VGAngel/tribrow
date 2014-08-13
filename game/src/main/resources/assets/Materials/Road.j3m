@@ -1,0 +1,10 @@
+Material My Material : DMonkey/GBuffer.j3md {
+     MaterialParameters {
+        DiffuseTex : Repeat Materials/Road/road_COLOR1.png
+        NormalTex : Repeat Materials/Road/road_NRM.png
+        SpecularAmount : 0.20000002
+        DiffuseColor : 1.0 1.0 1.0 1.0
+     }
+    AdditionalRenderState {
+    }
+}

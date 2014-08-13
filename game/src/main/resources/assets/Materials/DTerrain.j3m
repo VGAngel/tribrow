@@ -1,0 +1,9 @@
+Material My Material : DMonkey/GBuffer.j3md {
+     MaterialParameters {
+        DiffuseTex : Repeat Textures/Grass0138_35_H.png
+        DiffuseColor : 1.0 1.0 1.0 1.0
+        UV1Scale : 128 128
+     }
+    AdditionalRenderState {
+    }
+}

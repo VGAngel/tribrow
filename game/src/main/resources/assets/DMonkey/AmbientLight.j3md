@@ -1,0 +1,28 @@
+MaterialDef AmbientLight {
+
+    MaterialParameters {
+        Vector4 Color
+        Texture2D DepthBuffer
+        Texture2D NormalBuffer
+        Texture2D DiffuseBuffer
+        Vector3 LightPosition
+        Float LightIntensity
+        Vector2 Resolution
+        
+    }
+
+    Technique {
+        VertexShader GLSL100:   DMonkey/Shaders/AmbientLight.vert
+        FragmentShader GLSL100: DMonkey/Shaders/AmbientLight.frag
+
+        WorldParameters {}
+    }
+
+    Technique DeferredLight{
+        VertexShader GLSL100:   Shaders/AmbientLight.vert
+        FragmentShader GLSL100: Shaders/AmbientLight.frag
+
+        WorldParameters {
+        }
+    }
+}

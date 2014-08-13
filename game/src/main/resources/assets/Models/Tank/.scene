@@ -1,0 +1,22 @@
+<scene exported_by="kwando" formatVersion="1.0.1" previous_export_time="0" export_time="1345991409.818963" >
+	<nodes >
+		<node name="Camera" >
+			<position y="5.343665" x="7.481132" z="6.507640" />
+			<rotation qy="0.334251" qx="0.481707" qz="-0.212922" qw="0.781600" />
+			<scale y="1.000000" x="1.000000" z="1.000000" />
+			<game >
+				<sensors />
+				<actuators />
+			</game>
+			<camera projectionType="perspective" fov="0.5033799435163735" name="Camera" >
+				<clipping far="100.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" farPlaneDist="100.0" />
+			</camera>
+		</node>
+	</nodes>
+	<externals />
+	<environment >
+		<colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+		<colourAmbient r="0.0" b="0.0" g="0.0" />
+		<colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+	</environment>
+</scene>

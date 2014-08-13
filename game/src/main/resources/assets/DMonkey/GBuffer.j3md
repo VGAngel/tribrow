@@ -1,0 +1,58 @@
+MaterialDef GBuffer {
+
+    MaterialParameters {
+        Color DiffuseColor
+        Texture2D DiffuseTex
+        Texture2D NormalTex
+        Texture2D SpecularTex
+        Float SpecularAmount
+        Color DiffuseColor
+        Vector2 UV1Scale : 1 1
+    }
+
+    Technique {
+        VertexShader GLSL100:   DMonkey/Shaders/GBuffer.vert
+        FragmentShader GLSL100: DMonkey/Shaders/GBuffer.frag
+
+        WorldParameters {
+						ProjectionMatrixInverse
+            WorldViewProjectionMatrix
+						WorldViewNatrix
+						ViewMatrix
+            ViewMatrixInverse
+						NormalMatrix
+            WorldMatrixInverse
+            WorldMatrix
+            FrustumNearFar
+            Time
+        }
+        Defines{
+          NORMAL_MAP : NormalTex
+        }
+    }
+
+    Technique GBuffer{
+        VertexShader GLSL100:   Shaders/GBuffer.vert
+        FragmentShader GLSL100: Shaders/GBuffer.frag
+
+        WorldParameters {
+						ProjectionMatrixInverse
+            WorldViewProjectionMatrix
+						WorldViewNatrix
+						ViewMatrix
+						NormalMatrix
+            WorldMatrixInverse
+            WorldMatrix
+            FrustumNearFar
+        }
+        
+        Defines{
+          COLOR : DiffuseColor
+        }
+    }
+    Technique LocalReflection{
+      Defines{
+        LOCAL_REFLECTIONS : LocalReflectionAmount
+      }
+    }
+}
