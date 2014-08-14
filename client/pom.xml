@@ -22,11 +22,11 @@
             <version>4.0.7.Final</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>lessvoid</groupId>-->
-            <!--<artifactId>nifty</artifactId>-->
-            <!--<version>1.4.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>lessvoid</groupId>
+            <artifactId>nifty</artifactId>
+            <version>1.4.0</version>
+        </dependency>
     </dependencies>
 
 </project>
