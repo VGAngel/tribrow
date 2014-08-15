@@ -17,14 +17,14 @@
         </layer>
         <layer id="menu" childLayout="vertical">
             <panel childLayout="horizontal" width="100%" height="100%">
-                <!--<panel width="50%" childLayout="absolute">-->
-                    <!--<image id="thumbHelloWorld" style="thumbStyle" x="150px" y="50px" filename="thumb-helloWorld.png" />-->
-                <!--</panel>-->
                 <control horizontal="false" stepSizeY="30" height="100%">
                     <panel id="huhu-1" childLayout="center" width="100%" height="620px" padding="0px,40px,0px,40px">
                         <panel id="huhu-2" childLayout="vertical" width="100%">
-                            <text id="helloWorld" text="Hello World" style="menu-font" hintText="Hello World Example" >
-                                <interact onClick="helloWorld()" onClickAlternateKey="fade" />
+                            <text id="menuCreate" text="Create World" style="menu-font">
+                                <interact onClick="createWorld()" onClickAlternateKey="fade" />
+                            </text>
+                            <text id="menuLoad" text="Load World" style="menu-font">
+                                <interact onClick="loadWorld()" onClickAlternateKey="fade" />
                             </text>
                         </panel>
                     </panel>
