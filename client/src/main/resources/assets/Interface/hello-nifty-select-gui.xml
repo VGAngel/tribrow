@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nifty xmlns="http://nifty-gui.lessvoid.com/nifty-gui">
 
-    <useStyles filename="nifty-default-styles.xml" />
-    <useControls filename="nifty-default-controls.xml" />
+    <!--<useStyles filename="nifty-default-styles.xml" />-->
+    <!--<useControls filename="nifty-default-controls.xml" />-->
+
+    <style id="menu-font">
+        <attributes font="aurulent-sans-36-bold-with-shadow.fnt" />
+    </style>
 
     <screen id="menu" controller="com.pro.gui.HelloNiftySelectController">
         <layer id="top" childLayout="vertical" backgroundImage="background.png">
@@ -11,10 +15,22 @@
                 <onEndScreen name="fade" startColor="#393939ff" endColor="#00000000" startDelay="1000" length="500" alternateEnable="fade"/>
             </effect>
         </layer>
+        <layer id="menu" childLayout="vertical">
+            <panel childLayout="horizontal" width="100%" height="100%">
+                <!--<panel width="50%" childLayout="absolute">-->
+                    <!--<image id="thumbHelloWorld" style="thumbStyle" x="150px" y="50px" filename="thumb-helloWorld.png" />-->
+                <!--</panel>-->
+                <control horizontal="false" stepSizeY="30" height="100%">
+                    <panel id="huhu-1" childLayout="center" width="100%" height="620px" padding="0px,40px,0px,40px">
+                        <panel id="huhu-2" childLayout="vertical" width="100%">
+                            <text id="helloWorld" text="Hello World" style="menu-font" hintText="Hello World Example" >
+                                <interact onClick="helloWorld()" onClickAlternateKey="fade" />
+                            </text>
+                        </panel>
+                    </panel>
+                </control>
+            </panel>
+        </layer>
     </screen>
 
-    <screen id="start">
-      <layer id="baseLayer" childLayout="center">
-      </layer>
-    </screen>
 </nifty>
