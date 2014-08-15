@@ -14,40 +14,16 @@ import java.util.Map;
 public class HelloNiftySelectApp extends SimpleApplication {
 
     private Nifty nifty;
-    Material selectedColor;
-    Map<String, ColorRGBA> colorSelections = new HashMap<>();
 
     public void simpleInitApp() {
-        colorSelections.put("Red", ColorRGBA.Red);
-        colorSelections.put("Blue", ColorRGBA.Blue);
-
-        createBox();
 
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(this.assetManager, this.inputManager, this.audioRenderer, this.guiViewPort);
         nifty = niftyDisplay.getNifty();
-        HelloNiftySelectController controller = new HelloNiftySelectController(this);
-        nifty.fromXml("assets/Interface/hello-nifty-select-gui.xml", "select", controller);
+        HelloNiftySelectController controller = new HelloNiftySelectController();
+        nifty.fromXml("assets/Interface/hello-nifty-select-gui.xml", "menu", controller);
         guiViewPort.addProcessor(niftyDisplay);
         flyCam.setEnabled(false);
         inputManager.setCursorVisible(true);
     }
 
-    public void doneSelecting() {
-        nifty.gotoScreen("start");
-        flyCam.setEnabled(true);
-        inputManager.setCursorVisible(false);
-    }
-
-    public void colorSelected(String color) {
-        selectedColor.setColor("Color", colorSelections.get(color));
-    }
-
-    private void createBox() {
-        Box box = new Box(1, 1, 1);
-        Geometry geometry = new Geometry("Box", box);
-        selectedColor = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        selectedColor.setColor("Color", colorSelections.values().iterator().next());
-        geometry.setMaterial(selectedColor);
-        rootNode.attachChild(geometry);
-    }
 }
