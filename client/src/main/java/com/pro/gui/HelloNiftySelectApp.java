@@ -6,48 +6,35 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import com.pro.tile.TileSet;
 import de.lessvoid.nifty.Nifty;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HelloNiftySelectApp extends SimpleApplication {
 
     private Nifty nifty;
-    Material selectedColor;
-    Map<String, ColorRGBA> colorSelections = new HashMap<>();
 
     public void simpleInitApp() {
-        colorSelections.put("Red", ColorRGBA.Red);
-        colorSelections.put("Blue", ColorRGBA.Blue);
+        try {
+            TileSet tileSet = TileSet.unmarshall(new FileInputStream(Paths.get("D:\\work\\testPro\\github\\client\\src\\main\\resources\\tiles\\examples\\desert.tsx").toFile()));
 
-        createBox();
+            System.out.println(tileSet);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(this.assetManager, this.inputManager, this.audioRenderer, this.guiViewPort);
         nifty = niftyDisplay.getNifty();
-        HelloNiftySelectController controller = new HelloNiftySelectController(this);
-        nifty.fromXml("assets/Interface/hello-nifty-select-gui.xml", "select", controller);
+        HelloNiftySelectController controller = new HelloNiftySelectController();
+        nifty.fromXml("assets/Interface/menu.xml", "menu", controller);
         guiViewPort.addProcessor(niftyDisplay);
         flyCam.setEnabled(false);
         inputManager.setCursorVisible(true);
     }
 
-    public void doneSelecting() {
-        nifty.gotoScreen("start");
-        flyCam.setEnabled(true);
-        inputManager.setCursorVisible(false);
-    }
-
-    public void colorSelected(String color) {
-        selectedColor.setColor("Color", colorSelections.get(color));
-    }
-
-    private void createBox() {
-        Box box = new Box(1, 1, 1);
-        Geometry geometry = new Geometry("Box", box);
-        selectedColor = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        selectedColor.setColor("Color", colorSelections.values().iterator().next());
-        geometry.setMaterial(selectedColor);
-        rootNode.attachChild(geometry);
-    }
 }
