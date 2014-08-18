@@ -1,4 +1,4 @@
-package com.pro.tile;
+package com.pro.tile.tileset;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

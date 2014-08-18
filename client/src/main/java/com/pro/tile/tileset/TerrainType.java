@@ -1,4 +1,4 @@
-package com.pro.tile;
+package com.pro.tile.tileset;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,10 +12,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "terrain")
 public class TerrainType {
 
-    @XmlAttribute(required = true)
+    @XmlAttribute
     private String name;
 
-    @XmlAttribute(required = true)
+    @XmlAttribute
     private String tile;
 
     public String getName() {
