@@ -7,7 +7,7 @@ import com.danwink.sneakaroundtown.level.LevelGeneratorV1;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.bullet.control.BetterCharacterControl;
+//import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
@@ -20,9 +20,9 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
-import com.jme3.shadow.DirectionalLightShadowFilter;
-import com.jme3.shadow.DirectionalLightShadowRenderer;
-import com.jme3.shadow.EdgeFilteringMode;
+//import com.jme3.shadow.DirectionalLightShadowFilter;
+//import com.jme3.shadow.DirectionalLightShadowRenderer;
+//import com.jme3.shadow.EdgeFilteringMode;
 
 public class PlayingState extends AbstractAppState {
     private boolean left = false, right = false, up = false, down = false;
@@ -66,10 +66,10 @@ public class PlayingState extends AbstractAppState {
 
         a.move(3, 3, 3);
 
-        BetterCharacterControl bcc = p.bcc = new BetterCharacterControl(1, 3, 0.5f);
-        a.addControl(bcc);
+//        BetterCharacterControl bcc = p.bcc = new BetterCharacterControl(1, 3, 0.5f);
+//        a.addControl(bcc);
 
-        this.app.bulletAppState.getPhysicsSpace().add(bcc);
+        //this.app.bulletAppState.getPhysicsSpace().add(bcc);
 
 
         DirectionalLight sun = new DirectionalLight();
@@ -77,28 +77,28 @@ public class PlayingState extends AbstractAppState {
         sun.setDirection(new Vector3f(1, -1, -.4f).normalize());
         this.app.getRootNode().addLight(sun);
  
-        /* Drop shadows */
-        final int SHADOWMAP_SIZE = 1024;
-        DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), SHADOWMAP_SIZE, 3);
-        dlsr.setLight(sun);
-        dlsr.setLambda(0.55f);
-        dlsr.setShadowIntensity(0.6f);
-        dlsr.setEdgeFilteringMode(EdgeFilteringMode.Bilinear);
-        app.getViewPort().addProcessor(dlsr);
-
-        DirectionalLightShadowFilter dlsf = new DirectionalLightShadowFilter(app.getAssetManager(), SHADOWMAP_SIZE, 3);
-        dlsf.setLight(sun);
-        dlsf.setEnabled(true);
-        dlsf.setLambda(0.55f);
-        dlsf.setShadowIntensity(0.6f);
-        dlsf.setEdgeFilteringMode(EdgeFilteringMode.Bilinear);
-        FilterPostProcessor fpp = new FilterPostProcessor(app.getAssetManager());
-        fpp.addFilter(dlsf);
+//        /* Drop shadows */
+//        final int SHADOWMAP_SIZE = 1024;
+//        DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), SHADOWMAP_SIZE, 3);
+//        dlsr.setLight(sun);
+//        dlsr.setLambda(0.55f);
+//        dlsr.setShadowIntensity(0.6f);
+//        dlsr.setEdgeFilteringMode(EdgeFilteringMode.Bilinear);
+//        app.getViewPort().addProcessor(dlsr);
+//
+//        DirectionalLightShadowFilter dlsf = new DirectionalLightShadowFilter(app.getAssetManager(), SHADOWMAP_SIZE, 3);
+//        dlsf.setLight(sun);
+//        dlsf.setEnabled(true);
+//        dlsf.setLambda(0.55f);
+//        dlsf.setShadowIntensity(0.6f);
+//        dlsf.setEdgeFilteringMode(EdgeFilteringMode.Bilinear);
+//        FilterPostProcessor fpp = new FilterPostProcessor(app.getAssetManager());
+//        fpp.addFilter(dlsf);
 
         //SSAOFilter ssaoFilter = new SSAOFilter( 5.1f, 1.2f, 0.2f, 0.1f );
         //fpp.addFilter(ssaoFilter);
 
-        app.getViewPort().addProcessor(fpp);
+       // app.getViewPort().addProcessor(fpp);
     }
 
     public void cleanup() {
@@ -121,15 +121,15 @@ public class PlayingState extends AbstractAppState {
         if (up) walkDirection.addLocal(camDir);
         if (down) walkDirection.addLocal(camDir.negate());
 
-        if (!p.bcc.isOnGround()) {
-            airTime = airTime + d;
-        } else {
-            airTime = 0;
-        }
+//        if (!p.bcc.isOnGround()) {
+//            airTime = airTime + d;
+//        } else {
+//            airTime = 0;
+//        }
 
         walkDirection.multLocal(d * 1000);
 
-        p.bcc.setWalkDirection(walkDirection);
+        //p.bcc.setWalkDirection(walkDirection);
         app.getCamera().setLocation(p.g.getWorldTranslation().add(0, 2, 0));
     }
 
@@ -144,7 +144,7 @@ public class PlayingState extends AbstractAppState {
             } else if (name.equals("left")) {
                 left = keyPressed;
             } else if (name.equals("jump") && keyPressed) {
-                p.bcc.jump();
+                //p.bcc.jump();
             }
         }
     };
