@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.niftygui;
+package com.pro.game.example.test.jme3test.niftygui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -46,7 +46,7 @@ public class TestNiftyGui extends SimpleApplication implements ScreenController 
 
     private Nifty nifty;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestNiftyGui app = new TestNiftyGui();
         app.setPauseOnLostFocus(false);
         app.start();
@@ -61,9 +61,9 @@ public class TestNiftyGui extends SimpleApplication implements ScreenController 
         rootNode.attachChild(geom);
 
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager,
-                                                          inputManager,
-                                                          audioRenderer,
-                                                          guiViewPort);
+                inputManager,
+                audioRenderer,
+                guiViewPort);
         nifty = niftyDisplay.getNifty();
         nifty.fromXml("Interface/Nifty/HelloJme.xml", "start", this);
 
@@ -88,7 +88,7 @@ public class TestNiftyGui extends SimpleApplication implements ScreenController 
         System.out.println("onEndScreen");
     }
 
-    public void quit(){
+    public void quit() {
         nifty.gotoScreen("end");
     }
 

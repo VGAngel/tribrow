@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.collision;
+package com.pro.game.example.test.jme3test.collision;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingVolume;
@@ -69,7 +69,6 @@ public class TestTriangleCollision extends SimpleApplication {
         geom1.setMaterial(m1);
         rootNode.attachChild(geom1);
 
-        // load a character from jme3test-test-data
         golem = assetManager.loadModel("Models/Oto/Oto.mesh.xml");
         golem.scale(0.5f);
         golem.setLocalTranslation(-1.0f, -1.5f, -0.6f);
@@ -87,9 +86,10 @@ public class TestTriangleCollision extends SimpleApplication {
         inputManager.addMapping("MoveDown", new KeyTrigger(KeyInput.KEY_K));
 
         inputManager.addListener(analogListener, new String[]{
-                    "MoveRight", "MoveLeft", "MoveUp", "MoveDown"
-                });
+                "MoveRight", "MoveLeft", "MoveUp", "MoveDown"
+        });
     }
+
     private AnalogListener analogListener = new AnalogListener() {
 
         public void onAnalog(String name, float value, float tpf) {
@@ -119,7 +119,7 @@ public class TestTriangleCollision extends SimpleApplication {
 
         if (results.size() > 0) {
             geom1.getMaterial().setColor("Color", ColorRGBA.Red);
-        }else{
+        } else {
             geom1.getMaterial().setColor("Color", ColorRGBA.Blue);
         }
     }

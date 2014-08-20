@@ -1,38 +1,12 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
- *   may be used to endorse or promote products derived from this software
- *   without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-package jme3test.bullet;
+
+package com.pro.game.example.test.jme3test.bullet;
 
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,7 +62,6 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
 /**
- *
  * @author double1984 (tower mod by atom)
  */
 public class TestBrickTower extends SimpleApplication {
@@ -120,7 +93,7 @@ public class TestBrickTower extends SimpleApplication {
     public void simpleInitApp() {
         bulletAppState = new BulletAppState();
         bulletAppState.setThreadingType(BulletAppState.ThreadingType.PARALLEL);
-     //   bulletAppState.setEnabled(false);
+        //   bulletAppState.setEnabled(false);
         stateManager.attach(bulletAppState);
         bullet = new Sphere(32, 32, 0.4f, true, false);
         bullet.setTextureMode(TextureMode.Projected);
@@ -151,6 +124,7 @@ public class TestBrickTower extends SimpleApplication {
     private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
+
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -174,32 +148,32 @@ public class TestBrickTower extends SimpleApplication {
         double tempY = 0;
         double tempZ = 0;
         angle = 0f;
-        for (int i = 0; i < brickLayers; i++){
+        for (int i = 0; i < brickLayers; i++) {
             // Increment rows
-            if(i!=0)
-                tempY+=brickHeight*2;
+            if (i != 0)
+                tempY += brickHeight * 2;
             else
-                tempY=brickHeight;
+                tempY = brickHeight;
             // Alternate brick seams
-            angle = 360.0f / bricksPerLayer * i/2f;
-            for (int j = 0; j < bricksPerLayer; j++){
-              tempZ = Math.cos(Math.toRadians(angle))*radius;
-              tempX = Math.sin(Math.toRadians(angle))*radius;
-              System.out.println("x="+((float)(tempX))+" y="+((float)(tempY))+" z="+(float)(tempZ));
-              Vector3f vt = new Vector3f((float)(tempX), (float)(tempY), (float)(tempZ));
-              // Add crenelation
-              if (i==brickLayers-1){
-                if (j%2 == 0){
+            angle = 360.0f / bricksPerLayer * i / 2f;
+            for (int j = 0; j < bricksPerLayer; j++) {
+                tempZ = Math.cos(Math.toRadians(angle)) * radius;
+                tempX = Math.sin(Math.toRadians(angle)) * radius;
+                System.out.println("x=" + ((float) (tempX)) + " y=" + ((float) (tempY)) + " z=" + (float) (tempZ));
+                Vector3f vt = new Vector3f((float) (tempX), (float) (tempY), (float) (tempZ));
+                // Add crenelation
+                if (i == brickLayers - 1) {
+                    if (j % 2 == 0) {
+                        addBrick(vt);
+                    }
+                }
+                // Create main tower
+                else {
                     addBrick(vt);
                 }
-              }
-              // Create main tower
-              else {
-                addBrick(vt);
-              }
-              angle += 360.0/bricksPerLayer;
+                angle += 360.0 / bricksPerLayer;
             }
-          }
+        }
 
     }
 
@@ -241,7 +215,7 @@ public class TestBrickTower extends SimpleApplication {
         Geometry reBoxg = new Geometry("brick", brick);
         reBoxg.setMaterial(mat);
         reBoxg.setLocalTranslation(ori);
-        reBoxg.rotate(0f, (float)Math.toRadians(angle) , 0f );
+        reBoxg.rotate(0f, (float) Math.toRadians(angle), 0f);
         reBoxg.addControl(new RigidBodyControl(1.5f));
         reBoxg.setShadowMode(ShadowMode.CastAndReceive);
         reBoxg.getControl(RigidBodyControl.class).setFriction(1.6f);

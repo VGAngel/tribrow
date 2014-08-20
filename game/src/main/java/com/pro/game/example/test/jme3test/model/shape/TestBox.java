@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.shape;
+package com.pro.game.example.test.jme3test.model.shape;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -40,14 +40,14 @@ import com.jme3.scene.shape.Box;
 
 public class TestBox extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestBox app = new TestBox();
         app.start();
     }
 
     @Override
     public void simpleInitApp() {
-        Box b = new Box(1, 1, 1);
+        Box b = new Box(Vector3f.ZERO, 1, 1, 1);
         Geometry geom = new Geometry("Box", b);
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap", assetManager.loadTexture("Interface/Logo/Monkey.jpg"));

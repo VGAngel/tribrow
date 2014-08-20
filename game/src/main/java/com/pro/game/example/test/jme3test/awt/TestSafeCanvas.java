@@ -1,4 +1,4 @@
-package jme3test.awt;
+package com.pro.game.example.test.jme3test.awt;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -7,6 +7,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
+
 import java.awt.Canvas;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,7 +15,7 @@ import javax.swing.JFrame;
 
 public class TestSafeCanvas extends SimpleApplication {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         AppSettings settings = new AppSettings(true);
         settings.setWidth(640);
         settings.setHeight(480);
@@ -29,7 +30,6 @@ public class TestSafeCanvas extends SimpleApplication {
         Canvas canvas = context.getCanvas();
         canvas.setSize(settings.getWidth(), settings.getHeight());
 
-        
 
         Thread.sleep(3000);
 

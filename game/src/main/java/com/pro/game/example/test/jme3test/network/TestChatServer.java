@@ -29,18 +29,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 import com.jme3.network.*;
 import com.jme3.network.serializing.Serializable;
 import com.jme3.network.serializing.Serializer;
 
 /**
- *  A simple test chat server.  When SM implements a set
- *  of standard chat classes this can become a lot simpler.
+ * A simple test chat server.  When SM implements a set
+ * of standard chat classes this can become a lot simpler.
  *
- *  @version   $Revision$
- *  @author    Paul Speed
+ * @author Paul Speed
+ * @version $Revision: 8843 $
  */
 public class TestChatServer {
     // Normally these and the initialized method would

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -48,8 +48,10 @@ import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.scene.Spatial;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.WaterFilter;
+
 import java.io.File;
 
+//TODO;select
 public class TestMultiplesFilters extends SimpleApplication {
 
     private static boolean useHttp = false;
@@ -62,6 +64,7 @@ public class TestMultiplesFilters extends SimpleApplication {
         TestMultiplesFilters app = new TestMultiplesFilters();
         app.start();
     }
+
     SSAOFilter ssaoFilter;
     FilterPostProcessor fpp;
     boolean en = true;
@@ -90,17 +93,17 @@ public class TestMultiplesFilters extends SimpleApplication {
         scene.addLight(sun);
 
         fpp = new FilterPostProcessor(assetManager);
-      //  fpp.setNumSamples(4);
+        //  fpp.setNumSamples(4);
         ssaoFilter = new SSAOFilter(0.92f, 2.2f, 0.46f, 0.2f);
-        final WaterFilter water=new WaterFilter(rootNode,new Vector3f(-0.4790551f, -0.39247334f, -0.7851566f));
+        final WaterFilter water = new WaterFilter(rootNode, new Vector3f(-0.4790551f, -0.39247334f, -0.7851566f));
         water.setWaterHeight(-20);
-        SSAOUI ui=new SSAOUI(inputManager,ssaoFilter);
+        SSAOUI ui = new SSAOUI(inputManager, ssaoFilter);
         final BloomFilter bloom = new BloomFilter();
         final ColorOverlayFilter overlay = new ColorOverlayFilter(ColorRGBA.LightGray);
-        
+
 
         fpp.addFilter(ssaoFilter);
-        
+
         fpp.addFilter(water);
 
         fpp.addFilter(bloom);
@@ -110,7 +113,7 @@ public class TestMultiplesFilters extends SimpleApplication {
         viewPort.addProcessor(fpp);
 
         rootNode.attachChild(scene);
-        
+
         inputManager.addListener(new ActionListener() {
 
             public void onAction(String name, boolean isPressed, float tpf) {
@@ -143,11 +146,11 @@ public class TestMultiplesFilters extends SimpleApplication {
                     }
                 }
             }
-        }, "toggleSSAO", "toggleBloom", "toggleWater","toggleOverlay");
+        }, "toggleSSAO", "toggleBloom", "toggleWater", "toggleOverlay");
         inputManager.addMapping("toggleSSAO", new KeyTrigger(KeyInput.KEY_1));
         inputManager.addMapping("toggleWater", new KeyTrigger(KeyInput.KEY_2));
         inputManager.addMapping("toggleBloom", new KeyTrigger(KeyInput.KEY_3));
         inputManager.addMapping("toggleOverlay", new KeyTrigger(KeyInput.KEY_4));
-        
+
     }
 }

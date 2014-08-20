@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.input;
+package com.pro.game.example.test.jme3test.input;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -41,9 +41,9 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 
 public class TestControls extends SimpleApplication {
-    
-    private ActionListener actionListener = new ActionListener(){
-        public void onAction(String name, boolean pressed, float tpf){
+
+    private ActionListener actionListener = new ActionListener() {
+        public void onAction(String name, boolean pressed, float tpf) {
             System.out.println(name + " = " + pressed);
         }
     };
@@ -53,7 +53,7 @@ public class TestControls extends SimpleApplication {
         }
     };
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestControls app = new TestControls();
         app.start();
     }

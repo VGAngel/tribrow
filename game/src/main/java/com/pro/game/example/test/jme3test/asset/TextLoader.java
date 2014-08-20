@@ -1,7 +1,8 @@
-package jme3test.asset;
+package com.pro.game.example.test.jme3test.asset;
 
 import com.jme3.asset.AssetInfo;
 import com.jme3.asset.AssetLoader;
+
 import java.io.IOException;
 import java.util.Scanner;
 

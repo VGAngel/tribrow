@@ -1,5 +1,5 @@
-package jme3test.bullet;
- 
+package com.pro.game.example.test.jme3test.bullet;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
@@ -10,27 +10,28 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.font.BitmapText;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+
 import java.util.List;
+
 /**
- *
  * @author @wezrule
  */
 public class TestPhysicsRayCast extends SimpleApplication {
- 
+
     private BulletAppState bulletAppState = new BulletAppState();
- 
+
     public static void main(String[] args) {
         new TestPhysicsRayCast().start();
     }
- 
+
     @Override
     public void simpleInitApp() {
         stateManager.attach(bulletAppState);
         initCrossHair();
- 
+
         Spatial s = assetManager.loadModel("Models/Elephant/Elephant.mesh.xml");
         s.setLocalScale(0.1f);
- 
+
         CollisionShape collisionShape = CollisionShapeFactory.createMeshShape(s);
         Node n = new Node("elephant");
         n.addControl(new RigidBodyControl(collisionShape, 1));
@@ -39,7 +40,7 @@ public class TestPhysicsRayCast extends SimpleApplication {
         rootNode.attachChild(n);
         bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
- 
+
     @Override
     public void simpleUpdate(float tpf) {
         List<PhysicsRayTestResult> rayTest = bulletAppState.getPhysicsSpace().rayTest(cam.getLocation(), cam.getLocation().add(cam.getDirection()));
@@ -50,11 +51,11 @@ public class TestPhysicsRayCast extends SimpleApplication {
             fpsText.setText(collisionObject.getUserObject().toString());
         }
     }
- 
+
     private void initCrossHair() {
         BitmapText bitmapText = new BitmapText(guiFont);
         bitmapText.setText("+");
-        bitmapText.setLocalTranslation((settings.getWidth() - bitmapText.getLineWidth())*0.5f, (settings.getHeight() + bitmapText.getLineHeight())*0.5f, 0);
+        bitmapText.setLocalTranslation((settings.getWidth() - bitmapText.getLineWidth()) * 0.5f, (settings.getHeight() + bitmapText.getLineHeight()) * 0.5f, 0);
         guiNode.attachChild(bitmapText);
     }
 }

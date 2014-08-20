@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.light;
+package com.pro.game.example.test.jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -50,7 +50,7 @@ public class TestTangentGenBadUV extends SimpleApplication {
     PointLight pl;
     Geometry lightMdl;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestTangentGenBadUV app = new TestTangentGenBadUV();
         app.start();
     }
@@ -58,10 +58,10 @@ public class TestTangentGenBadUV extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         Spatial teapot = assetManager.loadModel("Models/Teapot/Teapot.obj");
-        if (teapot instanceof Geometry){
+        if (teapot instanceof Geometry) {
             Geometry g = (Geometry) teapot;
             TangentBinormalGenerator.generate(g.getMesh());
-        }else{
+        } else {
             throw new RuntimeException();
         }
         teapot.setLocalScale(2f);
@@ -82,7 +82,7 @@ public class TestTangentGenBadUV extends SimpleApplication {
 
 
         DirectionalLight dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(1,-1,-1).normalizeLocal());
+        dl.setDirection(new Vector3f(1, -1, -1).normalizeLocal());
         dl.setColor(ColorRGBA.White);
         rootNode.addLight(dl);
 
@@ -98,10 +98,10 @@ public class TestTangentGenBadUV extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         angle += tpf;
         angle %= FastMath.TWO_PI;
-        
+
         pl.setPosition(new Vector3f(FastMath.cos(angle) * 2f, 0.5f, FastMath.sin(angle) * 2f));
         lightMdl.setLocalTranslation(pl.getPosition());
     }

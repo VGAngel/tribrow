@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.audio;
+package com.pro.game.example.test.jme3test.audio;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.audio.AudioNode;
@@ -48,22 +48,22 @@ public class TestDoppler extends SimpleApplication {
     private AudioNode ufo;
 
     private float x = 20, z = 0;
-    private float rate     = -0.05f;
-    private float xDist    = 20;
-    private float zDist    = 5;
-    private float angle    = FastMath.TWO_PI;
-    
-    public static void main(String[] args){
+    private float rate = -0.05f;
+    private float xDist = 20;
+    private float zDist = 5;
+    private float angle = FastMath.TWO_PI;
+
+    public static void main(String[] args) {
         TestDoppler test = new TestDoppler();
         test.start();
     }
 
     @Override
-    public void simpleInitApp(){
+    public void simpleInitApp() {
         audioRenderer.setEnvironment(Environment.Dungeon);
         AL10.alDistanceModel(AL11.AL_EXPONENT_DISTANCE);
-        
-        ufo  = new AudioNode(assetManager, "Sound/Effects/Beep.ogg", false);
+
+        ufo = new AudioNode(assetManager, "Sound/Effects/Beep.ogg", false);
         ufo.setPositional(true);
         ufo.setLooping(true);
         ufo.setReverbEnabled(true);
@@ -73,32 +73,32 @@ public class TestDoppler extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         //float x  = (float) (Math.cos(angle) * xDist);
-        float dx = (float)  Math.sin(angle) * xDist; 
-        
+        float dx = (float) Math.sin(angle) * xDist;
+
         //float z  = (float) (Math.sin(angle) * zDist);
-        float dz = (float)(-Math.cos(angle) * zDist);
-        
+        float dz = (float) (-Math.cos(angle) * zDist);
+
         x += dx * tpf * 0.05f;
         z += dz * tpf * 0.05f;
-        
+
         angle += tpf * rate;
-        
-        if (angle > FastMath.TWO_PI){
+
+        if (angle > FastMath.TWO_PI) {
             angle = FastMath.TWO_PI;
             rate = -rate;
-        }else if (angle < -0){
+        } else if (angle < -0) {
             angle = -0;
             rate = -rate;
         }
-        
+
         ufo.setVelocity(new Vector3f(dx, 0, dz));
         ufo.setLocalTranslation(x, 0, z);
         ufo.updateGeometricState();
-        
-        System.out.println("LOC: " + (int)x +", " + (int)z + 
-                ", VEL: " + (int)dx + ", " + (int)dz);
+
+        System.out.println("LOC: " + (int) x + ", " + (int) z +
+                ", VEL: " + (int) dx + ", " + (int) dz);
     }
 
 }

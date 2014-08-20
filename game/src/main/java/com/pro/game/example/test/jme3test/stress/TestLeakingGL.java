@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.stress;
+package com.pro.game.example.test.jme3test.stress;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -41,6 +41,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.util.NativeObjectManager;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,7 +55,7 @@ public class TestLeakingGL extends SimpleApplication {
     private Material solidColor;
     private Sphere original;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestLeakingGL app = new TestLeakingGL();
         app.start();
     }
@@ -75,10 +76,10 @@ public class TestLeakingGL extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         rootNode.detachAllChildren();
-        for (int y = -15; y < 15; y++){
-            for (int x = -15; x < 15; x++){
+        for (int y = -15; y < 15; y++) {
+            for (int x = -15; x < 15; x++) {
                 Mesh sphMesh = original.deepClone();
                 Geometry sphere = new Geometry("sphere", sphMesh);
 

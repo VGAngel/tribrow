@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.export;
+package com.pro.game.example.test.jme3test.export;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -42,13 +42,14 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class TestOgreConvert extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestOgreConvert app = new TestOgreConvert();
         app.start();
     }
@@ -59,7 +60,7 @@ public class TestOgreConvert extends SimpleApplication {
 
         DirectionalLight dl = new DirectionalLight();
         dl.setColor(ColorRGBA.White);
-        dl.setDirection(new Vector3f(0,-1,-1).normalizeLocal());
+        dl.setDirection(new Vector3f(0, -1, -1).normalizeLocal());
         rootNode.addLight(dl);
 
         try {
@@ -71,13 +72,13 @@ public class TestOgreConvert extends SimpleApplication {
             BinaryImporter imp = new BinaryImporter();
             imp.setAssetManager(assetManager);
             Node ogreModelReloaded = (Node) imp.load(bais, null, null);
-            
+
             AnimControl control = ogreModelReloaded.getControl(AnimControl.class);
             AnimChannel chan = control.createChannel();
             chan.setAnim("Walk");
 
             rootNode.attachChild(ogreModelReloaded);
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }

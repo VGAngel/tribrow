@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.audio;
+package com.pro.game.example.test.jme3test.audio;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.UrlLocator;
@@ -38,21 +38,20 @@ import com.jme3.audio.AudioNode;
 
 public class TestMusicStreaming extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestMusicStreaming test = new TestMusicStreaming();
         test.start();
     }
 
     @Override
-    public void simpleInitApp(){
+    public void simpleInitApp() {
         assetManager.registerLocator("http://www.vorbis.com/music/", UrlLocator.class);
         AudioNode audioSource = new AudioNode(assetManager, "Lumme-Badloop.ogg", true);
-        audioSource.setPositional(false);
-        audioSource.setReverbEnabled(false);
         audioSource.play();
     }
 
     @Override
-    public void simpleUpdate(float tpf){}
+    public void simpleUpdate(float tpf) {
+    }
 
 }

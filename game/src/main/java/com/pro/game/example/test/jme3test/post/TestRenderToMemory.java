@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -52,6 +52,7 @@ import com.jme3.texture.Image.Format;
 import com.jme3.texture.Texture2D;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.Screenshots;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -85,7 +86,7 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
     private final ByteBuffer cpuBuf = BufferUtils.createByteBuffer(width * height * 4);
     private final byte[] cpuArray = new byte[width * height * 4];
     private final BufferedImage image = new BufferedImage(width, height,
-                                            BufferedImage.TYPE_4BYTE_ABGR);
+            BufferedImage.TYPE_4BYTE_ABGR);
 
     private class ImageDisplay extends JPanel {
 
@@ -105,28 +106,28 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
 //            g2d.setBackground(Color.BLACK);
 //            g2d.clearRect(0,0,width,height);
 
-            synchronized (image){
+            synchronized (image) {
                 g2d.drawImage(image, null, 0, 0);
             }
 
             long t2 = timer.getTime();
             long dt = t2 - t;
             total += dt;
-            frames ++;
+            frames++;
             t = t2;
 
-            if (total > 1000){
+            if (total > 1000) {
                 fps = frames;
                 total = 0;
                 frames = 0;
             }
 
             g2d.setColor(Color.white);
-            g2d.drawString("FPS: "+fps, 0, getHeight() - 100);
+            g2d.drawString("FPS: " + fps, 0, getHeight() - 100);
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestRenderToMemory app = new TestRenderToMemory();
         app.setPauseOnLostFocus(false);
         AppSettings settings = new AppSettings(true);
@@ -135,16 +136,16 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
         app.start(Type.OffscreenSurface);
     }
 
-    public void createDisplayFrame(){
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
+    public void createDisplayFrame() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 JFrame frame = new JFrame("Render Display");
                 display = new ImageDisplay();
                 display.setPreferredSize(new Dimension(width, height));
                 frame.getContentPane().add(display);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.addWindowListener(new WindowAdapter(){
-                    public void windowClosed(WindowEvent e){
+                frame.addWindowListener(new WindowAdapter() {
+                    public void windowClosed(WindowEvent e) {
                         stop();
                     }
                 });
@@ -156,26 +157,26 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
         });
     }
 
-    public void updateImageContents(){
+    public void updateImageContents() {
         cpuBuf.clear();
         renderer.readFrameBuffer(offBuffer, cpuBuf);
 
         synchronized (image) {
-            Screenshots.convertScreenShot(cpuBuf, image);    
+            Screenshots.convertScreenShot(cpuBuf, image);
         }
 
         if (display != null)
             display.repaint();
     }
 
-    public void setupOffscreenView(){
+    public void setupOffscreenView() {
         offCamera = new Camera(width, height);
 
         // create a pre-view. a view that is rendered before the main view
         offView = renderManager.createPreView("Offscreen View", offCamera);
         offView.setBackgroundColor(ColorRGBA.DarkGray);
         offView.setClearFlags(true, true, true);
-        
+
         // this will let us know when the scene has been rendered to the 
         // frame buffer
         offView.addProcessor(this);
@@ -196,12 +197,12 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
         offBuffer.setDepthBuffer(Format.Depth);
         offBuffer.setColorBuffer(Format.RGBA8);
 //        offBuffer.setColorTexture(offTex);
-        
+
         //set viewport to render to offscreen framebuffer
         offView.setOutputFrameBuffer(offBuffer);
 
         // setup framebuffer's scene
-        Box boxMesh = new Box(Vector3f.ZERO, 1,1,1);
+        Box boxMesh = new Box(Vector3f.ZERO, 1, 1, 1);
         Material material = assetManager.loadMaterial("Interface/Logo/Logo.j3m");
         offBox = new Geometry("box", boxMesh);
         offBox.setMaterial(material);
@@ -217,7 +218,7 @@ public class TestRenderToMemory extends SimpleApplication implements SceneProces
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         Quaternion q = new Quaternion();
         angle += tpf;
         angle %= FastMath.TWO_PI;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.shape;
+package com.pro.game.example.test.jme3test.model.shape;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -43,7 +43,6 @@ import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 
 /**
- *
  * @author Kirill Vainer
  */
 public class TestBillboard extends SimpleApplication {
@@ -70,19 +69,19 @@ public class TestBillboard extends SimpleApplication {
 
         Node bb = new Node("billboard");
 
-        BillboardControl control=new BillboardControl();
-        
+        BillboardControl control = new BillboardControl();
+
         bb.addControl(control);
         bb.attachChild(g);
-        bb.attachChild(g3);       
-        
+        bb.attachChild(g3);
 
-        n=new Node("parent");
+
+        n = new Node("parent");
         n.attachChild(g2);
         n.attachChild(bb);
         rootNode.attachChild(n);
 
-        n2=new Node("parentParent");
+        n2 = new Node("parentParent");
         n2.setLocalTranslation(Vector3f.UNIT_X.mult(5));
         n2.attachChild(n);
 
@@ -92,16 +91,17 @@ public class TestBillboard extends SimpleApplication {
 //        rootNode.attachChild(bb);
 //        rootNode.attachChild(g2);
     }
- Node n;
- Node n2;
+
+    Node n;
+    Node n2;
+
     @Override
     public void simpleUpdate(float tpf) {
         super.simpleUpdate(tpf);
         n.rotate(0, tpf, 0);
-        n.move(0.1f*tpf, 0, 0);
+        n.move(0.1f * tpf, 0, 0);
         n2.rotate(0, 0, -tpf);
     }
-
 
 
     public static void main(String[] args) {

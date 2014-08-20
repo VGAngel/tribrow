@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -45,22 +45,27 @@ public class TestHDR extends SimpleApplication {
     private HDRRenderer hdrRender;
     private Picture dispQuad;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestHDR app = new TestHDR();
         app.start();
     }
 
-    public Geometry createHDRBox(){
-        Box boxMesh = new Box(1, 1, 1);
+    public Geometry createHDRBox() {
+        Box boxMesh = new Box(Vector3f.ZERO, 1, 1, 1);
         Geometry box = new Geometry("Box", boxMesh);
+
+//        Material mat = assetManager.loadMaterial("Textures/HdrTest/Memorial.j3m");
+//        box.setMaterial(mat);
+
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap", assetManager.loadTexture("Textures/HdrTest/Memorial.hdr"));
         box.setMaterial(mat);
+
         return box;
     }
 
 //    private Material disp;
-    
+
     @Override
     public void simpleInitApp() {
         hdrRender = new HDRRenderer(assetManager, renderer);
@@ -68,13 +73,16 @@ public class TestHDR extends SimpleApplication {
         hdrRender.setMaxIterations(20);
         hdrRender.setExposure(0.87f);
         hdrRender.setThrottle(0.33f);
+
         viewPort.addProcessor(hdrRender);
+
 //        config.setVisible(true);
+
         rootNode.attachChild(createHDRBox());
     }
 
-    public void simpleUpdate(float tpf){
-        if (hdrRender.isInitialized() && dispQuad == null){
+    public void simpleUpdate(float tpf) {
+        if (hdrRender.isInitialized() && dispQuad == null) {
             dispQuad = hdrRender.createDisplayQuad();
             dispQuad.setWidth(128);
             dispQuad.setHeight(128);

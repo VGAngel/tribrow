@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingBox;
@@ -57,7 +57,6 @@ import com.jme3.scene.Spatial;
 import com.jme3.shadow.PssmShadowRenderer;
 import com.jme3.shadow.PssmShadowRenderer.CompareMode;
 import com.jme3.shadow.PssmShadowRenderer.FilterMode;
-import com.jme3.system.AppSettings;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.jme3.terrain.heightmap.AbstractHeightMap;
@@ -65,6 +64,7 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 import com.jme3.util.SkyFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,8 +84,6 @@ public class TestHoveringTank extends SimpleApplication implements AnalogListene
 
     public static void main(String[] args) {
         TestHoveringTank app = new TestHoveringTank();
-        AppSettings settings = new AppSettings(true);
-        settings.setRenderer(AppSettings.LWJGL_OPENGL3);
         app.start();
     }
 
@@ -114,7 +112,7 @@ public class TestHoveringTank extends SimpleApplication implements AnalogListene
         bulletAppState.setThreadingType(BulletAppState.ThreadingType.PARALLEL);
         stateManager.attach(bulletAppState);
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
-        bulletAppState.getPhysicsSpace().setAccuracy(1f/30f);
+        bulletAppState.getPhysicsSpace().setAccuracy(1f / 30f);
         rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/Sky/Bright/BrightSky.dds", false));
 
         PssmShadowRenderer pssmr = new PssmShadowRenderer(assetManager, 2048, 3);

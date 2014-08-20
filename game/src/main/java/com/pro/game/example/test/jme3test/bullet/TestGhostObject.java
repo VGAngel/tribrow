@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -45,7 +45,6 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 
 /**
- *
  * @author tim8dev [at] gmail [dot com]
  */
 public class TestGhostObject extends SimpleApplication {
@@ -97,14 +96,14 @@ public class TestGhostObject extends SimpleApplication {
         initGhostObject();
     }
 
-    private PhysicsSpace getPhysicsSpace(){
+    private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
 
     private void initGhostObject() {
         Vector3f halfExtents = new Vector3f(3, 4.2f, 1);
         ghostControl = new GhostControl(new BoxCollisionShape(halfExtents));
-        Node node=new Node("Ghost Object");
+        Node node = new Node("Ghost Object");
         node.addControl(ghostControl);
         rootNode.attachChild(node);
         getPhysicsSpace().add(ghostControl);

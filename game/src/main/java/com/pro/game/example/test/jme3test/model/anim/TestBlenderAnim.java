@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.anim;
+package com.pro.game.example.test.jme3test.model.anim;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -49,7 +49,7 @@ public class TestBlenderAnim extends SimpleApplication {
     private AnimControl control;
 
     public static void main(String[] args) {
-    	TestBlenderAnim app = new TestBlenderAnim();
+        TestBlenderAnim app = new TestBlenderAnim();
         app.start();
     }
 
@@ -65,23 +65,24 @@ public class TestBlenderAnim extends SimpleApplication {
         rootNode.addLight(dl);
 
         BlenderKey blenderKey = new BlenderKey("Blender/2.4x/BaseMesh_249.blend");
-        
+
         Spatial scene = (Spatial) assetManager.loadModel(blenderKey);
         rootNode.attachChild(scene);
-        
+
         Spatial model = this.findNode(rootNode, "BaseMesh_01");
         model.center();
-        
+
         control = model.getControl(AnimControl.class);
         channel = control.createChannel();
 
         channel.setAnim("run_01");
     }
-    
+
     /**
      * This method finds a node of a given name.
+     *
      * @param rootNode the root node to search
-     * @param name the name of the searched node
+     * @param name     the name of the searched node
      * @return the found node or null
      */
     private Spatial findNode(Node rootNode, String name) {

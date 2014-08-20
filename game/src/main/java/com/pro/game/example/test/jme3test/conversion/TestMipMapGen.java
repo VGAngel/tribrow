@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.conversion;
+package com.pro.game.example.test.jme3test.conversion;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
@@ -43,7 +43,7 @@ import jme3tools.converters.MipMapGenerator;
 
 public class TestMipMapGen extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestMipMapGen app = new TestMipMapGen();
         app.start();
     }

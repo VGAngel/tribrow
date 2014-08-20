@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.material;
+package com.pro.game.example.test.jme3test.material;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -51,7 +51,7 @@ public class TestBumpModel extends SimpleApplication {
     PointLight pl;
     Spatial lightMdl;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestBumpModel app = new TestBumpModel();
         app.start();
     }
@@ -59,12 +59,12 @@ public class TestBumpModel extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         Spatial signpost = (Spatial) assetManager.loadAsset(new OgreMeshKey("Models/Sign Post/Sign Post.mesh.xml"));
-        signpost.setMaterial( (Material) assetManager.loadMaterial("Models/Sign Post/Sign Post.j3m"));
+        signpost.setMaterial((Material) assetManager.loadMaterial("Models/Sign Post/Sign Post.j3m"));
         TangentBinormalGenerator.generate(signpost);
         rootNode.attachChild(signpost);
 
         lightMdl = new Geometry("Light", new Sphere(10, 10, 0.1f));
-        lightMdl.setMaterial( (Material) assetManager.loadMaterial("Common/Materials/RedColor.j3m"));
+        lightMdl.setMaterial((Material) assetManager.loadMaterial("Common/Materials/RedColor.j3m"));
         rootNode.attachChild(lightMdl);
 
         // flourescent main light
@@ -74,25 +74,25 @@ public class TestBumpModel extends SimpleApplication {
 
         // sunset light
         DirectionalLight dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(-0.1f,-0.7f,1).normalizeLocal());
+        dl.setDirection(new Vector3f(-0.1f, -0.7f, 1).normalizeLocal());
         dl.setColor(new ColorRGBA(0.44f, 0.30f, 0.20f, 1.0f));
         rootNode.addLight(dl);
 
         // skylight
         dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(-0.6f,-1,-0.6f).normalizeLocal());
+        dl.setDirection(new Vector3f(-0.6f, -1, -0.6f).normalizeLocal());
         dl.setColor(new ColorRGBA(0.10f, 0.22f, 0.44f, 1.0f));
         rootNode.addLight(dl);
 
         // white ambient light
         dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(1, -0.5f,-0.1f).normalizeLocal());
+        dl.setDirection(new Vector3f(1, -0.5f, -0.1f).normalizeLocal());
         dl.setColor(new ColorRGBA(0.50f, 0.40f, 0.50f, 1.0f));
         rootNode.addLight(dl);
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         angle += tpf * 0.25f;
         angle %= FastMath.TWO_PI;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 
 import com.jme3.app.SimpleApplication;
@@ -46,6 +46,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -57,10 +58,11 @@ import java.util.logging.Logger;
  *
  * @author normenhansen
  */
-public class TestPhysicsReadWrite extends SimpleApplication{
+public class TestPhysicsReadWrite extends SimpleApplication {
     private BulletAppState bulletAppState;
     private Node physicsRootNode;
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         TestPhysicsReadWrite app = new TestPhysicsReadWrite();
         app.start();
     }
@@ -70,7 +72,7 @@ public class TestPhysicsReadWrite extends SimpleApplication{
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
         bulletAppState.getPhysicsSpace().enableDebug(assetManager);
-        physicsRootNode=new Node("PhysicsRootNode");
+        physicsRootNode = new Node("PhysicsRootNode");
         rootNode.attachChild(physicsRootNode);
 
         // Add a physics sphere to the world
@@ -111,7 +113,7 @@ public class TestPhysicsReadWrite extends SimpleApplication{
         getPhysicsSpace().add(node3);
 
         // Join the physics objects with a Point2Point joint
-        HingeJoint joint=new HingeJoint(physicsSphere.getControl(RigidBodyControl.class), physicsBox.getControl(RigidBodyControl.class), new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
+        HingeJoint joint = new HingeJoint(physicsSphere.getControl(RigidBodyControl.class), physicsBox.getControl(RigidBodyControl.class), new Vector3f(-2, 0, 0), new Vector3f(2, 0, 0), Vector3f.UNIT_Z, Vector3f.UNIT_Z);
         getPhysicsSpace().add(joint);
 
         //save and load the physicsRootNode
@@ -120,13 +122,13 @@ public class TestPhysicsReadWrite extends SimpleApplication{
             getPhysicsSpace().removeAll(physicsRootNode);
             physicsRootNode.removeFromParent();
             //export to byte array
-            ByteArrayOutputStream bout=new ByteArrayOutputStream();
+            ByteArrayOutputStream bout = new ByteArrayOutputStream();
             BinaryExporter.getInstance().save(physicsRootNode, bout);
             //import from byte array
-            ByteArrayInputStream bin=new ByteArrayInputStream(bout.toByteArray());
-            BinaryImporter imp=BinaryImporter.getInstance();
+            ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+            BinaryImporter imp = BinaryImporter.getInstance();
             imp.setAssetManager(assetManager);
-            Node newPhysicsRootNode=(Node)imp.load(bin);
+            Node newPhysicsRootNode = (Node) imp.load(bin);
             //add all physics objects to physics space
             getPhysicsSpace().addAll(newPhysicsRootNode);
             rootNode.attachChild(newPhysicsRootNode);
@@ -136,7 +138,7 @@ public class TestPhysicsReadWrite extends SimpleApplication{
 
     }
 
-    private PhysicsSpace getPhysicsSpace(){
+    private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
 

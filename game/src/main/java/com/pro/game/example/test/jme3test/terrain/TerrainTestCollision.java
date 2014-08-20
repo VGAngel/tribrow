@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,6 +72,7 @@ import com.jme3.texture.Texture.WrapMode;
  *
  * @author Brent Owens
  */
+//TODO:select
 public class TerrainTestCollision extends SimpleApplication {
 
     TerrainQuad terrain;
@@ -134,7 +135,7 @@ public class TerrainTestCollision extends SimpleApplication {
 
         terrain = new TerrainQuad("terrain", 65, 513, heightmap.getHeightMap());
         TerrainLodControl control = new TerrainLodControl(terrain, getCamera());
-        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
+        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
         terrain.addControl(control);
         terrain.setMaterial(matRock);
         terrain.setLocalScale(new Vector3f(2, 2, 2));
@@ -236,6 +237,7 @@ public class TerrainTestCollision extends SimpleApplication {
         collisionMarker.setMaterial(mat);
         rootNode.attachChild(collisionMarker);
     }
+
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String binding, boolean keyPressed, float tpf) {

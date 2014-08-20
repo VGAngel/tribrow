@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.scene;
+package com.pro.game.example.test.jme3test.scene;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -43,6 +43,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.util.SkyFactory;
+
 import java.io.File;
 
 public class TestSceneLoading extends SimpleApplication {
@@ -52,13 +53,13 @@ public class TestSceneLoading extends SimpleApplication {
     private static boolean useHttp = false;
 
     public static void main(String[] args) {
-     
+
         TestSceneLoading app = new TestSceneLoading();
         app.start();
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         sphere.setLocalTranslation(cam.getLocation());
     }
 

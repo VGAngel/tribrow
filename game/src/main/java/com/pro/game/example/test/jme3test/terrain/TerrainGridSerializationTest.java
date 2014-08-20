@@ -21,6 +21,7 @@ import com.jme3.terrain.geomipmap.TerrainGridLodControl;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.jme3.terrain.geomipmap.lodcalc.DistanceLodCalculator;
+
 import java.io.File;
 
 public class TerrainGridSerializationTest extends SimpleApplication {
@@ -32,6 +33,7 @@ public class TerrainGridSerializationTest extends SimpleApplication {
         TerrainGridSerializationTest app = new TerrainGridSerializationTest();
         app.start();
     }
+
     private CharacterControl player3;
 
     @Override
@@ -47,14 +49,14 @@ public class TerrainGridSerializationTest extends SimpleApplication {
         ScreenshotAppState state = new ScreenshotAppState();
         this.stateManager.attach(state);
 
-        this.terrain= (TerrainGrid) assetManager.loadModel("TerrainGrid/TerrainGrid.j3o");
-        
+        this.terrain = (TerrainGrid) assetManager.loadModel("TerrainGrid/TerrainGrid.j3o");
+
         this.rootNode.attachChild(this.terrain);
-        
+
         TerrainLodControl control = new TerrainGridLodControl(this.terrain, getCamera());
-        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
+        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
         this.terrain.addControl(control);
-        
+
         final BulletAppState bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
 
@@ -78,9 +80,13 @@ public class TerrainGridSerializationTest extends SimpleApplication {
                 public void gridMoved(Vector3f newCenter) {
                 }
 
+                public Material tileLoaded(Material material, Vector3f cell) {
+                    return material;
+                }
+
                 public void tileAttached(Vector3f cell, TerrainQuad quad) {
                     //workaround for bugged test j3o's
-                    while(quad.getControl(RigidBodyControl.class)!=null){
+                    while (quad.getControl(RigidBodyControl.class) != null) {
                         quad.removeControl(RigidBodyControl.class);
                     }
                     quad.addControl(new RigidBodyControl(new HeightfieldCollisionShape(quad.getHeightMap(), terrain.getLocalScale()), 0));
@@ -88,15 +94,13 @@ public class TerrainGridSerializationTest extends SimpleApplication {
                 }
 
                 public void tileDetached(Vector3f cell, TerrainQuad quad) {
-                    if (quad.getControl(RigidBodyControl.class) != null) {
-                        bulletAppState.getPhysicsSpace().remove(quad);
-                        quad.removeControl(RigidBodyControl.class);
-                    }
+                    bulletAppState.getPhysicsSpace().remove(quad);
+                    quad.removeControl(RigidBodyControl.class);
                 }
 
             });
         }
-        
+
         this.initKeys();
     }
 
@@ -113,6 +117,7 @@ public class TerrainGridSerializationTest extends SimpleApplication {
         this.inputManager.addListener(this.actionListener, "Downs");
         this.inputManager.addListener(this.actionListener, "Jumps");
     }
+
     private boolean left;
     private boolean right;
     private boolean up;

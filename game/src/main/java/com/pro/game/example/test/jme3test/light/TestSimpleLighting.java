@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.light;
+package com.pro.game.example.test.jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -49,7 +49,7 @@ public class TestSimpleLighting extends SimpleApplication {
     PointLight pl;
     Geometry lightMdl;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestSimpleLighting app = new TestSimpleLighting();
         app.start();
     }
@@ -74,10 +74,10 @@ public class TestSimpleLighting extends SimpleApplication {
 //        mat.setBoolean("LowQuality", true);
 //        mat.setBoolean("HighQuality", true);
 
-        mat.setColor("Ambient",  ColorRGBA.Black);
-        mat.setColor("Diffuse",  ColorRGBA.Gray);
+        mat.setColor("Ambient", ColorRGBA.Black);
+        mat.setColor("Diffuse", ColorRGBA.Gray);
         mat.setColor("Specular", ColorRGBA.Gray);
-        
+
         teapot.setMaterial(mat);
         rootNode.attachChild(teapot);
 
@@ -98,13 +98,13 @@ public class TestSimpleLighting extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
 //        cam.setLocation(new Vector3f(2.0632997f, 1.9493936f, 2.6885238f));
 //        cam.setRotation(new Quaternion(-0.053555284f, 0.9407851f, -0.17754152f, -0.28378546f));
 
         angle += tpf;
         angle %= FastMath.TWO_PI;
-        
+
         pl.setPosition(new Vector3f(FastMath.cos(angle) * 2f, 0.5f, FastMath.sin(angle) * 2f));
         lightMdl.setLocalTranslation(pl.getPosition());
     }

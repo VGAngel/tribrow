@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,11 +30,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 import com.jme3.network.*;
 import com.jme3.network.serializing.Serializable;
 import com.jme3.network.serializing.Serializer;
+
 import java.io.IOException;
 
 public class TestMessages {
@@ -49,7 +50,7 @@ public class TestMessages {
 
     private static class ServerPingResponder implements MessageListener<HostedConnection> {
         public void messageReceived(HostedConnection source, com.jme3.network.Message message) {
-            if (message instanceof PingMessage){
+            if (message instanceof PingMessage) {
                 System.out.println("Server: Received ping message!");
                 source.send(new PongMessage());
             }
@@ -58,13 +59,13 @@ public class TestMessages {
 
     private static class ClientPingResponder implements MessageListener<Client> {
         public void messageReceived(Client source, com.jme3.network.Message message) {
-            if (message instanceof PongMessage){
+            if (message instanceof PongMessage) {
                 System.out.println("Client: Received pong message!");
             }
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         Serializer.registerClass(PingMessage.class);
         Serializer.registerClass(PongMessage.class);
 
@@ -79,9 +80,9 @@ public class TestMessages {
 
         System.out.println("Client: Sending ping message..");
         client.send(new PingMessage());
-        
+
         Object obj = new Object();
-        synchronized (obj){
+        synchronized (obj) {
             obj.wait();
         }
     }

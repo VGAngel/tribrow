@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
@@ -75,7 +75,7 @@ public class TestPhysicsCar extends SimpleApplication implements ActionListener 
         buildPlayer();
     }
 
-    private PhysicsSpace getPhysicsSpace(){
+    private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
 
@@ -106,7 +106,7 @@ public class TestPhysicsCar extends SimpleApplication implements ActionListener 
         compoundShape.addChildShape(box, new Vector3f(0, 1, 0));
 
         //create vehicle node
-        Node vehicleNode=new Node("vehicleNode");
+        Node vehicleNode = new Node("vehicleNode");
         vehicle = new VehicleControl(compoundShape, 400);
         vehicleNode.addControl(vehicle);
 

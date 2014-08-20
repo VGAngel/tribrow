@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,12 +30,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.awt;
+package com.pro.game.example.test.jme3test.awt;
 
 import com.jme3.app.Application;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
+
 import java.applet.Applet;
 import java.awt.Canvas;
 import java.awt.Graphics;
@@ -46,7 +47,6 @@ import java.net.URL;
 import javax.swing.SwingUtilities;
 
 /**
- *
  * @author Kirill
  */
 public class AppHarness extends Applet {
@@ -58,16 +58,16 @@ public class AppHarness extends Applet {
     private String appClass;
     private URL appCfg = null;
 
-    private void createCanvas(){
+    private void createCanvas() {
         AppSettings settings = new AppSettings(true);
 
         // load app cfg
-        if (appCfg != null){
+        if (appCfg != null) {
             try {
                 InputStream in = appCfg.openStream();
                 settings.load(in);
                 in.close();
-            } catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
@@ -78,24 +78,24 @@ public class AppHarness extends Applet {
 
         JmeSystem.setLowPermissions(true);
 
-        try{
+        try {
             Class<? extends Application> clazz = (Class<? extends Application>) Class.forName(appClass);
             app = clazz.newInstance();
-        }catch (ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        }catch (InstantiationException ex){
+        } catch (InstantiationException ex) {
             ex.printStackTrace();
-        }catch (IllegalAccessException ex){
+        } catch (IllegalAccessException ex) {
             ex.printStackTrace();
         }
 
         app.setSettings(settings);
         app.createCanvas();
-        
+
         context = (JmeCanvasContext) app.getContext();
         canvas = context.getCanvas();
         canvas.setSize(getWidth(), getHeight());
-        
+
         add(canvas);
         app.startCanvas();
     }
@@ -106,39 +106,39 @@ public class AppHarness extends Applet {
     }
 
     @Override
-    public void init(){
+    public void init() {
         appClass = getParameter("AppClass");
         if (appClass == null)
             throw new RuntimeException("The required parameter AppClass isn't specified!");
-        
+
         try {
             appCfg = new URL(getParameter("AppSettingsURL"));
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
             appCfg = null;
         }
-        
+
         createCanvas();
         System.out.println("applet:init");
     }
 
     @Override
-    public void start(){
+    public void start() {
         context.setAutoFlushFrames(true);
         System.out.println("applet:start");
     }
 
     @Override
-    public void stop(){
+    public void stop() {
         context.setAutoFlushFrames(false);
         System.out.println("applet:stop");
     }
 
     @Override
-    public void destroy(){
+    public void destroy() {
         System.out.println("applet:destroyStart");
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 removeAll();
                 System.out.println("applet:destroyRemoved");
             }

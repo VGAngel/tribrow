@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.collision;
+package com.pro.game.example.test.jme3test.collision;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingSphere;
@@ -45,7 +45,7 @@ public class TestRayCasting extends SimpleApplication {
     private RayTrace tracer;
     private Spatial teapot;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestRayCasting app = new TestRayCasting();
         app.setPauseOnLostFocus(false);
         app.start();
@@ -60,13 +60,13 @@ public class TestRayCasting extends SimpleApplication {
 
         Mesh q = new Mesh();
         q.setBuffer(Type.Position, 3, new float[]
-        {
-            1, 0, 0,
-            0, 1.5f, 0,
-            -1, 0, 0
-        }
+                {
+                        1, 0, 0,
+                        0, 1.5f, 0,
+                        -1, 0, 0
+                }
         );
-        q.setBuffer(Type.Index, 3, new int[]{ 0, 1, 2 });
+        q.setBuffer(Type.Index, 3, new int[]{0, 1, 2});
         q.setBound(new BoundingSphere());
         q.updateBound();
 //        Geometry teapot = new Geometry("MyGeom", q);
@@ -87,8 +87,8 @@ public class TestRayCasting extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
-        teapot.rotate(0,tpf,0);
+    public void simpleUpdate(float tpf) {
+        teapot.rotate(0, tpf, 0);
         tracer.update();
     }
 

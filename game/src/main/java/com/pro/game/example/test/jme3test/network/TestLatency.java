@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,11 +30,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 import com.jme3.network.*;
 import com.jme3.network.serializing.Serializable;
 import com.jme3.network.serializing.Serializer;
+
 import java.io.IOException;
 
 public class TestLatency {
@@ -47,21 +48,21 @@ public class TestLatency {
         startTime = System.currentTimeMillis();
     }
 
-    private static long getTime(){
+    private static long getTime() {
         return System.currentTimeMillis() - startTime;
     }
 
     @Serializable
     public static class TimestampMessage extends AbstractMessage {
 
-        long timeSent     = 0;
+        long timeSent = 0;
         long timeReceived = 0;
 
-        public TimestampMessage(){
+        public TimestampMessage() {
             setReliable(false);
         }
 
-        public TimestampMessage(long timeSent, long timeReceived){
+        public TimestampMessage(long timeSent, long timeReceived) {
             setReliable(false);
             this.timeSent = timeSent;
             this.timeReceived = timeReceived;
@@ -69,7 +70,7 @@ public class TestLatency {
 
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         Serializer.registerClass(TimestampMessage.class);
 
         Server server = Network.createServer(5110);
@@ -77,8 +78,8 @@ public class TestLatency {
 
         client = Network.connectToServer("localhost", 5110);
         client.start();
-        
-        client.addMessageListener(new MessageListener<Client>(){
+
+        client.addMessageListener(new MessageListener<Client>() {
             public void messageReceived(Client source, Message m) {
                 TimestampMessage timeMsg = (TimestampMessage) m;
 
@@ -102,7 +103,7 @@ public class TestLatency {
             }
         }, TimestampMessage.class);
 
-        server.addMessageListener(new MessageListener<HostedConnection>(){
+        server.addMessageListener(new MessageListener<HostedConnection>() {
             public void messageReceived(HostedConnection source, Message m) {
                 TimestampMessage timeMsg = (TimestampMessage) m;
                 TimestampMessage outMsg = new TimestampMessage(timeMsg.timeSent, getTime());
@@ -113,9 +114,9 @@ public class TestLatency {
         Thread.sleep(1);
 
         client.send(new TimestampMessage(getTime(), 0));
-        
+
         Object obj = new Object();
-        synchronized(obj){
+        synchronized (obj) {
             obj.wait();
         }
     }

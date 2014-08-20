@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.water;
+package com.pro.game.example.test.jme3test.water;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -47,7 +47,6 @@ import com.jme3.util.SkyFactory;
 import com.jme3.water.SimpleWaterProcessor;
 
 /**
- *
  * @author normenhansen
  */
 public class TestSimpleWater extends SimpleApplication implements ActionListener {
@@ -58,7 +57,7 @@ public class TestSimpleWater extends SimpleApplication implements ActionListener
     SimpleWaterProcessor waterProcessor;
     Node sceneNode;
     boolean useWater = true;
-    private Vector3f lightPos =  new Vector3f(33,12,-29);
+    private Vector3f lightPos = new Vector3f(33, 12, -29);
 
 
     public static void main(String[] args) {
@@ -81,7 +80,7 @@ public class TestSimpleWater extends SimpleApplication implements ActionListener
 
         //create water quad
         //waterPlane = waterProcessor.createWaterGeometry(100, 100);
-        waterPlane=(Spatial)  assetManager.loadModel("Models/WaterTest/WaterTest.mesh.xml");
+        waterPlane = (Spatial) assetManager.loadModel("Models/WaterTest/WaterTest.mesh.xml");
         waterPlane.setMaterial(waterProcessor.getMaterial());
         waterPlane.setLocalScale(40);
         waterPlane.setLocalTranslation(-5, 0, 5);
@@ -107,8 +106,8 @@ public class TestSimpleWater extends SimpleApplication implements ActionListener
         rootNode.attachChild(sceneNode);
 
         //add lightPos Geometry
-        Sphere lite=new Sphere(8, 8, 3.0f);
-        lightSphere=new Geometry("lightsphere", lite);
+        Sphere lite = new Sphere(8, 8, 3.0f);
+        lightSphere = new Geometry("lightsphere", lite);
         lightSphere.setMaterial(mat);
         lightSphere.setLocalTranslation(lightPos);
         rootNode.attachChild(lightSphere);
@@ -135,7 +134,7 @@ public class TestSimpleWater extends SimpleApplication implements ActionListener
 
     @Override
     public void simpleUpdate(float tpf) {
-        fpsText.setText("Light Position: "+lightPos.toString()+" Change Light position with [U], [H], [J], [K] and [T], [G] Turn off water with [O]");
+        fpsText.setText("Light Position: " + lightPos.toString() + " Change Light position with [U], [H], [J], [K] and [T], [G] Turn off water with [O]");
         lightSphere.setLocalTranslation(lightPos);
         waterProcessor.setLightPosition(lightPos);
     }

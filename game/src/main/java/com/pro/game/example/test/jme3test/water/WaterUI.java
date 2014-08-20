@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.water;
+package com.pro.game.example.test.jme3test.water;
 
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
@@ -39,13 +39,13 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.water.SimpleWaterProcessor;
 
 /**
- *
  * @author nehon
  */
 public class WaterUI {
     private SimpleWaterProcessor processor;
+
     public WaterUI(InputManager inputManager, SimpleWaterProcessor proc) {
-        processor=proc;
+        processor = proc;
 
 
         System.out.println("----------------- SSAO UI Debugger --------------------");
@@ -57,7 +57,7 @@ public class WaterUI {
 //        System.out.println("-- Use only AO : press Num pad 0");
 //        System.out.println("-- Output config declaration : press P");
         System.out.println("-------------------------------------------------------");
-    
+
         inputManager.addMapping("transparencyUp", new KeyTrigger(KeyInput.KEY_Y));
         inputManager.addMapping("transparencyDown", new KeyTrigger(KeyInput.KEY_H));
         inputManager.addMapping("depthUp", new KeyTrigger(KeyInput.KEY_U));
@@ -69,7 +69,7 @@ public class WaterUI {
 //        inputManager.addMapping("outputConfig", new KeyTrigger(KeyInput.KEY_P));
 //        inputManager.addMapping("toggleUseAO", new KeyTrigger(KeyInput.KEY_SPACE));
 //        inputManager.addMapping("toggleUseOnlyAo", new KeyTrigger(KeyInput.KEY_NUMPAD0));
-        
+
 //        ActionListener acl = new ActionListener() {
 //
 //            public void onAction(String name, boolean keyPressed, float tpf) {
@@ -90,33 +90,32 @@ public class WaterUI {
 //            }
 //        };
 
-         AnalogListener anl = new AnalogListener() {
+        AnalogListener anl = new AnalogListener() {
 
             public void onAnalog(String name, float value, float tpf) {
                 if (name.equals("transparencyUp")) {
-                    processor.setWaterTransparency(processor.getWaterTransparency()+0.001f);
-                    System.out.println("Water transparency : "+processor.getWaterTransparency());
+                    processor.setWaterTransparency(processor.getWaterTransparency() + 0.001f);
+                    System.out.println("Water transparency : " + processor.getWaterTransparency());
                 }
                 if (name.equals("transparencyDown")) {
-                    processor.setWaterTransparency(processor.getWaterTransparency()-0.001f);
-                    System.out.println("Water transparency : "+processor.getWaterTransparency());
+                    processor.setWaterTransparency(processor.getWaterTransparency() - 0.001f);
+                    System.out.println("Water transparency : " + processor.getWaterTransparency());
                 }
                 if (name.equals("depthUp")) {
-                    processor.setWaterDepth(processor.getWaterDepth()+0.001f);
-                    System.out.println("Water depth : "+processor.getWaterDepth());
+                    processor.setWaterDepth(processor.getWaterDepth() + 0.001f);
+                    System.out.println("Water depth : " + processor.getWaterDepth());
                 }
                 if (name.equals("depthDown")) {
-                    processor.setWaterDepth(processor.getWaterDepth()-0.001f);
-                    System.out.println("Water depth : "+processor.getWaterDepth());
+                    processor.setWaterDepth(processor.getWaterDepth() - 0.001f);
+                    System.out.println("Water depth : " + processor.getWaterDepth());
                 }
 
             }
         };
-    //    inputManager.addListener(acl,"toggleUseAO","toggleUseOnlyAo","outputConfig");
-        inputManager.addListener(anl, "transparencyUp","transparencyDown","depthUp","depthDown");
-     
+        //    inputManager.addListener(acl,"toggleUseAO","toggleUseOnlyAo","outputConfig");
+        inputManager.addListener(anl, "transparencyUp", "transparencyDown", "depthUp", "depthDown");
+
     }
-    
-    
+
 
 }

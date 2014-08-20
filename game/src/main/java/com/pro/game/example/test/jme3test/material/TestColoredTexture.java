@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,14 +46,14 @@ public class TestColoredTexture extends SimpleApplication {
     private ColorRGBA prevColor;
     private Material mat;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestColoredTexture app = new TestColoredTexture();
         app.start();
     }
 
     @Override
     public void simpleInitApp() {
-        Quad quadMesh = new Quad(512,512);
+        Quad quadMesh = new Quad(512, 512);
         Geometry quad = new Geometry("Quad", quadMesh);
         quad.setQueueBucket(Bucket.Gui);
 
@@ -67,9 +67,9 @@ public class TestColoredTexture extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         time += tpf;
-        if (time > 1f){
+        if (time > 1f) {
             time -= 1f;
             prevColor = nextColor;
             nextColor = ColorRGBA.randomColor();

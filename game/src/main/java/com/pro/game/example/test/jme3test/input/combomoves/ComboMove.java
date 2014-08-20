@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.input.combomoves;
+package com.pro.game.example.test.jme3test.input.combomoves;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ import java.util.List;
 public class ComboMove {
 
     public static class ComboMoveState {
-        
+
         private String[] pressedMappings;
         private String[] unpressedMappings;
         private float timeElapsed;
@@ -60,7 +60,7 @@ public class ComboMove {
         public float getTimeElapsed() {
             return timeElapsed;
         }
-        
+
     }
 
     private String moveName;
@@ -72,7 +72,7 @@ public class ComboMove {
     private transient String[] pressed, unpressed;
     private transient float timeElapsed;
 
-    public ComboMove(String moveName){
+    public ComboMove(String moveName) {
         this.moveName = moveName;
     }
 
@@ -91,7 +91,7 @@ public class ComboMove {
     public void setCastTime(float castTime) {
         this.castTime = castTime;
     }
-    
+
     public boolean useFinalState() {
         return useFinalState;
     }
@@ -99,26 +99,26 @@ public class ComboMove {
     public void setUseFinalState(boolean useFinalState) {
         this.useFinalState = useFinalState;
     }
-    
-    public ComboMove press(String ... pressedMappings){
+
+    public ComboMove press(String... pressedMappings) {
         this.pressed = pressedMappings;
         return this;
     }
 
-    public ComboMove notPress(String ... unpressedMappings){
+    public ComboMove notPress(String... unpressedMappings) {
         this.unpressed = unpressedMappings;
         return this;
     }
 
-    public ComboMove timeElapsed(float time){
+    public ComboMove timeElapsed(float time) {
         this.timeElapsed = time;
         return this;
     }
 
-    public void done(){
+    public void done() {
         if (pressed == null)
             pressed = new String[0];
-        
+
         if (unpressed == null)
             unpressed = new String[0];
 
@@ -128,16 +128,16 @@ public class ComboMove {
         timeElapsed = -1;
     }
 
-    public ComboMoveState getState(int num){
+    public ComboMoveState getState(int num) {
         return states.get(num);
     }
 
-    public int getNumStates(){
+    public int getNumStates() {
         return states.size();
     }
 
     public String getMoveName() {
         return moveName;
     }
-    
+
 }

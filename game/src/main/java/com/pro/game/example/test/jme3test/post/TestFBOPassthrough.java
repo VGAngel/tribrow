@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -56,7 +56,7 @@ public class TestFBOPassthrough extends SimpleApplication {
     private Node fbNode = new Node("Framebuffer Node");
     private FrameBuffer fb;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestFBOPassthrough app = new TestFBOPassthrough();
         app.start();
     }
@@ -92,13 +92,13 @@ public class TestFBOPassthrough extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         fbNode.updateLogicalState(tpf);
         fbNode.updateGeometricState();
     }
 
     @Override
-    public void simpleRender(RenderManager rm){
+    public void simpleRender(RenderManager rm) {
         Renderer r = rm.getRenderer();
 
         //do FBO rendering

@@ -29,11 +29,12 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 import com.jme3.network.*;
 import com.jme3.network.serializing.Serializable;
 import com.jme3.network.serializing.Serializer;
+
 import java.io.IOException;
 
 public class TestThroughput implements MessageListener<MessageConnection> { //extends MessageAdapter {
@@ -48,7 +49,7 @@ public class TestThroughput implements MessageListener<MessageConnection> { //ex
     public TestThroughput(boolean isOnServer) {
         this.isOnServer = isOnServer;
     }
-    
+
     @Serializable
     public static class TestMessage extends AbstractMessage {
 

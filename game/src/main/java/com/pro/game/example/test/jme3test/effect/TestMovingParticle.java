@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.effect;
+package com.pro.game.example.test.jme3test.effect;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.effect.ParticleEmitter;
@@ -47,15 +47,15 @@ import com.jme3.math.Vector3f;
  * @author Kirill Vainer
  */
 public class TestMovingParticle extends SimpleApplication {
-    
+
     private ParticleEmitter emit;
     private float angle = 0;
-    
+
     public static void main(String[] args) {
         TestMovingParticle app = new TestMovingParticle();
         app.start();
     }
-    
+
     @Override
     public void simpleInitApp() {
         emit = new ParticleEmitter("Emitter", Type.Triangle, 300);
@@ -68,21 +68,21 @@ public class TestMovingParticle extends SimpleApplication {
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
         mat.setTexture("Texture", assetManager.loadTexture("Effects/Smoke/Smoke.png"));
         emit.setMaterial(mat);
-        
+
         rootNode.attachChild(emit);
-        
+
         inputManager.addListener(new ActionListener() {
-            
+
             public void onAction(String name, boolean isPressed, float tpf) {
                 if ("setNum".equals(name) && isPressed) {
                     emit.setNumParticles(1000);
                 }
             }
         }, "setNum");
-        
+
         inputManager.addMapping("setNum", new KeyTrigger(KeyInput.KEY_SPACE));
     }
-    
+
     @Override
     public void simpleUpdate(float tpf) {
         angle += tpf;

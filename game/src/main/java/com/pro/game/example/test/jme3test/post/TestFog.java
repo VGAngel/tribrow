@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -48,12 +48,13 @@ import com.jme3.post.filters.FogFilter;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.util.SkyFactory;
+
 import java.io.File;
 
 public class TestFog extends SimpleApplication {
 
     private FilterPostProcessor fpp;
-    private boolean enabled=true;
+    private boolean enabled = true;
     private FogFilter fog;
 
     // set default for applets
@@ -70,7 +71,7 @@ public class TestFog extends SimpleApplication {
 
     public void simpleInitApp() {
         this.flyCam.setMoveSpeed(10);
-        Node mainScene=new Node();
+        Node mainScene = new Node();
         cam.setLocation(new Vector3f(-27.0f, 1.0f, 75.0f));
         cam.setRotation(new Quaternion(0.03f, 0.9f, 0f, 0.4f));
 
@@ -87,7 +88,7 @@ public class TestFog extends SimpleApplication {
         Spatial scene = assetManager.loadModel("main.scene");
 
         DirectionalLight sun = new DirectionalLight();
-        Vector3f lightDir=new Vector3f(-0.37352666f, -0.50444174f, -0.7784704f);
+        Vector3f lightDir = new Vector3f(-0.37352666f, -0.50444174f, -0.7784704f);
         sun.setDirection(lightDir);
         sun.setColor(ColorRGBA.White.clone().multLocal(2));
         scene.addLight(sun);
@@ -96,13 +97,9 @@ public class TestFog extends SimpleApplication {
         mainScene.attachChild(scene);
         rootNode.attachChild(mainScene);
 
-        fpp=new FilterPostProcessor(assetManager);
+        fpp = new FilterPostProcessor(assetManager);
         //fpp.setNumSamples(4);
-        int numSamples = getContext().getSettings().getSamples();
-        if( numSamples > 0 ) {
-            fpp.setNumSamples(numSamples); 
-        }
-        fog=new FogFilter();
+        fog = new FogFilter();
         fog.setFogColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 1.0f));
         fog.setFogDistance(155);
         fog.setFogDensity(2.0f);
@@ -111,7 +108,7 @@ public class TestFog extends SimpleApplication {
         initInputs();
     }
 
-     private void initInputs() {
+    private void initInputs() {
         inputManager.addMapping("toggle", new KeyTrigger(KeyInput.KEY_SPACE));
         inputManager.addMapping("DensityUp", new KeyTrigger(KeyInput.KEY_Y));
         inputManager.addMapping("DensityDown", new KeyTrigger(KeyInput.KEY_H));
@@ -123,11 +120,11 @@ public class TestFog extends SimpleApplication {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
                 if (name.equals("toggle") && keyPressed) {
-                    if(enabled){
-                        enabled=false;
+                    if (enabled) {
+                        enabled = false;
                         viewPort.removeProcessor(fpp);
-                    }else{
-                        enabled=true;
+                    } else {
+                        enabled = true;
                         viewPort.addProcessor(fpp);
                     }
                 }
@@ -135,31 +132,31 @@ public class TestFog extends SimpleApplication {
             }
         };
 
-        AnalogListener anl=new AnalogListener() {
+        AnalogListener anl = new AnalogListener() {
 
             public void onAnalog(String name, float isPressed, float tpf) {
-                if(name.equals("DensityUp")){
-                    fog.setFogDensity(fog.getFogDensity()+0.001f);
-                    System.out.println("Fog density : "+fog.getFogDensity());
+                if (name.equals("DensityUp")) {
+                    fog.setFogDensity(fog.getFogDensity() + 0.001f);
+                    System.out.println("Fog density : " + fog.getFogDensity());
                 }
-                if(name.equals("DensityDown")){
-                    fog.setFogDensity(fog.getFogDensity()-0.010f);
-                    System.out.println("Fog density : "+fog.getFogDensity());
+                if (name.equals("DensityDown")) {
+                    fog.setFogDensity(fog.getFogDensity() - 0.010f);
+                    System.out.println("Fog density : " + fog.getFogDensity());
                 }
-                if(name.equals("DistanceUp")){
-                    fog.setFogDistance(fog.getFogDistance()+0.5f);
-                    System.out.println("Fog Distance : "+fog.getFogDistance());
+                if (name.equals("DistanceUp")) {
+                    fog.setFogDistance(fog.getFogDistance() + 0.5f);
+                    System.out.println("Fog Distance : " + fog.getFogDistance());
                 }
-                if(name.equals("DistanceDown")){
-                    fog.setFogDistance(fog.getFogDistance()-0.5f);
-                    System.out.println("Fog Distance : "+fog.getFogDistance());
+                if (name.equals("DistanceDown")) {
+                    fog.setFogDistance(fog.getFogDistance() - 0.5f);
+                    System.out.println("Fog Distance : " + fog.getFogDistance());
                 }
 
             }
         };
 
         inputManager.addListener(acl, "toggle");
-        inputManager.addListener(anl, "DensityUp","DensityDown","DistanceUp","DistanceDown");
+        inputManager.addListener(anl, "DensityUp", "DensityDown", "DistanceUp", "DistanceDown");
 
     }
 }

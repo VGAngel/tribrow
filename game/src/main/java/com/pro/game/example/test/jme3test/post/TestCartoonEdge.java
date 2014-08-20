@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -52,35 +52,31 @@ public class TestCartoonEdge extends SimpleApplication {
 
     private FilterPostProcessor fpp;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestCartoonEdge app = new TestCartoonEdge();
         app.start();
     }
 
-    public void setupFilters(){
-        if (renderer.getCaps().contains(Caps.GLSL100)){
-            fpp=new FilterPostProcessor(assetManager);
+    public void setupFilters() {
+        if (renderer.getCaps().contains(Caps.GLSL100)) {
+            fpp = new FilterPostProcessor(assetManager);
             //fpp.setNumSamples(4);
-            int numSamples = getContext().getSettings().getSamples();
-            if( numSamples > 0 ) {
-                fpp.setNumSamples(numSamples); 
-            }
-            CartoonEdgeFilter toon=new CartoonEdgeFilter();
+            CartoonEdgeFilter toon = new CartoonEdgeFilter();
             toon.setEdgeColor(ColorRGBA.Yellow);
             fpp.addFilter(toon);
             viewPort.addProcessor(fpp);
         }
     }
 
-    public void makeToonish(Spatial spatial){
-        if (spatial instanceof Node){
+    public void makeToonish(Spatial spatial) {
+        if (spatial instanceof Node) {
             Node n = (Node) spatial;
             for (Spatial child : n.getChildren())
                 makeToonish(child);
-        }else if (spatial instanceof Geometry){
+        } else if (spatial instanceof Geometry) {
             Geometry g = (Geometry) spatial;
             Material m = g.getMaterial();
-            if (m.getMaterialDef().getName().equals("Phong Lighting")){
+            if (m.getMaterialDef().getName().equals("Phong Lighting")) {
                 Texture t = assetManager.loadTexture("Textures/ColorRamp/toon.png");
 //                t.setMinFilter(Texture.MinFilter.NearestNoMipMaps);
 //                t.setMagFilter(Texture.MagFilter.Nearest);
@@ -93,16 +89,16 @@ public class TestCartoonEdge extends SimpleApplication {
         }
     }
 
-    public void setupLighting(){
-   
+    public void setupLighting() {
+
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-1, -1, 1).normalizeLocal());
-        dl.setColor(new ColorRGBA(2,2,2,1));
+        dl.setColor(new ColorRGBA(2, 2, 2, 1));
 
         rootNode.addLight(dl);
     }
 
-    public void setupModel(){
+    public void setupModel() {
         Spatial model = assetManager.loadModel("Models/MonkeyHead/MonkeyHead.mesh.xml");
         makeToonish(model);
         model.rotate(0, FastMath.PI, 0);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.shape;
+package com.pro.game.example.test.jme3test.model.shape;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -41,7 +41,7 @@ import com.jme3.texture.Texture;
 
 public class TestCylinder extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestCylinder app = new TestCylinder();
         app.start();
     }
@@ -59,7 +59,7 @@ public class TestCylinder extends SimpleApplication {
         mat.setTexture("ColorMap", tex);
 
         geom.setMaterial(mat);
-        
+
         rootNode.attachChild(geom);
     }
 

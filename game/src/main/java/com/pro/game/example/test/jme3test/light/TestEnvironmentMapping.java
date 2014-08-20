@@ -1,9 +1,8 @@
-package jme3test.light;
+package com.pro.game.example.test.jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
 import com.jme3.input.ChaseCamera;
-import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
@@ -16,6 +15,7 @@ import com.jme3.util.SkyFactory;
 
 /**
  * test
+ *
  * @author nehon
  */
 public class TestEnvironmentMapping extends SimpleApplication {
@@ -31,7 +31,7 @@ public class TestEnvironmentMapping extends SimpleApplication {
 
         TextureKey key = new TextureKey("Textures/Sky/Bright/BrightSky.dds", true);
         key.setGenerateMips(true);
-        key.setTextureTypeHint(Texture.Type.CubeMap);
+        key.setAsCube(true);
         final Texture tex = assetManager.loadTexture(key);
 
         for (Spatial geom : buggy.getChildren()) {
@@ -45,7 +45,7 @@ public class TestEnvironmentMapping extends SimpleApplication {
         flyCam.setEnabled(false);
 
         ChaseCamera chaseCam = new ChaseCamera(cam, inputManager);
-        chaseCam.setLookAtOffset(new Vector3f(0,0.5f,-1.0f));
+        chaseCam.setLookAtOffset(new Vector3f(0, 0.5f, -1.0f));
         buggy.addControl(chaseCam);
         rootNode.attachChild(buggy);
         rootNode.attachChild(SkyFactory.createSky(assetManager, tex, false));
@@ -54,13 +54,9 @@ public class TestEnvironmentMapping extends SimpleApplication {
         BloomFilter bf = new BloomFilter(BloomFilter.GlowMode.Objects);
         bf.setBloomIntensity(2.3f);
         bf.setExposurePower(0.6f);
-        
+
         fpp.addFilter(bf);
-        
-        DirectionalLight l = new DirectionalLight();
-        l.setDirection(new Vector3f(0, -1, -1));
-        rootNode.addLight(l);
-        
+
         viewPort.addProcessor(fpp);
     }
 }

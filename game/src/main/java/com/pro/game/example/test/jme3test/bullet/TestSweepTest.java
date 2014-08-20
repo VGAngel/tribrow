@@ -1,4 +1,4 @@
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
@@ -8,10 +8,10 @@ import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Transform;
 import com.jme3.scene.Node;
+
 import java.util.List;
 
 /**
- *
  * A spatial moves and sweeps its next movement for obstacles before moving
  * there Run this example with Vsync enabled
  *

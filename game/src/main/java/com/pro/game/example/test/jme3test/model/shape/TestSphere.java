@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.shape;
+package com.pro.game.example.test.jme3test.model.shape;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -38,9 +38,9 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
 
-public class TestSphere extends SimpleApplication  {
+public class TestSphere extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestSphere app = new TestSphere();
         app.start();
     }
@@ -50,8 +50,8 @@ public class TestSphere extends SimpleApplication  {
         Sphere sphMesh = new Sphere(14, 14, 1);
         Material solidColor = assetManager.loadMaterial("Common/Materials/RedColor.j3m");
 
-        for (int y = -5; y < 5; y++){
-            for (int x = -5; x < 5; x++){
+        for (int y = -5; y < 5; y++) {
+            for (int x = -5; x < 5; x++) {
                 Geometry sphere = new Geometry("sphere", sphMesh);
                 sphere.setMaterial(solidColor);
                 sphere.setLocalTranslation(x * 2, 0, y * 2);

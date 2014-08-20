@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.export.Savable;
@@ -41,6 +41,7 @@ import com.jme3.network.rmi.ObjectStore;
 import com.jme3.network.serializing.Serializer;
 import com.jme3.network.serializing.serializers.SavableSerializer;
 import com.jme3.scene.Spatial;
+
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
@@ -55,11 +56,9 @@ public class TestRemoteCall {
     public static interface ServerAccess {
         /**
          * Attaches the model with the given name to the server's scene.
-         * 
+         *
          * @param model The model name
-         * 
          * @return True if the model was attached.
-         * 
          * @throws RuntimeException If some error occurs.
          */
         public boolean attachChild(String model);
@@ -82,7 +81,7 @@ public class TestRemoteCall {
         }
     }
 
-    public static void createServer(){
+    public static void createServer() {
         serverApp = new SimpleApplication() {
             @Override
             public void simpleInitApp() {
@@ -101,7 +100,7 @@ public class TestRemoteCall {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         Serializer.registerClass(Savable.class, new SavableSerializer());
 
         createServer();

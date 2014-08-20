@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.material;
+package com.pro.game.example.test.jme3test.material;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.PointLight;
@@ -51,7 +51,7 @@ public class TestSimpleBumps extends SimpleApplication {
     PointLight pl;
     Spatial lightMdl;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestSimpleBumps app = new TestSimpleBumps();
         app.start();
     }
@@ -82,7 +82,7 @@ public class TestSimpleBumps extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         angle += tpf * 0.25f;
         angle %= FastMath.TWO_PI;
 

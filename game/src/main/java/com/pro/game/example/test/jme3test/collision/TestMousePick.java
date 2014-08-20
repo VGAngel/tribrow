@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.collision;
+package com.pro.game.example.test.jme3test.collision;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.collision.CollisionResult;
@@ -53,7 +53,7 @@ public class TestMousePick extends SimpleApplication {
         TestMousePick app = new TestMousePick();
         app.start();
     }
-    
+
     Node shootables;
     Geometry mark;
 
@@ -74,8 +74,8 @@ public class TestMousePick extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
-        Vector3f origin    = cam.getWorldCoordinates(inputManager.getCursorPosition(), 0.0f);
+    public void simpleUpdate(float tpf) {
+        Vector3f origin = cam.getWorldCoordinates(inputManager.getCursorPosition(), 0.0f);
         Vector3f direction = cam.getWorldCoordinates(inputManager.getCursorPosition(), 0.3f);
         direction.subtractLocal(origin).normalizeLocal();
 
@@ -104,8 +104,10 @@ public class TestMousePick extends SimpleApplication {
             rootNode.detachChild(mark);
         }
     }
- 
-    /** A cube object for target practice */
+
+    /**
+     * A cube object for target practice
+     */
     protected Geometry makeCube(String name, float x, float y, float z) {
         Box box = new Box(new Vector3f(x, y, z), 1, 1, 1);
         Geometry cube = new Geometry(name, box);
@@ -115,7 +117,9 @@ public class TestMousePick extends SimpleApplication {
         return cube;
     }
 
-    /** A floor to show that the "shot" can go through several objects. */
+    /**
+     * A floor to show that the "shot" can go through several objects.
+     */
     protected Geometry makeFloor() {
         Box box = new Box(new Vector3f(0, -4, -5), 15, .2f, 15);
         Geometry floor = new Geometry("the Floor", box);
@@ -125,7 +129,9 @@ public class TestMousePick extends SimpleApplication {
         return floor;
     }
 
-    /** A red ball that marks the last spot that was "hit" by the "shot". */
+    /**
+     * A red ball that marks the last spot that was "hit" by the "shot".
+     */
     protected void initMark() {
         Arrow arrow = new Arrow(Vector3f.UNIT_Z.mult(2f));
         arrow.setLineWidth(3);
@@ -139,7 +145,6 @@ public class TestMousePick extends SimpleApplication {
     }
 
     protected Spatial makeCharacter() {
-        // load a character from jme3test-test-data
         Spatial golem = assetManager.loadModel("Models/Oto/Oto.mesh.xml");
         golem.scale(0.5f);
         golem.setLocalTranslation(-1.0f, -1.5f, -0.6f);

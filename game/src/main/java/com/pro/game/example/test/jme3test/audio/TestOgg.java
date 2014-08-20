@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.audio;
+package com.pro.game.example.test.jme3test.audio;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.audio.AudioNode;
@@ -41,21 +41,21 @@ public class TestOgg extends SimpleApplication {
 
     private AudioNode audioSource;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestOgg test = new TestOgg();
         test.start();
     }
 
     @Override
-    public void simpleInitApp(){
+    public void simpleInitApp() {
         System.out.println("Playing without filter");
         audioSource = new AudioNode(assetManager, "Sound/Effects/Foot steps.ogg", true);
         audioSource.play();
     }
 
     @Override
-    public void simpleUpdate(float tpf){
-        if (audioSource.getStatus() != AudioSource.Status.Playing){
+    public void simpleUpdate(float tpf) {
+        if (audioSource.getStatus() != AudioSource.Status.Playing) {
             audioRenderer.deleteAudioData(audioSource.getAudioData());
 
             System.out.println("Playing with low pass filter");

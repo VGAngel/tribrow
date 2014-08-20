@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.anim;
+package com.pro.game.example.test.jme3test.model.anim;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -114,15 +114,15 @@ public class TestOgreComplexAnim extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         Bone b = control.getSkeleton().getBone("spinehigh");
         Bone b2 = control.getSkeleton().getBone("uparm.left");
-        
-        angle += tpf * rate;        
-        if (angle > FastMath.HALF_PI / 2f){
+
+        angle += tpf * rate;
+        if (angle > FastMath.HALF_PI / 2f) {
             angle = FastMath.HALF_PI / 2f;
             rate = -1;
-        }else if (angle < -FastMath.HALF_PI / 2f){
+        } else if (angle < -FastMath.HALF_PI / 2f) {
             angle = -FastMath.HALF_PI / 2f;
             rate = 1;
         }
@@ -132,11 +132,11 @@ public class TestOgreComplexAnim extends SimpleApplication {
 
         b.setUserControl(true);
         b.setUserTransforms(Vector3f.ZERO, q, Vector3f.UNIT_XYZ);
-        
+
         b2.setUserControl(true);
-        b2.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY, new Vector3f(1+angle,1+ angle, 1+angle));
-  
-  
+        b2.setUserTransforms(Vector3f.ZERO, Quaternion.IDENTITY, new Vector3f(1 + angle, 1 + angle, 1 + angle));
+
+
     }
 
 }

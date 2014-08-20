@@ -1,4 +1,4 @@
-package jme3test.post;
+package com.pro.game.example.test.jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.AmbientLight;
@@ -12,7 +12,6 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Quad;
-import com.jme3.util.TangentBinormalGenerator;
 
 public class TestTransparentSSAO extends SimpleApplication {
 
@@ -40,7 +39,6 @@ public class TestTransparentSSAO extends SimpleApplication {
         geom.rotate(-FastMath.HALF_PI, 0, 0);
         geom.center();
         geom.setShadowMode(ShadowMode.Receive);
-        TangentBinormalGenerator.generate(geom);
         rootNode.attachChild(geom);
 
         // create the geometry and attach it
@@ -66,7 +64,7 @@ public class TestTransparentSSAO extends SimpleApplication {
 
         FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
 
-        SSAOFilter ssao = new SSAOFilter();//0.49997783f, 42.598858f, 35.999966f, 0.39299846f
+        SSAOFilter ssao = new SSAOFilter(0.49997783f, 42.598858f, 35.999966f, 0.39299846f);
         fpp.addFilter(ssao);
 
         SSAOUI ui = new SSAOUI(inputManager, ssao);

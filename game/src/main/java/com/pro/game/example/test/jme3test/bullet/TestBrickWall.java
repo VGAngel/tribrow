@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.bullet;
+package com.pro.game.example.test.jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -57,7 +57,6 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
 /**
- *
  * @author double1984
  */
 public class TestBrickWall extends SimpleApplication {
@@ -82,7 +81,7 @@ public class TestBrickWall extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        
+
         bulletAppState = new BulletAppState();
         bulletAppState.setThreadingType(BulletAppState.ThreadingType.PARALLEL);
         stateManager.attach(bulletAppState);
@@ -114,6 +113,7 @@ public class TestBrickWall extends SimpleApplication {
     private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
+
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -122,7 +122,7 @@ public class TestBrickWall extends SimpleApplication {
                 bulletg.setMaterial(mat2);
                 bulletg.setShadowMode(ShadowMode.CastAndReceive);
                 bulletg.setLocalTranslation(cam.getLocation());
-                
+
                 SphereCollisionShape bulletCollisionShape = new SphereCollisionShape(0.4f);
                 RigidBodyControl bulletNode = new BombControl(assetManager, bulletCollisionShape, 1);
 //                RigidBodyControl bulletNode = new RigidBodyControl(bulletCollisionShape, 1);

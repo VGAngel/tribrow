@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.anim;
+package com.pro.game.example.test.jme3test.model.anim;
 
 import com.jme3.animation.*;
 import com.jme3.app.SimpleApplication;
@@ -46,7 +46,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 
-public class TestOgreAnim extends SimpleApplication 
+public class TestOgreAnim extends SimpleApplication
         implements AnimEventListener, ActionListener {
 
     private AnimChannel channel;
@@ -80,10 +80,10 @@ public class TestOgreAnim extends SimpleApplication
             System.out.println(anim);
 
         channel.setAnim("stand");
-        geom = (Geometry)((Node)model).getChild(0);
+        geom = (Geometry) ((Node) model).getChild(0);
         SkeletonControl skeletonControl = model.getControl(SkeletonControl.class);
 
-        Box b = new Box(.25f,3f,.25f);
+        Box b = new Box(.25f, 3f, .25f);
         Geometry item = new Geometry("Item", b);
         item.move(0, 1.5f, 0);
         item.setMaterial(assetManager.loadMaterial("Common/Materials/RedColor.j3m"));
@@ -102,10 +102,10 @@ public class TestOgreAnim extends SimpleApplication
 //                        geom.getMesh().createCollisionData();
 
     }
-    
+
 
     public void onAnimCycleDone(AnimControl control, AnimChannel channel, String animName) {
-        if (animName.equals("Dodge")){
+        if (animName.equals("Dodge")) {
             channel.setAnim("stand", 0.50f);
             channel.setLoopMode(LoopMode.DontLoop);
             channel.setSpeed(1f);
@@ -116,8 +116,8 @@ public class TestOgreAnim extends SimpleApplication
     }
 
     public void onAction(String binding, boolean value, float tpf) {
-        if (binding.equals("Attack") && value){
-            if (!channel.getAnimationName().equals("Dodge")){
+        if (binding.equals("Attack") && value) {
+            if (!channel.getAnimationName().equals("Dodge")) {
                 channel.setAnim("Dodge", 0.50f);
                 channel.setLoopMode(LoopMode.Cycle);
                 channel.setSpeed(0.10f);

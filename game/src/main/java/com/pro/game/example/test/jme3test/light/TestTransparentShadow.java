@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,14 +29,12 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.light;
+
+package com.pro.game.example.test.jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
@@ -47,13 +45,14 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Quad;
 import com.jme3.scene.shape.Sphere;
-import com.jme3.shadow.CompareMode;
-import com.jme3.shadow.DirectionalLightShadowRenderer;
-import com.jme3.shadow.EdgeFilteringMode;
+import com.jme3.shadow.PssmShadowRenderer;
+import com.jme3.shadow.PssmShadowRenderer.CompareMode;
+import com.jme3.shadow.PssmShadowRenderer.FilterMode;
 
+//TODO:select
 public class TestTransparentShadow extends SimpleApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestTransparentShadow app = new TestTransparentShadow();
         app.start();
     }
@@ -74,7 +73,7 @@ public class TestTransparentShadow extends SimpleApplication {
 
         geom.rotate(-FastMath.HALF_PI, 0, 0);
         geom.center();
-        geom.setShadowMode(ShadowMode.CastAndReceive);
+        geom.setShadowMode(ShadowMode.Receive);
         rootNode.attachChild(geom);
 
         // create the geometry and attach it
@@ -105,13 +104,13 @@ public class TestTransparentShadow extends SimpleApplication {
         fire.setImagesY(2); // 2x2 texture animation
         fire.setEndColor(new ColorRGBA(1f, 0f, 0f, 1f));   // red
         fire.setStartColor(new ColorRGBA(1f, 1f, 0f, 0.5f)); // yellow
-        fire.getParticleInfluencer().setInitialVelocity(new Vector3f(0, 2, 0));
+        fire.setInitialVelocity(new Vector3f(0, 2, 0));
         fire.setStartSize(0.6f);
         fire.setEndSize(0.1f);
         fire.setGravity(0, 0, 0);
         fire.setLowLife(0.5f);
         fire.setHighLife(1.5f);
-        fire.getParticleInfluencer().setVelocityVariation(0.3f);
+        fire.setVelocityVariation(0.3f);
         fire.setLocalTranslation(1.0f, 0, 1.0f);
         fire.setLocalScale(0.3f);
         fire.setQueueBucket(Bucket.Translucent);
@@ -128,24 +127,13 @@ public class TestTransparentShadow extends SimpleApplication {
         ball.setLocalTranslation(-1.0f, 1.5f, 1.0f);
 
 
-        final DirectionalLightShadowRenderer dlsRenderer = new DirectionalLightShadowRenderer(assetManager, 1024, 1);
-        dlsRenderer.setLight(dl1);
-        dlsRenderer.setLambda(0.55f);
-        dlsRenderer.setShadowIntensity(0.8f);
-        dlsRenderer.setShadowCompareMode(CompareMode.Software);
-        dlsRenderer.setEdgeFilteringMode(EdgeFilteringMode.Nearest);
-        dlsRenderer.displayDebug();
-        viewPort.addProcessor(dlsRenderer);
-        inputManager.addMapping("stabilize", new KeyTrigger(KeyInput.KEY_B));
-
-        inputManager.addListener(new ActionListener() {
-            @Override
-            public void onAction(String name, boolean isPressed, float tpf) {
-                if (name.equals("stabilize") && isPressed) {
-                    dlsRenderer.setEnabledStabilization(!dlsRenderer.isEnabledStabilization()) ;
-                }
-            }
-        }, "stabilize");
-
-   }
+        PssmShadowRenderer pssmRenderer = new PssmShadowRenderer(assetManager, 1024, 1);
+        pssmRenderer.setDirection(dl1.getDirection());
+        pssmRenderer.setLambda(0.55f);
+        pssmRenderer.setShadowIntensity(0.8f);
+        pssmRenderer.setCompareMode(CompareMode.Software);
+        pssmRenderer.setFilterMode(FilterMode.PCF4);
+        //pssmRenderer.displayDebug();
+        viewPort.addProcessor(pssmRenderer);
+    }
 }

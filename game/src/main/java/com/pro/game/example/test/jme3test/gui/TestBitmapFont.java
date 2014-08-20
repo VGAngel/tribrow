@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.gui;
+package com.pro.game.example.test.jme3test.gui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapFont;
@@ -46,13 +46,13 @@ import com.jme3.input.event.*;
 public class TestBitmapFont extends SimpleApplication {
 
     private String txtB =
-    "ABCDEFGHIKLMNOPQRSTUVWXYZ1234567 890`~!@#$%^&*()-=_+[]\\;',./{}|:<>?";
+            "ABCDEFGHIKLMNOPQRSTUVWXYZ1234567 890`~!@#$%^&*()-=_+[]\\;',./{}|:<>?";
 
     private BitmapText txt;
     private BitmapText txt2;
     private BitmapText txt3;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestBitmapFont app = new TestBitmapFont();
         app.start();
     }
@@ -80,7 +80,7 @@ public class TestBitmapFont extends SimpleApplication {
         txt3 = new BitmapText(fnt, false);
         txt3.setBox(new Rectangle(0, 0, settings.getWidth(), 0));
         txt3.setText("Press Tab to toggle word-wrap. type text and enter to input text");
-        txt3.setLocalTranslation(0, settings.getHeight()/2, 0);
+        txt3.setLocalTranslation(0, settings.getHeight() / 2, 0);
         guiNode.attachChild(txt3);
     }
 
@@ -88,8 +88,8 @@ public class TestBitmapFont extends SimpleApplication {
         @Override
         public void onAction(String name, boolean isPressed, float tpf) {
             if (name.equals("WordWrap") && !isPressed) {
-                txt.setLineWrapMode( txt.getLineWrapMode() == LineWrapMode.Word ?
-                                        LineWrapMode.NoWrap : LineWrapMode.Word );
+                txt.setLineWrapMode(txt.getLineWrapMode() == LineWrapMode.Word ?
+                        LineWrapMode.NoWrap : LineWrapMode.Word);
             }
         }
     };
@@ -98,10 +98,12 @@ public class TestBitmapFont extends SimpleApplication {
         private StringBuilder str = new StringBuilder();
 
         @Override
-        public void onMouseMotionEvent(MouseMotionEvent evt) { }
+        public void onMouseMotionEvent(MouseMotionEvent evt) {
+        }
 
         @Override
-        public void onMouseButtonEvent(MouseButtonEvent evt) { }
+        public void onMouseButtonEvent(MouseButtonEvent evt) {
+        }
 
         @Override
         public void onKeyEvent(KeyInputEvent evt) {
@@ -116,19 +118,24 @@ public class TestBitmapFont extends SimpleApplication {
         }
 
         @Override
-        public void onJoyButtonEvent(JoyButtonEvent evt) { }
+        public void onJoyButtonEvent(JoyButtonEvent evt) {
+        }
 
         @Override
-        public void onJoyAxisEvent(JoyAxisEvent evt) { }
+        public void onJoyAxisEvent(JoyAxisEvent evt) {
+        }
 
         @Override
-        public void endInput() { }
+        public void endInput() {
+        }
 
         @Override
-        public void beginInput() { }
+        public void beginInput() {
+        }
 
         @Override
-        public void onTouchEvent(TouchEvent evt) { }
+        public void onTouchEvent(TouchEvent evt) {
+        }
 
     };
 

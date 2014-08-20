@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,11 +30,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test;
+package com.pro.game.example.test.jme3test;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.JmeContext;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -84,20 +85,15 @@ public class TestChooser extends JDialog {
      */
     public TestChooser() throws HeadlessException {
         super((JFrame) null, "TestChooser");
-        /** This listener ends application when window is closed (x button on top right corner of test chooser).
-         * @see issue#85 https://github.com/jMonkeyEngine/jmonkeyengine/issues/85
-         */
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
     /**
-     * @param classes
-     *            vector that receives the found classes
+     * @param classes vector that receives the found classes
      * @return classes vector, list of all the classes in a given package (must
-     *         be found in classpath).
+     * be found in classpath).
      */
     protected Vector<Class> find(String pckgname, boolean recursive,
-            Vector<Class> classes) {
+                                 Vector<Class> classes) {
         URL url;
 
         // Translate the package name into an absolute path
@@ -121,14 +117,14 @@ public class TestChooser extends JDialog {
         }
 
         if (directory.exists()) {
-            logger.fine("Searching for Demo classes in \""
+            logger.info("Searching for Demo classes in \""
                     + directory.getName() + "\".");
             addAllFilesInDirectory(directory, classes, pckgname, recursive);
         } else {
             try {
                 // It does not work with the filesystem: we must
                 // be in the case of a package contained in a jar file.
-                logger.fine("Searching for Demo classes in \"" + url + "\".");
+                logger.info("Searching for Demo classes in \"" + url + "\".");
                 URLConnection urlConnection = url.openConnection();
                 if (urlConnection instanceof JarURLConnection) {
                     JarURLConnection conn = (JarURLConnection) urlConnection;
@@ -157,15 +153,14 @@ public class TestChooser extends JDialog {
     /**
      * Load a class specified by a file- or entry-name
      *
-     * @param name
-     *            name of a file or entry
+     * @param name name of a file or entry
      * @return class file that was denoted by the name, null if no class or does
-     *         not contain a main method
+     * not contain a main method
      */
     private Class load(String name) {
         if (name.endsWith(".class")
-         && name.indexOf("Test") >= 0
-         && name.indexOf('$') < 0) {
+                && name.indexOf("Test") >= 0
+                && name.indexOf('$') < 0) {
             String classname = name.substring(0, name.length()
                     - ".class".length());
 
@@ -176,7 +171,7 @@ public class TestChooser extends JDialog {
 
             try {
                 final Class<?> cls = Class.forName(classname);
-                cls.getMethod("main", new Class[] { String[].class });
+                cls.getMethod("main", new Class[]{String[].class});
                 if (!getClass().equals(cls)) {
                     return cls;
                 }
@@ -189,7 +184,7 @@ public class TestChooser extends JDialog {
             } catch (NoSuchMethodException e) {
                 // class does not have a main method
                 return null;
-            } catch (UnsupportedClassVersionError e){
+            } catch (UnsupportedClassVersionError e) {
                 // unsupported version
                 return null;
             }
@@ -200,17 +195,13 @@ public class TestChooser extends JDialog {
     /**
      * Used to descent in directories, loads classes via {@link #load}
      *
-     * @param directory
-     *            where to search for class files
-     * @param allClasses
-     *            add loaded classes to this collection
-     * @param packageName
-     *            current package name for the diven directory
-     * @param recursive
-     *            true to descent into subdirectories
+     * @param directory   where to search for class files
+     * @param allClasses  add loaded classes to this collection
+     * @param packageName current package name for the diven directory
+     * @param recursive   true to descent into subdirectories
      */
     private void addAllFilesInDirectory(File directory,
-            Collection<Class> allClasses, String packageName, boolean recursive) {
+                                        Collection<Class> allClasses, String packageName, boolean recursive) {
         // Get the list of the files contained in the package
         File[] files = directory.listFiles(getFileFilter());
         if (files != null) {
@@ -233,84 +224,83 @@ public class TestChooser extends JDialog {
 
     /**
      * @return FileFilter for searching class files (no inner classes, only
-     *         those with "Test" in the name)
+     * those with "Test" in the name)
      */
     private FileFilter getFileFilter() {
         return new FileFilter() {
             public boolean accept(File pathname) {
                 return (pathname.isDirectory() && !pathname.getName().startsWith("."))
                         || (pathname.getName().endsWith(".class")
-                            && (pathname.getName().indexOf("Test") >= 0)
-                            && pathname.getName().indexOf('$') < 0);
+                        && (pathname.getName().indexOf("Test") >= 0)
+                        && pathname.getName().indexOf('$') < 0);
             }
         };
     }
 
-    private void startApp(final Object[] appClass){
-        if (appClass == null){
+    private void startApp(final Object[] appClass) {
+        if (appClass == null) {
             JOptionPane.showMessageDialog(rootPane,
-                                          "Please select a test from the list",
-                                          "Error", 
-                                          JOptionPane.ERROR_MESSAGE);
+                    "Please select a test from the list",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-            new Thread(new Runnable(){
-                public void run(){
-                    for (int i = 0; i < appClass.length; i++) {
-                	    Class<?> clazz = (Class)appClass[i];
-                		try {
-                			Object app = clazz.newInstance();
-                			if (app instanceof Application) {
-                			    if (app instanceof SimpleApplication) {
-                			        final Method settingMethod = clazz.getMethod("setShowSettings", boolean.class);
-                			        settingMethod.invoke(app, showSetting);
-                			    }
-                			    final Method mainMethod = clazz.getMethod("start");
-                			    mainMethod.invoke(app);
-                			    Field contextField = Application.class.getDeclaredField("context");
-                			    contextField.setAccessible(true);
-                			    JmeContext context = null; 
-                			    while (context == null) {
-                			        context = (JmeContext) contextField.get(app);
-                			        Thread.sleep(100);
-                			    }
-                			    while (!context.isCreated()) {
-                			        Thread.sleep(100);
-                			    }
-                			    while (context.isCreated()) {
-                			        Thread.sleep(100);
-                			    }
-                			} else {
-                                final Method mainMethod = clazz.getMethod("main", (new String[0]).getClass());
-                                mainMethod.invoke(app, new Object[]{new String[0]});
-                			}
-                			// wait for destroy
-                			System.gc();
-                		} catch (IllegalAccessException ex) {
-                			logger.log(Level.SEVERE, "Cannot access constructor: "+clazz.getName(), ex);
-                		} catch (IllegalArgumentException ex) {
-                			logger.log(Level.SEVERE, "main() had illegal argument: "+clazz.getName(), ex);
-                		} catch (InvocationTargetException ex) {
-                			logger.log(Level.SEVERE, "main() method had exception: "+clazz.getName(), ex);
-                		} catch (InstantiationException ex) {
-                			logger.log(Level.SEVERE, "Failed to create app: "+clazz.getName(), ex);
-                		} catch (NoSuchMethodException ex){
-                			logger.log(Level.SEVERE, "Test class doesn't have main method: "+clazz.getName(), ex);
-                		} catch (Exception ex) {
-                		    logger.log(Level.SEVERE, "Cannot start test: "+clazz.getName(), ex);
-                            ex.printStackTrace();
+        new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i < appClass.length; i++) {
+                    Class<?> clazz = (Class) appClass[i];
+                    try {
+                        Object app = clazz.newInstance();
+                        if (app instanceof Application) {
+                            if (app instanceof SimpleApplication) {
+                                final Method settingMethod = clazz.getMethod("setShowSettings", boolean.class);
+                                settingMethod.invoke(app, showSetting);
+                            }
+                            final Method mainMethod = clazz.getMethod("start");
+                            mainMethod.invoke(app);
+                            Field contextField = Application.class.getDeclaredField("context");
+                            contextField.setAccessible(true);
+                            JmeContext context = null;
+                            while (context == null) {
+                                context = (JmeContext) contextField.get(app);
+                                Thread.sleep(100);
+                            }
+                            while (!context.isCreated()) {
+                                Thread.sleep(100);
+                            }
+                            while (context.isCreated()) {
+                                Thread.sleep(100);
+                            }
+                        } else {
+                            final Method mainMethod = clazz.getMethod("main", (new String[0]).getClass());
+                            mainMethod.invoke(app, new Object[]{new String[0]});
                         }
-                	}
+                        // wait for destroy
+                        System.gc();
+                    } catch (IllegalAccessException ex) {
+                        logger.log(Level.SEVERE, "Cannot access constructor: " + clazz.getName(), ex);
+                    } catch (IllegalArgumentException ex) {
+                        logger.log(Level.SEVERE, "main() had illegal argument: " + clazz.getName(), ex);
+                    } catch (InvocationTargetException ex) {
+                        logger.log(Level.SEVERE, "main() method had exception: " + clazz.getName(), ex);
+                    } catch (InstantiationException ex) {
+                        logger.log(Level.SEVERE, "Failed to create app: " + clazz.getName(), ex);
+                    } catch (NoSuchMethodException ex) {
+                        logger.log(Level.SEVERE, "Test class doesn't have main method: " + clazz.getName(), ex);
+                    } catch (Exception ex) {
+                        logger.log(Level.SEVERE, "Cannot start test: " + clazz.getName(), ex);
+                        ex.printStackTrace();
+                    }
                 }
-            }).start();
+            }
+        }).start();
     }
 
     /**
      * Code to create components and action listeners.
      *
-     * @param classes
-     *            what Classes to show in the list box
+     * @param classes what Classes to show in the list box
      */
     private void setup(Vector<Class> classes) {
         final JPanel mainPanel = new JPanel();
@@ -440,8 +430,7 @@ public class TestChooser extends JDialog {
     /**
      * Start the chooser.
      *
-     * @param args
-     *            command line parameters
+     * @param args command line parameters
      */
     public static void main(final String[] args) {
         try {
@@ -453,7 +442,7 @@ public class TestChooser extends JDialog {
 
     protected void start(String[] args) {
         final Vector<Class> classes = new Vector<Class>();
-        logger.fine("Composing Test list...");
+        logger.info("Composing Test list...");
         addDisplayedClasses(classes);
         setup(classes);
         Class<?> cls;
@@ -461,7 +450,7 @@ public class TestChooser extends JDialog {
     }
 
     protected void addDisplayedClasses(Vector<Class> classes) {
-        find("jme3test", true, classes);
+        find("com.pro.game.example.test.jme3test", true, classes);
     }
 
     private JPanel createSearchPanel(final FilteredJList classes) {

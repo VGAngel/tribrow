@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.network;
+package com.pro.game.example.test.jme3test.network;
 
 @Deprecated
 public class MovingAverage {
@@ -39,22 +39,22 @@ public class MovingAverage {
     private long sum;
     private int count, index;
 
-    public MovingAverage(int numSamples){
+    public MovingAverage(int numSamples) {
         samples = new long[numSamples];
     }
 
-    public void add(long sample){
+    public void add(long sample) {
         sum = sum - samples[index] + sample;
         samples[index++] = sample;
-        if (index > count){
+        if (index > count) {
             count = index;
         }
-        if (index >= samples.length){
+        if (index >= samples.length) {
             index = 0;
         }
     }
 
-    public long getAverage(){
+    public long getAverage() {
         if (count == 0)
             return 0;
         else

@@ -1,4 +1,4 @@
-package com.pro.game.example.test.jme3test.terrain;
+package jme3test.terrain;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.ScreenshotAppState;

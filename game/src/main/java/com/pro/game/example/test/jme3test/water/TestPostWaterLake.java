@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package jme3test.water;
+package com.pro.game.example.test.jme3test.water;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -43,6 +43,7 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.scene.Spatial;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.WaterFilter;
+
 import java.io.File;
 
 public class TestPostWaterLake extends SimpleApplication {
@@ -51,7 +52,7 @@ public class TestPostWaterLake extends SimpleApplication {
     private static boolean useHttp = true;
 
     public static void main(String[] args) {
-     
+
         TestPostWaterLake app = new TestPostWaterLake();
         app.start();
     }
@@ -59,13 +60,13 @@ public class TestPostWaterLake extends SimpleApplication {
     public void simpleInitApp() {
         this.flyCam.setMoveSpeed(10);
         cam.setLocation(new Vector3f(-27.0f, 1.0f, 75.0f));
-      //  cam.setRotation(new Quaternion(0.03f, 0.9f, 0f, 0.4f));
+        //  cam.setRotation(new Quaternion(0.03f, 0.9f, 0f, 0.4f));
 
         // load sky
         rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/Sky/Bright/BrightSky.dds", false));
 
         File file = new File("wildhouse.zip");
-        
+
         if (file.exists()) {
             useHttp = false;
         }
@@ -85,7 +86,7 @@ public class TestPostWaterLake extends SimpleApplication {
         sun.setColor(ColorRGBA.White.clone().multLocal(2));
         scene.addLight(sun);
 
-        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);        
+        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
         final WaterFilter water = new WaterFilter(rootNode, lightDir);
         water.setWaterHeight(-20);
         water.setUseFoam(false);
@@ -107,13 +108,13 @@ public class TestPostWaterLake extends SimpleApplication {
         inputManager.addListener(new ActionListener() {
 
             public void onAction(String name, boolean isPressed, float tpf) {
-              if(isPressed){
-                  if(water.isUseHQShoreline()){
-                      water.setUseHQShoreline(false);
-                  }else{
-                      water.setUseHQShoreline(true);
-                  }
-              }
+                if (isPressed) {
+                    if (water.isUseHQShoreline()) {
+                        water.setUseHQShoreline(false);
+                    } else {
+                        water.setUseHQShoreline(true);
+                    }
+                }
             }
         }, "HQ");
 

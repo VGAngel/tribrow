@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,15 +30,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.math;
+package com.pro.game.example.test.jme3test.math;
 
 import com.jme3.math.FastMath;
+
 import java.util.Scanner;
 
 public class TestHalfFloat {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        while (true){
+        while (true) {
             System.out.println("Enter float to convert or 'x' to exit: ");
             String s = scan.nextLine();
             if (s.equals("x"))
@@ -48,8 +49,8 @@ public class TestHalfFloat {
             short half = FastMath.convertFloatToHalf(flt);
             float flt2 = FastMath.convertHalfToFloat(half);
 
-            System.out.println("Input float: "+flt);
-            System.out.println("Result float: "+flt2);
+            System.out.println("Input float: " + flt);
+            System.out.println("Result float: " + flt2);
         }
     }
 }

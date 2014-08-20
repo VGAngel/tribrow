@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.model.anim;
+package com.pro.game.example.test.jme3test.model.anim;
 
 import com.jme3.animation.Bone;
 import com.jme3.animation.Skeleton;
@@ -47,6 +47,7 @@ import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.scene.shape.Box;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
@@ -74,13 +75,13 @@ public class TestCustomAnim extends SimpleApplication {
         Box box = new Box(1, 1, 1);
 
         // Setup bone weight buffer
-        FloatBuffer weights = FloatBuffer.allocate( box.getVertexCount() * 4 );
+        FloatBuffer weights = FloatBuffer.allocate(box.getVertexCount() * 4);
         VertexBuffer weightsBuf = new VertexBuffer(Type.BoneWeight);
         weightsBuf.setupData(Usage.CpuOnly, 4, Format.Float, weights);
         box.setBuffer(weightsBuf);
 
         // Setup bone index buffer
-        ByteBuffer indices = ByteBuffer.allocate( box.getVertexCount() * 4 );
+        ByteBuffer indices = ByteBuffer.allocate(box.getVertexCount() * 4);
         VertexBuffer indicesBuf = new VertexBuffer(Type.BoneIndex);
         indicesBuf.setupData(Usage.CpuOnly, 4, Format.UnsignedByte, indices);
         box.setBuffer(indicesBuf);
@@ -92,21 +93,21 @@ public class TestCustomAnim extends SimpleApplication {
         bone = new Bone("root");
         bone.setBindTransforms(Vector3f.ZERO, Quaternion.IDENTITY, Vector3f.UNIT_XYZ);
         bone.setUserControl(true);
-        skeleton = new Skeleton(new Bone[]{ bone });
+        skeleton = new Skeleton(new Bone[]{bone});
 
         // Assign all verticies to bone 0 with weight 1
-        for (int i = 0; i < box.getVertexCount() * 4; i += 4){
+        for (int i = 0; i < box.getVertexCount() * 4; i += 4) {
             // assign vertex to bone index 0
-            indices.array()[i+0] = 0;
-            indices.array()[i+1] = 0;
-            indices.array()[i+2] = 0;
-            indices.array()[i+3] = 0;
+            indices.array()[i + 0] = 0;
+            indices.array()[i + 1] = 0;
+            indices.array()[i + 2] = 0;
+            indices.array()[i + 3] = 0;
 
             // set weight to 1 only for first entry
-            weights.array()[i+0] = 1;
-            weights.array()[i+1] = 0;
-            weights.array()[i+2] = 0;
-            weights.array()[i+3] = 0;
+            weights.array()[i + 0] = 1;
+            weights.array()[i + 1] = 0;
+            weights.array()[i + 2] = 0;
+            weights.array()[i + 3] = 0;
         }
 
         // Maximum number of weights per bone is 1
@@ -126,7 +127,7 @@ public class TestCustomAnim extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf){
+    public void simpleUpdate(float tpf) {
         // Rotate around X axis
         Quaternion rotate = new Quaternion();
         rotate.fromAngleAxis(tpf, Vector3f.UNIT_X);

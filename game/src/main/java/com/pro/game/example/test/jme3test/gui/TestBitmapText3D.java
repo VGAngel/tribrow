@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.gui;
+package com.pro.game.example.test.jme3test.gui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapFont;
@@ -43,9 +43,9 @@ import com.jme3.scene.shape.Quad;
 public class TestBitmapText3D extends SimpleApplication {
 
     private String txtB =
-    "ABCDEFGHIKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-=_+[]\\;',./{}|:<>?";
+            "ABCDEFGHIKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-=_+[]\\;',./{}|:<>?";
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestBitmapText3D app = new TestBitmapText3D();
         app.start();
     }
@@ -62,7 +62,7 @@ public class TestBitmapText3D extends SimpleApplication {
         BitmapText txt = new BitmapText(fnt, false);
         txt.setBox(new Rectangle(0, 0, 6, 3));
         txt.setQueueBucket(Bucket.Transparent);
-        txt.setSize( 0.5f );
+        txt.setSize(0.5f);
         txt.setText(txtB);
         rootNode.attachChild(txt);
     }

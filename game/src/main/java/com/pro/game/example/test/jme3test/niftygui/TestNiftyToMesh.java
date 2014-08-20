@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package jme3test.niftygui;
+package com.pro.game.example.test.jme3test.niftygui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -47,22 +47,22 @@ import com.jme3.texture.Texture.MinFilter;
 import com.jme3.texture.Texture2D;
 import de.lessvoid.nifty.Nifty;
 
-public class TestNiftyToMesh extends SimpleApplication{
+public class TestNiftyToMesh extends SimpleApplication {
 
     private Nifty nifty;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestNiftyToMesh app = new TestNiftyToMesh();
         app.start();
     }
 
     public void simpleInitApp() {
-       ViewPort niftyView = renderManager.createPreView("NiftyView", new Camera(1024, 768));
-       niftyView.setClearFlags(true, true, true);
+        ViewPort niftyView = renderManager.createPreView("NiftyView", new Camera(1024, 768));
+        niftyView.setClearFlags(true, true, true);
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager,
-                                                          inputManager,
-                                                          audioRenderer,
-                                                          niftyView);
+                inputManager,
+                audioRenderer,
+                niftyView);
         nifty = niftyDisplay.getNifty();
         nifty.fromXml("all/intro.xml", "start");
         niftyView.addProcessor(niftyDisplay);
