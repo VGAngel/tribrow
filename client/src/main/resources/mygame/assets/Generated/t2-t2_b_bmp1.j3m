@@ -1,0 +1,33 @@
+Material MyMaterial : Common/MatDefs/Light/Lighting.j3md {
+    MaterialParameters {
+        DiffuseMap : Flip Repeat Models/tree2/t2_b.bmp
+        Minnaert : false
+        Specular : 0.0 0.0 0.0 1.0
+        Diffuse : 1.0 1.0 1.0 1.0
+        UseMaterialColors : true
+        ParallaxHeight : 0.05
+        Ambient : 0.0 0.0 0.0 1.0
+        Shininess : 20.0
+        WardIso : false
+        VTangent : false
+        HighQuality : false
+        LATC : false
+        UseAlpha : false
+        VertexLighting : false
+        UseVertexColor : false
+        SteepParallax : false
+        PackedNormalParallax : false
+        EnvMapAsSphereMap : false
+    }
+    AdditionalRenderState {
+      FaceCull Back
+      Wireframe Off
+      DepthWrite On
+      PolyOffset 0.0 0.0
+      AlphaTestFalloff 0.0
+      Blend Off
+      PointSprite Off
+      ColorWrite On
+      DepthTest On
+    }
+}

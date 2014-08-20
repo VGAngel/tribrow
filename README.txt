@@ -51,5 +51,9 @@ http://habrahabr.ru/post/135948/
 http://habrahabr.ru/post/200880/
 http://habrahabr.ru/company/mosigra/blog/204912/
 
+Tiled Terrain Editor:
+https://code.google.com/p/radanz-game-code/
+https://code.google.com/p/jmonkeyplatform-contributions/source/browse/#svn%2Ftrunk
+
 
 jad -o -r -sjava -dMythruna-core_Decom Mythruna-core/**/*.class
