@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.games;
+package jme3test.games;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingVolume;
@@ -48,7 +48,6 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Dome;
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,12 +65,12 @@ public class CubeField extends SimpleApplication implements AnalogListener {
     private BitmapFont defaultFont;
 
     private boolean START;
-    private int difficulty, Score, colorInt, highCap, lowCap, diffHelp;
+    private int difficulty, Score, colorInt, highCap, lowCap,diffHelp;
     private Node player;
     private Geometry fcube;
     private ArrayList<Geometry> cubeField;
     private ArrayList<ColorRGBA> obstacleColors;
-    private float speed, coreTime, coreTime2;
+    private float speed, coreTime,coreTime2;
     private float camAngle = 0;
     private BitmapText fpsScoreText, pressStart;
 
@@ -82,7 +81,7 @@ public class CubeField extends SimpleApplication implements AnalogListener {
     private float fpsRate = 1000f / 1f;
 
     /**
-     * Initializes game
+     * Initializes game 
      */
     @Override
     public void simpleInitApp() {
@@ -99,7 +98,7 @@ public class CubeField extends SimpleApplication implements AnalogListener {
 
         loadText(fpsScoreText, "Current Score: 0", defaultFont, 0, 2, 0);
         loadText(pressStart, "PRESS ENTER", defaultFont, 0, 5, 0);
-
+        
         player = createPlayer();
         rootNode.attachChild(player);
         cubeField = new ArrayList<Geometry>();
@@ -107,23 +106,22 @@ public class CubeField extends SimpleApplication implements AnalogListener {
 
         gameReset();
     }
-
     /**
-     * Used to reset cubeField
+     * Used to reset cubeField 
      */
-    private void gameReset() {
+    private void gameReset(){
         Score = 0;
         lowCap = 10;
         colorInt = 0;
         highCap = 40;
         difficulty = highCap;
 
-        for (Geometry cube : cubeField) {
+        for (Geometry cube : cubeField){
             cube.removeFromParent();
         }
         cubeField.clear();
 
-        if (fcube != null) {
+        if (fcube != null){
             fcube.removeFromParent();
         }
         fcube = createFirstCube();
@@ -136,28 +134,26 @@ public class CubeField extends SimpleApplication implements AnalogListener {
         speed = lowCap / 400f;
         coreTime = 20.0f;
         coreTime2 = 10.0f;
-        diffHelp = lowCap;
-        player.setLocalTranslation(0, 0, 0);
+        diffHelp=lowCap;
+        player.setLocalTranslation(0,0,0);
     }
 
     @Override
     public void simpleUpdate(float tpf) {
         camTakeOver(tpf);
-        if (START) {
+        if (START){
             gameLogic(tpf);
         }
         colorLogic();
     }
-
     /**
      * Forcefully takes over Camera adding functionality and placing it behind the character
-     *
      * @param tpf Tickes Per Frame
      */
     private void camTakeOver(float tpf) {
         cam.setLocation(player.getLocalTranslation().add(-8, 2, 0));
         cam.lookAt(player.getLocalTranslation(), Vector3f.UNIT_Y);
-
+        
         Quaternion rot = new Quaternion();
         rot.fromAngleNormalAxis(camAngle, Vector3f.UNIT_Z);
         cam.setRotation(cam.getRotation().mult(rot));
@@ -166,14 +162,13 @@ public class CubeField extends SimpleApplication implements AnalogListener {
 
     @Override
     public void requestClose(boolean esc) {
-        if (!esc) {
+        if (!esc){
             System.out.println("The game was quit.");
-        } else {
+        }else{
             System.out.println("Player has Collided. Final Score is " + Score);
         }
         context.destroy(false);
     }
-
     /**
      * Randomly Places a cube on the map between 30 and 90 paces away from player
      */
@@ -189,7 +184,7 @@ public class CubeField extends SimpleApplication implements AnalogListener {
 //        playerX+difficulty+30,playerX+difficulty+90
 
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        if (!solidBox) {
+        if (!solidBox){
             mat.getAdditionalRenderState().setWireframe(true);
         }
         mat.setColor("Color", obstacleColors.get(FastMath.nextRandomInt(0, obstacleColors.size() - 1)));
@@ -240,44 +235,45 @@ public class CubeField extends SimpleApplication implements AnalogListener {
     /**
      * If Game is Lost display Score and Reset the Game
      */
-    private void gameLost() {
+    private void gameLost(){
         START = false;
         loadText(pressStart, "You lost! Press enter to try again.", defaultFont, 0, 5, 0);
         gameReset();
     }
-
+    
     /**
      * Core Game Logic
      */
-    private void gameLogic(float tpf) {
-        //Subtract difficulty level in accordance to speed every 10 seconds
-        if (timer.getTimeInSeconds() >= coreTime2) {
-            coreTime2 = timer.getTimeInSeconds() + 10;
-            if (difficulty <= lowCap) {
-                difficulty = lowCap;
-            } else if (difficulty > lowCap) {
-                difficulty -= 5;
-                diffHelp += 1;
-            }
-        }
-
-        if (speed < .1f) {
-            speed += .000001f * tpf * fpsRate;
+    private void gameLogic(float tpf){
+    	//Subtract difficulty level in accordance to speed every 10 seconds
+    	if(timer.getTimeInSeconds()>=coreTime2){
+			coreTime2=timer.getTimeInSeconds()+10;
+			if(difficulty<=lowCap){
+				difficulty=lowCap;
+			}
+			else if(difficulty>lowCap){
+				difficulty-=5;
+				diffHelp+=1;
+			}
+		}
+    	
+        if(speed<.1f){
+            speed+=.000001f*tpf*fpsRate;
         }
 
         player.move(speed * tpf * fpsRate, 0, 0);
-        if (cubeField.size() > difficulty) {
+        if (cubeField.size() > difficulty){
             cubeField.remove(0);
-        } else if (cubeField.size() != difficulty) {
+        }else if (cubeField.size() != difficulty){
             randomizeCube();
         }
 
-        if (cubeField.isEmpty()) {
+        if (cubeField.isEmpty()){
             requestClose(false);
-        } else {
-            for (int i = 0; i < cubeField.size(); i++) {
-
-                //better way to check collision
+        }else{
+            for (int i = 0; i < cubeField.size(); i++){
+            	
+            	//better way to check collision
                 Geometry playerModel = (Geometry) player.getChild(0);
                 Geometry cubeModel = cubeField.get(i);
                 cubeModel.updateGeometricState();
@@ -285,12 +281,12 @@ public class CubeField extends SimpleApplication implements AnalogListener {
                 BoundingVolume pVol = playerModel.getWorldBound();
                 BoundingVolume vVol = cubeModel.getWorldBound();
 
-                if (pVol.intersects(vVol)) {
+                if (pVol.intersects(vVol)){
                     gameLost();
                     return;
                 }
                 //Remove cube if 10 world units behind player
-                if (cubeField.get(i).getLocalTranslation().getX() + 10 < player.getLocalTranslation().getX()) {
+                if (cubeField.get(i).getLocalTranslation().getX() + 10 < player.getLocalTranslation().getX()){
                     cubeField.get(i).removeFromParent();
                     cubeField.remove(cubeField.get(i));
                 }
@@ -299,30 +295,29 @@ public class CubeField extends SimpleApplication implements AnalogListener {
         }
 
         Score += fpsRate * tpf;
-        fpsScoreText.setText("Current Score: " + Score);
+        fpsScoreText.setText("Current Score: "+Score);
     }
-
     /**
      * Sets up the keyboard bindings
      */
     private void Keys() {
         inputManager.addMapping("START", new KeyTrigger(KeyInput.KEY_RETURN));
-        inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addMapping("Left",  new KeyTrigger(KeyInput.KEY_LEFT));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_RIGHT));
         inputManager.addListener(this, "START", "Left", "Right");
     }
 
     public void onAnalog(String binding, float value, float tpf) {
-        if (binding.equals("START") && !START) {
+        if (binding.equals("START") && !START){
             START = true;
             guiNode.detachChild(pressStart);
             System.out.println("START");
-        } else if (START == true && binding.equals("Left")) {
+        }else if (START == true && binding.equals("Left")){
             player.move(0, 0, -(speed / 2f) * value * fpsRate);
-            camAngle -= value * tpf;
-        } else if (START == true && binding.equals("Right")) {
+            camAngle -= value*tpf;
+        }else if (START == true && binding.equals("Right")){
             player.move(0, 0, (speed / 2f) * value * fpsRate);
-            camAngle += value * tpf;
+            camAngle += value*tpf;
         }
     }
 
@@ -330,83 +325,81 @@ public class CubeField extends SimpleApplication implements AnalogListener {
      * Determines the colors of the player, floor, obstacle and background
      */
     private void colorLogic() {
-        if (timer.getTimeInSeconds() >= coreTime) {
-
-            colorInt++;
+    	if (timer.getTimeInSeconds() >= coreTime){
+            
+        	colorInt++;
             coreTime = timer.getTimeInSeconds() + 20;
+        
 
-
-            switch (colorInt) {
-                case 1:
-                    obstacleColors.clear();
-                    solidBox = false;
-                    obstacleColors.add(ColorRGBA.Green);
-                    renderer.setBackgroundColor(ColorRGBA.Black);
-                    playerMaterial.setColor("Color", ColorRGBA.White);
-                    floorMaterial.setColor("Color", ColorRGBA.Black);
-                    break;
-                case 2:
-                    obstacleColors.set(0, ColorRGBA.Black);
-                    solidBox = true;
-                    renderer.setBackgroundColor(ColorRGBA.White);
-                    playerMaterial.setColor("Color", ColorRGBA.Gray);
-                    floorMaterial.setColor("Color", ColorRGBA.LightGray);
-                    break;
-                case 3:
-                    obstacleColors.set(0, ColorRGBA.Pink);
-                    break;
-                case 4:
-                    obstacleColors.set(0, ColorRGBA.Cyan);
-                    obstacleColors.add(ColorRGBA.Magenta);
-                    renderer.setBackgroundColor(ColorRGBA.Gray);
-                    floorMaterial.setColor("Color", ColorRGBA.Gray);
-                    playerMaterial.setColor("Color", ColorRGBA.White);
-                    break;
-                case 5:
-                    obstacleColors.remove(0);
-                    renderer.setBackgroundColor(ColorRGBA.Pink);
-                    solidBox = false;
-                    playerMaterial.setColor("Color", ColorRGBA.White);
-                    break;
-                case 6:
-                    obstacleColors.set(0, ColorRGBA.White);
-                    solidBox = true;
-                    renderer.setBackgroundColor(ColorRGBA.Black);
-                    playerMaterial.setColor("Color", ColorRGBA.Gray);
-                    floorMaterial.setColor("Color", ColorRGBA.LightGray);
-                    break;
-                case 7:
-                    obstacleColors.set(0, ColorRGBA.Green);
-                    renderer.setBackgroundColor(ColorRGBA.Gray);
-                    playerMaterial.setColor("Color", ColorRGBA.Black);
-                    floorMaterial.setColor("Color", ColorRGBA.Orange);
-                    break;
-                case 8:
-                    obstacleColors.set(0, ColorRGBA.Red);
-                    floorMaterial.setColor("Color", ColorRGBA.Pink);
-                    break;
-                case 9:
-                    obstacleColors.set(0, ColorRGBA.Orange);
-                    obstacleColors.add(ColorRGBA.Red);
-                    obstacleColors.add(ColorRGBA.Yellow);
-                    renderer.setBackgroundColor(ColorRGBA.White);
-                    playerMaterial.setColor("Color", ColorRGBA.Red);
-                    floorMaterial.setColor("Color", ColorRGBA.Gray);
-                    colorInt = 0;
-                    break;
-                default:
-                    break;
-            }
+	        switch (colorInt){
+	            case 1:
+	                obstacleColors.clear();
+	                solidBox = false;
+	                obstacleColors.add(ColorRGBA.Green);
+	                renderer.setBackgroundColor(ColorRGBA.Black);
+	                playerMaterial.setColor("Color", ColorRGBA.White);
+			floorMaterial.setColor("Color", ColorRGBA.Black);
+	                break;
+	            case 2:
+	                obstacleColors.set(0, ColorRGBA.Black);
+	                solidBox = true;
+	                renderer.setBackgroundColor(ColorRGBA.White);
+	                playerMaterial.setColor("Color", ColorRGBA.Gray);
+                        floorMaterial.setColor("Color", ColorRGBA.LightGray);
+	                break;
+	            case 3:
+	                obstacleColors.set(0, ColorRGBA.Pink);
+	                break;
+	            case 4:
+	                obstacleColors.set(0, ColorRGBA.Cyan);
+	                obstacleColors.add(ColorRGBA.Magenta);
+	                renderer.setBackgroundColor(ColorRGBA.Gray);
+                        floorMaterial.setColor("Color", ColorRGBA.Gray);
+	                playerMaterial.setColor("Color", ColorRGBA.White);
+	                break;
+	            case 5:
+	                obstacleColors.remove(0);
+	                renderer.setBackgroundColor(ColorRGBA.Pink);
+	                solidBox = false;
+	                playerMaterial.setColor("Color", ColorRGBA.White);
+	                break;
+	            case 6:
+	                obstacleColors.set(0, ColorRGBA.White);
+	                solidBox = true;
+	                renderer.setBackgroundColor(ColorRGBA.Black);
+	                playerMaterial.setColor("Color", ColorRGBA.Gray);
+                        floorMaterial.setColor("Color", ColorRGBA.LightGray);
+	                break;
+	            case 7:
+	                obstacleColors.set(0, ColorRGBA.Green);
+	                renderer.setBackgroundColor(ColorRGBA.Gray);
+	                playerMaterial.setColor("Color", ColorRGBA.Black);
+                        floorMaterial.setColor("Color", ColorRGBA.Orange);
+	                break;
+	            case 8:
+	                obstacleColors.set(0, ColorRGBA.Red);
+                        floorMaterial.setColor("Color", ColorRGBA.Pink);
+	                break;
+	            case 9:
+	                obstacleColors.set(0, ColorRGBA.Orange);
+	                obstacleColors.add(ColorRGBA.Red);
+	                obstacleColors.add(ColorRGBA.Yellow);
+	                renderer.setBackgroundColor(ColorRGBA.White);
+	                playerMaterial.setColor("Color", ColorRGBA.Red);
+	                floorMaterial.setColor("Color", ColorRGBA.Gray);
+	                colorInt=0;
+	                break;
+	            default:
+	                break;
+	        }
         }
     }
-
     /**
      * Sets up a BitmapText to be displayed
-     *
-     * @param txt  the Bitmap Text
-     * @param text the
+     * @param txt the Bitmap Text
+     * @param text the 
      * @param font the font of the text
-     * @param x
+     * @param x    
      * @param y
      * @param z
      */

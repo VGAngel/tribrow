@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.water;
+package jme3test.water;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -46,7 +46,6 @@ import com.jme3.scene.shape.Quad;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.util.SkyFactory;
 import com.jme3.water.SimpleWaterProcessor;
-
 import java.io.File;
 
 public class TestSceneWater extends SimpleApplication {
@@ -55,21 +54,21 @@ public class TestSceneWater extends SimpleApplication {
     private static boolean useHttp = true;
 
     public static void main(String[] args) {
-
+      
         TestSceneWater app = new TestSceneWater();
         app.start();
     }
 
     public void simpleInitApp() {
         this.flyCam.setMoveSpeed(10);
-        Node mainScene = new Node();
+        Node mainScene=new Node();
         cam.setLocation(new Vector3f(-27.0f, 1.0f, 75.0f));
         cam.setRotation(new Quaternion(0.03f, 0.9f, 0f, 0.4f));
 
         // load sky
         mainScene.attachChild(SkyFactory.createSky(assetManager, "Textures/Sky/Bright/BrightSky.dds", false));
 
-
+        
         File file = new File("wildhouse.zip");
         if (file.exists()) {
             useHttp = false;
@@ -84,18 +83,18 @@ public class TestSceneWater extends SimpleApplication {
         Spatial scene = assetManager.loadModel("main.scene");
 
         DirectionalLight sun = new DirectionalLight();
-        Vector3f lightDir = new Vector3f(-0.37352666f, -0.50444174f, -0.7784704f);
+        Vector3f lightDir=new Vector3f(-0.37352666f, -0.50444174f, -0.7784704f);
         sun.setDirection(lightDir);
         sun.setColor(ColorRGBA.White.clone().multLocal(2));
         scene.addLight(sun);
 
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setTexture("ColorMap", assetManager.loadTexture("Interface/Logo/Monkey.jpg"));
-        //add lightPos Geometry
-        Sphere lite = new Sphere(8, 8, 3.0f);
-        Geometry lightSphere = new Geometry("lightsphere", lite);
+           //add lightPos Geometry
+        Sphere lite=new Sphere(8, 8, 3.0f);
+        Geometry lightSphere=new Geometry("lightsphere", lite);
         lightSphere.setMaterial(mat);
-        Vector3f lightPos = lightDir.multLocal(-400);
+        Vector3f lightPos=lightDir.multLocal(-400);
         lightSphere.setLocalTranslation(lightPos);
         rootNode.attachChild(lightSphere);
 
@@ -108,9 +107,9 @@ public class TestSceneWater extends SimpleApplication {
 
 
         //setting the water plane
-        Vector3f waterLocation = new Vector3f(0, -20, 0);
+        Vector3f waterLocation=new Vector3f(0,-20,0);
         waterProcessor.setPlane(new Plane(Vector3f.UNIT_Y, waterLocation.dot(Vector3f.UNIT_Y)));
-        WaterUI waterUi = new WaterUI(inputManager, waterProcessor);
+        WaterUI waterUi=new WaterUI(inputManager, waterProcessor);
         waterProcessor.setWaterColor(ColorRGBA.Brown);
         waterProcessor.setDebug(true);
         //lower render size for higher performance
@@ -122,12 +121,12 @@ public class TestSceneWater extends SimpleApplication {
         //lower the speed of the waves if they are too fast
 //        waterProcessor.setWaveSpeed(0.01f);
 
-        Quad quad = new Quad(400, 400);
+        Quad quad = new Quad(400,400);
 
         //the texture coordinates define the general size of the waves
-        quad.scaleTextureCoordinates(new Vector2f(6f, 6f));
+        quad.scaleTextureCoordinates(new Vector2f(6f,6f));
 
-        Geometry water = new Geometry("water", quad);
+        Geometry water=new Geometry("water", quad);
         water.setShadowMode(ShadowMode.Receive);
         water.setLocalRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, Vector3f.UNIT_X));
         water.setMaterial(waterProcessor.getMaterial());

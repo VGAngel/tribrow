@@ -1,12 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package com.pro.game.example.test.jme3test.batching;
-
-/*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,6 +29,7 @@ package com.pro.game.example.test.jme3test.batching;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package jme3test.batching;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -47,24 +41,28 @@ import com.jme3.font.BitmapText;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.BatchNode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.scene.shape.Sphere.TextureMode;
-import com.jme3.shadow.PssmShadowRenderer;
-import com.jme3.shadow.PssmShadowRenderer.CompareMode;
-import com.jme3.shadow.PssmShadowRenderer.FilterMode;
+import com.jme3.shadow.CompareMode;
+import com.jme3.shadow.DirectionalLightShadowFilter;
+import com.jme3.shadow.EdgeFilteringMode;
 import com.jme3.system.AppSettings;
 import com.jme3.system.NanoTimer;
 import com.jme3.texture.Texture;
-import com.pro.game.example.test.jme3test.bullet.BombControl;
+import com.jme3.texture.Texture.WrapMode;
+import jme3test.bullet.BombControl;
 
 /**
+ *
  * @author double1984 (tower mod by atom)
  */
 public class TestBatchNodeTower extends SimpleApplication {
@@ -80,14 +78,14 @@ public class TestBatchNodeTower extends SimpleApplication {
     Material mat;
     Material mat2;
     Material mat3;
-    PssmShadowRenderer bsr;
+    DirectionalLightShadowFilter shadowRenderer;
     private Sphere bullet;
     private Box brick;
     private SphereCollisionShape bulletCollisionShape;
 
     private BulletAppState bulletAppState;
     BatchNode batchNode = new BatchNode("batch Node");
-
+    
     public static void main(String args[]) {
         TestBatchNodeTower f = new TestBatchNodeTower();
         AppSettings s = new AppSettings(true);
@@ -100,13 +98,13 @@ public class TestBatchNodeTower extends SimpleApplication {
         timer = new NanoTimer();
         bulletAppState = new BulletAppState();
         bulletAppState.setThreadingType(BulletAppState.ThreadingType.PARALLEL);
-        //   bulletAppState.setEnabled(false);
+     //   bulletAppState.setEnabled(false);
         stateManager.attach(bulletAppState);
         bullet = new Sphere(32, 32, 0.4f, true, false);
         bullet.setTextureMode(TextureMode.Projected);
         bulletCollisionShape = new SphereCollisionShape(0.4f);
 
-        brick = new Box(Vector3f.ZERO, brickWidth, brickHeight, brickDepth);
+        brick = new Box(brickWidth, brickHeight, brickDepth);
         brick.scaleTextureCoordinates(new Vector2f(1f, .5f));
         //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         initMaterial();
@@ -119,25 +117,28 @@ public class TestBatchNodeTower extends SimpleApplication {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addListener(actionListener, "shoot");
         rootNode.setShadowMode(ShadowMode.Off);
-
+        
         batchNode.batch();
         batchNode.setShadowMode(ShadowMode.CastAndReceive);
         rootNode.attachChild(batchNode);
-
-
-        bsr = new PssmShadowRenderer(assetManager, 1024, 2);
-        bsr.setDirection(new Vector3f(-1, -1, -1).normalizeLocal());
-        bsr.setLambda(0.55f);
-        bsr.setShadowIntensity(0.6f);
-        bsr.setCompareMode(CompareMode.Hardware);
-        bsr.setFilterMode(FilterMode.PCF4);
-        viewPort.addProcessor(bsr);
+        
+        
+        shadowRenderer = new DirectionalLightShadowFilter(assetManager, 1024, 2);
+        DirectionalLight dl = new DirectionalLight();
+        dl.setDirection(new Vector3f(-1, -1, -1).normalizeLocal());
+        shadowRenderer.setLight(dl);
+        shadowRenderer.setLambda(0.55f);
+        shadowRenderer.setShadowIntensity(0.6f);
+        shadowRenderer.setShadowCompareMode(CompareMode.Hardware);
+        shadowRenderer.setEdgeFilteringMode(EdgeFilteringMode.PCF4);
+        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        fpp.addFilter(shadowRenderer);
+        viewPort.addProcessor(fpp);   
     }
 
     private PhysicsSpace getPhysicsSpace() {
         return bulletAppState.getPhysicsSpace();
     }
-
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -161,32 +162,33 @@ public class TestBatchNodeTower extends SimpleApplication {
         double tempY = 0;
         double tempZ = 0;
         angle = 0f;
-        for (int i = 0; i < brickLayers; i++) {
+        for (int i = 0; i < brickLayers; i++){
             // Increment rows
-            if (i != 0)
+            if (i != 0) {
                 tempY += brickHeight * 2;
-            else
+            } else {
                 tempY = brickHeight;
+            }
             // Alternate brick seams
-            angle = 360.0f / bricksPerLayer * i / 2f;
-            for (int j = 0; j < bricksPerLayer; j++) {
-                tempZ = Math.cos(Math.toRadians(angle)) * radius;
-                tempX = Math.sin(Math.toRadians(angle)) * radius;
-                System.out.println("x=" + ((float) (tempX)) + " y=" + ((float) (tempY)) + " z=" + (float) (tempZ));
-                Vector3f vt = new Vector3f((float) (tempX), (float) (tempY), (float) (tempZ));
-                // Add crenelation
-                if (i == brickLayers - 1) {
-                    if (j % 2 == 0) {
-                        addBrick(vt);
-                    }
-                }
-                // Create main tower
-                else {
+            angle = 360.0f / bricksPerLayer * i/2f;
+            for (int j = 0; j < bricksPerLayer; j++){
+              tempZ = Math.cos(Math.toRadians(angle))*radius;
+              tempX = Math.sin(Math.toRadians(angle))*radius;
+              System.out.println("x="+((float)(tempX))+" y="+((float)(tempY))+" z="+(float)(tempZ));
+              Vector3f vt = new Vector3f((float)(tempX), (float)(tempY), (float)(tempZ));
+              // Add crenelation
+              if (i==brickLayers-1){
+                if (j%2 == 0){
                     addBrick(vt);
                 }
-                angle += 360.0 / bricksPerLayer;
+              }
+              // Create main tower
+              else {
+                addBrick(vt);
+              }
+              angle += 360.0/bricksPerLayer;
             }
-        }
+          }
 
     }
 
@@ -220,17 +222,15 @@ public class TestBatchNodeTower extends SimpleApplication {
         TextureKey key3 = new TextureKey("Textures/Terrain/Pond/Pond.jpg");
         key3.setGenerateMips(true);
         Texture tex3 = assetManager.loadTexture(key3);
-        tex3.setWrap(Texture.WrapMode.Repeat);
+        tex3.setWrap(WrapMode.Repeat);
         mat3.setTexture("ColorMap", tex3);
     }
-
-    int nbBrick = 0;
-
+int nbBrick =0;
     public void addBrick(Vector3f ori) {
         Geometry reBoxg = new Geometry("brick", brick);
         reBoxg.setMaterial(mat);
         reBoxg.setLocalTranslation(ori);
-        reBoxg.rotate(0f, (float) Math.toRadians(angle), 0f);
+        reBoxg.rotate(0f, (float)Math.toRadians(angle) , 0f );
         reBoxg.addControl(new RigidBodyControl(1.5f));
         reBoxg.setShadowMode(ShadowMode.CastAndReceive);
         reBoxg.getControl(RigidBodyControl.class).setFriction(1.6f);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.scene;
+package jme3test.scene;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.scene.Node;
@@ -48,9 +48,9 @@ public class TestUserData extends SimpleApplication {
         System.out.println("Scene: " + scene);
 
         Spatial testNode = scene.getChild("TestNode");
-        System.out.println("TestNode: " + testNode);
+        System.out.println("TestNode: "+ testNode);
 
-        for (String key : testNode.getUserDataKeys()) {
+        for (String key : testNode.getUserDataKeys()){
             System.out.println("Property " + key + " = " + testNode.getUserData(key));
         }
     }

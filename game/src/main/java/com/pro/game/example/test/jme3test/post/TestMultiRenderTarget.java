@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.PointLight;
@@ -53,11 +53,11 @@ public class TestMultiRenderTarget extends SimpleApplication implements ScenePro
     private Texture2D diffuseData, normalData, specularData, depthData;
     private Geometry sphere;
     private Picture display1, display2, display3, display4;
-
+    
     private Picture display;
     private Material mat;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestMultiRenderTarget app = new TestMultiRenderTarget();
         app.start();
     }
@@ -72,7 +72,7 @@ public class TestMultiRenderTarget extends SimpleApplication implements ScenePro
         cam.setRotation(new Quaternion(-0.05143692f, 0.9483723f, -0.21131563f, -0.230846f));
 
         Node tank = (Node) assetManager.loadModel("Models/HoverTank/Tank2.mesh.xml");
-
+        
         //tankMesh.getMaterial().setColor("Specular", ColorRGBA.Black);
         rootNode.attachChild(tank);
 
@@ -81,26 +81,26 @@ public class TestMultiRenderTarget extends SimpleApplication implements ScenePro
         display2 = (Picture) display1.clone();
         display3 = (Picture) display1.clone();
         display4 = (Picture) display1.clone();
-        display = (Picture) display1.clone();
+        display  = (Picture) display1.clone();
 
         ColorRGBA[] colors = new ColorRGBA[]{
-                ColorRGBA.White,
-                ColorRGBA.Blue,
-                ColorRGBA.Cyan,
-                ColorRGBA.DarkGray,
-                ColorRGBA.Green,
-                ColorRGBA.Magenta,
-                ColorRGBA.Orange,
-                ColorRGBA.Pink,
-                ColorRGBA.Red,
-                ColorRGBA.Yellow
+            ColorRGBA.White,
+            ColorRGBA.Blue,
+            ColorRGBA.Cyan,
+            ColorRGBA.DarkGray,
+            ColorRGBA.Green,
+            ColorRGBA.Magenta,
+            ColorRGBA.Orange,
+            ColorRGBA.Pink,
+            ColorRGBA.Red,
+            ColorRGBA.Yellow
         };
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++){
             PointLight pl = new PointLight();
             float angle = 0.314159265f * i;
-            pl.setPosition(new Vector3f(FastMath.cos(angle) * 2f, 0,
-                    FastMath.sin(angle) * 2f));
+            pl.setPosition( new Vector3f(FastMath.cos(angle)*2f, 0,
+                                         FastMath.sin(angle)*2f));
             pl.setColor(colors[i]);
             pl.setRadius(5);
             rootNode.addLight(pl);
@@ -121,16 +121,16 @@ public class TestMultiRenderTarget extends SimpleApplication implements ScenePro
     }
 
     public void reshape(ViewPort vp, int w, int h) {
-        diffuseData = new Texture2D(w, h, Format.RGBA8);
-        normalData = new Texture2D(w, h, Format.RGBA8);
+        diffuseData  = new Texture2D(w, h, Format.RGBA8);
+        normalData   = new Texture2D(w, h, Format.RGBA8);
         specularData = new Texture2D(w, h, Format.RGBA8);
-        depthData = new Texture2D(w, h, Format.Depth);
+        depthData    = new Texture2D(w, h, Format.Depth);
 
         mat = new Material(assetManager, "Common/MatDefs/Light/Deferred.j3md");
-        mat.setTexture("DiffuseData", diffuseData);
+        mat.setTexture("DiffuseData",  diffuseData);
         mat.setTexture("SpecularData", specularData);
-        mat.setTexture("NormalData", normalData);
-        mat.setTexture("DepthData", depthData);
+        mat.setTexture("NormalData",   normalData);
+        mat.setTexture("DepthData",    depthData);
 
         display.setMaterial(mat);
         display.setPosition(0, 0);
@@ -143,24 +143,24 @@ public class TestMultiRenderTarget extends SimpleApplication implements ScenePro
         display4.setTexture(assetManager, depthData, false);
 
         display1.setPosition(0, 0);
-        display2.setPosition(w / 2, 0);
-        display3.setPosition(0, h / 2);
-        display4.setPosition(w / 2, h / 2);
+        display2.setPosition(w/2, 0);
+        display3.setPosition(0, h/2);
+        display4.setPosition(w/2, h/2);
 
-        display1.setWidth(w / 2);
-        display1.setHeight(h / 2);
+        display1.setWidth(w/2);
+        display1.setHeight(h/2);
 
-        display2.setWidth(w / 2);
-        display2.setHeight(h / 2);
+        display2.setWidth(w/2);
+        display2.setHeight(h/2);
 
-        display3.setWidth(w / 2);
-        display3.setHeight(h / 2);
+        display3.setWidth(w/2);
+        display3.setHeight(h/2);
 
-        display4.setWidth(w / 2);
-        display4.setHeight(h / 2);
+        display4.setWidth(w/2);
+        display4.setHeight(h/2);
 
         guiNode.updateGeometricState();
-
+        
         fb = new FrameBuffer(w, h, 1);
         fb.setDepthTexture(depthData);
         fb.addColorTexture(diffuseData);

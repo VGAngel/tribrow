@@ -1,17 +1,15 @@
-package com.pro.game.example.test.jme3test.gui;
+package jme3test.gui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.cursors.plugins.JmeCursor;
-
 import java.util.ArrayList;
 
 /**
  * This test class demonstrate how to change cursor in jME3.
- * <p/>
- * NOTE: This will not work on Android as it does not support cursors.
- * <p/>
- * Cursor test
  *
+ * NOTE: This will not work on Android as it does not support cursors.
+ *
+ * Cursor test
  * @author MadJack
  */
 public class TestCursor extends SimpleApplication {
@@ -20,7 +18,7 @@ public class TestCursor extends SimpleApplication {
     private long sysTime;
     private int count = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestCursor app = new TestCursor();
 
         app.setShowSettings(false);
@@ -51,9 +49,9 @@ public class TestCursor extends SimpleApplication {
          * The animated cursor has been made by Pointer Adic and can be found here:
          * http://www.rw-designer.com/cursor-set/monkey
          */
-        cursors.add((JmeCursor) assetManager.loadAsset("assets/Textures/Cursors/meme.cur"));
-        cursors.add((JmeCursor) assetManager.loadAsset("assets/Textures/Cursors/nyancat.ico"));
-        cursors.add((JmeCursor) assetManager.loadAsset("assets/Textures/Cursors/monkey.ani"));
+        cursors.add((JmeCursor) assetManager.loadAsset("Textures/Cursors/meme.cur"));
+        cursors.add((JmeCursor) assetManager.loadAsset("Textures/Cursors/nyancat.ico"));
+        cursors.add((JmeCursor) assetManager.loadAsset("Textures/Cursors/monkey.ani"));
 
         sysTime = System.currentTimeMillis();
         inputManager.setMouseCursor(cursors.get(count));

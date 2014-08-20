@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.niftygui;
+package jme3test.niftygui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -40,7 +40,7 @@ public class TestNiftyExamples extends SimpleApplication {
 
     private Nifty nifty;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestNiftyExamples app = new TestNiftyExamples();
         app.setPauseOnLostFocus(false);
         app.start();
@@ -48,9 +48,9 @@ public class TestNiftyExamples extends SimpleApplication {
 
     public void simpleInitApp() {
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager,
-                inputManager,
-                audioRenderer,
-                guiViewPort);
+                                                          inputManager,
+                                                          audioRenderer,
+                                                          guiViewPort);
         nifty = niftyDisplay.getNifty();
 
         nifty.fromXml("all/intro.xml", "start");

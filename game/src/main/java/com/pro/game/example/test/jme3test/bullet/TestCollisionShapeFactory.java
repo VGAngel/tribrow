@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
@@ -99,24 +99,24 @@ public class TestCollisionShapeFactory extends SimpleApplication {
         Box box = new Box(0.25f, 0.25f, 0.25f);
         Torus torus = new Torus(16, 16, 0.2f, 0.8f);
         Geometry[] boxes = new Geometry[]{
-                new Geometry("box1", box),
-                new Geometry("box2", box),
-                new Geometry("box3", box),
-                new Geometry("torus1", torus),
-                new Geometry("torus2", torus),
-                new Geometry("torus3", torus)
+            new Geometry("box1", box),
+            new Geometry("box2", box),
+            new Geometry("box3", box),
+            new Geometry("torus1", torus),
+            new Geometry("torus2", torus),
+            new Geometry("torus3", torus)
         };
         for (int i = 0; i < boxes.length; i++) {
             Geometry geometry = boxes[i];
-            geometry.setLocalTranslation((float) Math.random() * 10 - 10, (float) Math.random() * 10 - 10, (float) Math.random() * 10 - 10);
+            geometry.setLocalTranslation((float) Math.random() * 10 -10, (float) Math.random() * 10 -10, (float) Math.random() * 10 -10);
             geometry.setLocalRotation(new Quaternion().fromAngles((float) Math.random() * FastMath.PI, (float) Math.random() * FastMath.PI, (float) Math.random() * FastMath.PI));
-            geometry.setLocalScale((float) Math.random() * 10 - 10, (float) Math.random() * 10 - 10, (float) Math.random() * 10 - 10);
+            geometry.setLocalScale((float) Math.random() * 10 -10, (float) Math.random() * 10 -10, (float) Math.random() * 10 -10);
             geometry.setMaterial(mat);
             node.attachChild(geometry);
         }
     }
 
-    private void randomizeTransform(Spatial spat) {
+    private void randomizeTransform(Spatial spat){
         spat.setLocalTranslation((float) Math.random() * 10, (float) Math.random() * 10, (float) Math.random() * 10);
         spat.setLocalTranslation((float) Math.random() * 10, (float) Math.random() * 10, (float) Math.random() * 10);
         spat.setLocalScale((float) Math.random() * 2, (float) Math.random() * 2, (float) Math.random() * 2);

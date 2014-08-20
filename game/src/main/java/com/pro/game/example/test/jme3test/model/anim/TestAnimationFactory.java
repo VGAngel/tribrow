@@ -1,4 +1,4 @@
-package com.pro.game.example.test.jme3test.model.anim;
+package jme3test.model.anim;
 
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.AnimationFactory;
@@ -49,7 +49,7 @@ public class TestAnimationFactory extends SimpleApplication {
         //creating quite complex animation witht the AnimationHelper
         // animation of 6 seconds named "anim" and with 25 frames per second
         AnimationFactory animationFactory = new AnimationFactory(6, "anim", 25);
-
+        
         //creating a translation keyFrame at time = 3 with a translation on the x axis of 5 WU        
         animationFactory.addTimeTranslation(3, new Vector3f(5, 0, 0));
         //reseting the translation to the start position at time = 6
@@ -62,14 +62,14 @@ public class TestAnimationFactory extends SimpleApplication {
         //reseting the scale to the start value at time = 5
         animationFactory.addTimeScale(5, new Vector3f(1, 1, 1));
 
-
+        
         //Creating a rotation keyFrame at time = 0.5 of quarter PI around the Z axis
-        animationFactory.addTimeRotation(0.5f, new Quaternion().fromAngleAxis(FastMath.QUARTER_PI, Vector3f.UNIT_Z));
+        animationFactory.addTimeRotation(0.5f,new Quaternion().fromAngleAxis(FastMath.QUARTER_PI, Vector3f.UNIT_Z));
         //rotating back to initial rotation value at time = 1
-        animationFactory.addTimeRotation(1, Quaternion.IDENTITY);
+        animationFactory.addTimeRotation(1,Quaternion.IDENTITY);
         //Creating a rotation keyFrame at time = 2. Note that i used the Euler angle version because the angle is higher than PI
         //this should result in a complete revolution of the spatial around the x axis in 1 second (from 1 to 2)
-        animationFactory.addTimeRotationAngles(2, FastMath.TWO_PI, 0, 0);
+        animationFactory.addTimeRotationAngles(2, FastMath.TWO_PI,0, 0);
 
 
         AnimControl control = new AnimControl();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.com.pro.game.example.test.jme3test.animation;
+package jme3test.animation;
 
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.AnimationFactory;
@@ -75,6 +75,7 @@ public class TestCinematic extends SimpleApplication {
     public static void main(String[] args) {
         TestCinematic app = new TestCinematic();
         app.start();
+
 
 
     }

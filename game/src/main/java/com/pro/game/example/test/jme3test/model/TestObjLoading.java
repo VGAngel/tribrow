@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.model;
+package jme3test.model;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -41,7 +41,7 @@ import com.jme3.scene.Geometry;
  */
 public class TestObjLoading extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestObjLoading app = new TestObjLoading();
         app.start();
     }
@@ -49,7 +49,7 @@ public class TestObjLoading extends SimpleApplication {
     public void simpleInitApp() {
         // create the geometry and attach it
         Geometry teaGeom = (Geometry) assetManager.loadModel("Models/Teapot/Teapot.obj");
-
+        
         // show normals as material
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
         teaGeom.setMaterial(mat);

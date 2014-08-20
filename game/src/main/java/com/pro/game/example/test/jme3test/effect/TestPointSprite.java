@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.effect;
+package jme3test.effect;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.effect.ParticleEmitter;
@@ -45,7 +45,7 @@ import com.jme3.math.Vector3f;
 
 public class TestPointSprite extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestPointSprite app = new TestPointSprite();
         app.start();
     }
@@ -54,7 +54,7 @@ public class TestPointSprite extends SimpleApplication {
     public void simpleInitApp() {
         final ParticleEmitter emit = new ParticleEmitter("Emitter", Type.Point, 10000);
         emit.setShape(new EmitterBoxShape(new Vector3f(-1.8f, -1.8f, -1.8f),
-                new Vector3f(1.8f, 1.8f, 1.8f)));
+                                          new Vector3f(1.8f, 1.8f, 1.8f)));
         emit.setGravity(0, 0, 0);
         emit.setLowLife(60);
         emit.setHighLife(60);
@@ -66,7 +66,7 @@ public class TestPointSprite extends SimpleApplication {
         emit.setEndColor(ColorRGBA.White);
         emit.setSelectRandomImage(true);
         emit.emitAllParticles();
-
+        
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
         mat.setBoolean("PointSprite", true);
         mat.setTexture("Texture", assetManager.loadTexture("Effects/Smoke/Smoke.png"));
@@ -74,7 +74,7 @@ public class TestPointSprite extends SimpleApplication {
 
         rootNode.attachChild(emit);
         inputManager.addListener(new ActionListener() {
-
+            
             public void onAction(String name, boolean isPressed, float tpf) {
                 if ("setNum".equals(name) && isPressed) {
                     emit.setNumParticles(5000);
@@ -82,9 +82,9 @@ public class TestPointSprite extends SimpleApplication {
                 }
             }
         }, "setNum");
-
+        
         inputManager.addMapping("setNum", new KeyTrigger(KeyInput.KEY_SPACE));
-
+        
     }
 
 }

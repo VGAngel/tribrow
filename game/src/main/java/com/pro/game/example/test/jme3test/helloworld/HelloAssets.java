@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.helloworld;
+package jme3test.helloworld;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
@@ -41,10 +41,8 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 
-/**
- * Sample 3 - how to load an OBJ model, and OgreXML model,
- * a material/texture, or text.
- */
+/** Sample 3 - how to load an OBJ model, and OgreXML model, 
+ * a material/texture, or text. */
 public class HelloAssets extends SimpleApplication {
 
     public static void main(String[] args) {
@@ -57,17 +55,17 @@ public class HelloAssets extends SimpleApplication {
 
         /** Load a teapot model (OBJ file from test-data) */
         Spatial teapot = assetManager.loadModel("Models/Teapot/Teapot.obj");
-        Material mat_default = new Material(assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
+        Material mat_default = new Material( assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
         teapot.setMaterial(mat_default);
         rootNode.attachChild(teapot);
 
         /** Create a wall (Box with material and texture from test-data) */
-        Box box = new Box(Vector3f.ZERO, 2.5f, 2.5f, 1.0f);
-        Spatial wall = new Geometry("Box", box);
-        Material mat_brick = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        Box box = new Box(Vector3f.ZERO, 2.5f,2.5f,1.0f);
+        Spatial wall = new Geometry("Box", box );
+        Material mat_brick = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_brick.setTexture("ColorMap", assetManager.loadTexture("Textures/Terrain/BrickWall/BrickWall.jpg"));
         wall.setMaterial(mat_brick);
-        wall.setLocalTranslation(2.0f, -2.5f, 0.0f);
+        wall.setLocalTranslation(2.0f,-2.5f,0.0f);
         rootNode.attachChild(wall);
 
         /** Display a line of text (default font from test-data) */

@@ -34,7 +34,6 @@ public class TerrainFractalGridTest extends SimpleApplication {
         TerrainFractalGridTest app = new TerrainFractalGridTest();
         app.start();
     }
-
     private CharacterControl player3;
     private FractalSum base;
     private PerturbFilter perturb;
@@ -135,11 +134,12 @@ public class TerrainFractalGridTest extends SimpleApplication {
         this.terrain.addControl(control);
 
 
+
         this.getCamera().setLocation(new Vector3f(0, 300, 0));
 
         this.viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 
-
+        
     }
 
     @Override

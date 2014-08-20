@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -57,10 +57,10 @@ public class TestCrossHatch extends SimpleApplication {
     Spatial teapot;
     Geometry frustumMdl;
     WireFrustum frustum;
-    boolean active = true;
+    boolean active=true;
     FilterPostProcessor fpp;
-
-    public static void main(String[] args) {
+    
+    public static void main(String[] args){
         TestCrossHatch app = new TestCrossHatch();
         app.start();
     }
@@ -73,37 +73,41 @@ public class TestCrossHatch extends SimpleApplication {
         //cam.setFrustumFar(1000);
 
 
-        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        Material mat = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
         mat.setFloat("Shininess", 15f);
         mat.setBoolean("UseMaterialColors", true);
         mat.setColor("Ambient", ColorRGBA.Yellow.mult(0.2f));
         mat.setColor("Diffuse", ColorRGBA.Yellow.mult(0.2f));
         mat.setColor("Specular", ColorRGBA.Yellow.mult(0.8f));
 
+    
 
-        Material matSoil = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+
+        Material matSoil = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
         matSoil.setFloat("Shininess", 15f);
         matSoil.setBoolean("UseMaterialColors", true);
         matSoil.setColor("Ambient", ColorRGBA.Gray);
         matSoil.setColor("Diffuse", ColorRGBA.Black);
         matSoil.setColor("Specular", ColorRGBA.Gray);
+       
 
 
         teapot = assetManager.loadModel("Models/Teapot/Teapot.obj");
-        teapot.setLocalTranslation(0, 0, 10);
+        teapot.setLocalTranslation(0,0,10);
 
         teapot.setMaterial(mat);
         teapot.setShadowMode(ShadowMode.CastAndReceive);
         teapot.setLocalScale(10.0f);
         rootNode.attachChild(teapot);
 
+  
 
-        Geometry soil = new Geometry("soil", new Box(new Vector3f(0, -13, 550), 800, 10, 700));
+        Geometry soil=new Geometry("soil", new Box(new Vector3f(0, -13, 550), 800, 10, 700));
         soil.setMaterial(matSoil);
         soil.setShadowMode(ShadowMode.CastAndReceive);
         rootNode.attachChild(soil);
 
-        DirectionalLight light = new DirectionalLight();
+        DirectionalLight light=new DirectionalLight();
         light.setDirection(new Vector3f(-1, -1, -1).normalizeLocal());
         light.setColor(ColorRGBA.White.mult(1.5f));
         rootNode.addLight(light);
@@ -113,37 +117,45 @@ public class TestCrossHatch extends SimpleApplication {
         sky.setCullHint(Spatial.CullHint.Never);
         rootNode.attachChild(sky);
 
-        fpp = new FilterPostProcessor(assetManager);
-        CrossHatchFilter chf = new CrossHatchFilter();
-
+        fpp=new FilterPostProcessor(assetManager);
+        
+        int numSamples = getContext().getSettings().getSamples();
+        if( numSamples > 0 ) {
+            fpp.setNumSamples(numSamples); 
+        }
+        
+        CrossHatchFilter chf=new CrossHatchFilter();
+        
+   
 
         viewPort.addProcessor(fpp);
         fpp.addFilter(chf);
         initInputs();
 
     }
-
-    private void initInputs() {
+    
+         private void initInputs() {
         inputManager.addMapping("toggle", new KeyTrigger(KeyInput.KEY_SPACE));
-
+     
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
                 if (name.equals("toggle") && keyPressed) {
-                    if (active) {
-                        active = false;
+                    if(active){
+                        active=false;
                         viewPort.removeProcessor(fpp);
-                    } else {
-                        active = true;
+                    }else{
+                        active=true;
                         viewPort.addProcessor(fpp);
                     }
                 }
             }
         };
-
+             
         inputManager.addListener(acl, "toggle");
 
     }
 
+ 
 
 }

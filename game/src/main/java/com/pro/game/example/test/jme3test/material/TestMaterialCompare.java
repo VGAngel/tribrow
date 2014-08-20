@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.material;
+package jme3test.material;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
@@ -44,7 +44,7 @@ public class TestMaterialCompare {
     public static void main(String[] args) {
         AssetManager assetManager = JmeSystem.newAssetManager(
                 TestMaterialCompare.class.getResource("/com/jme3/asset/Desktop.cfg"));
-
+        
         // Cloned materials
         Material mat1 = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setName("mat1");
@@ -66,27 +66,27 @@ public class TestMaterialCompare {
         Material mat5 = assetManager.loadMaterial("Models/Sign Post/Sign Post.j3m");
         mat5.setName("mat5");
         testEquality(mat4, mat5, true);
-
+        
         // Comparing same textures
         TextureKey originalKey = (TextureKey) mat4.getTextureParam("DiffuseMap").getTextureValue().getKey();
         TextureKey tex1key = new TextureKey("Models/Sign Post/Sign Post.jpg", false);
         tex1key.setGenerateMips(true);
-
+        
         // Texture keys from the original and the loaded texture
         // must be identical, otherwise the resultant textures not identical
         // and thus materials are not identical!
-        if (!originalKey.equals(tex1key)) {
+        if (!originalKey.equals(tex1key)){
             System.out.println("TEXTURE KEYS ARE NOT EQUAL");
         }
-
+        
         Texture tex1 = assetManager.loadTexture(tex1key);
         mat4.setTexture("DiffuseMap", tex1);
         testEquality(mat4, mat5, true);
-
+        
         // Change some stuff on the texture and compare, materials no longer equal
         tex1.setWrap(Texture.WrapMode.MirroredRepeat);
         testEquality(mat4, mat5, false);
-
+        
         // Comparing different textures
         Texture tex2 = assetManager.loadTexture("Interface/Logo/Monkey.jpg");
         mat4.setTexture("DiffuseMap", tex2);
@@ -119,7 +119,7 @@ public class TestMaterialCompare {
                 System.out.println(" EQUAL FAIL!");
             }
         }
-        if (mat2.hashCode() == mat1.hashCode()) {
+        if (mat2.hashCode() == mat1.hashCode()){
             System.out.print(mat1.getName() + " == " + mat2.getName());
             if (expected) {
                 System.out.println(" HASH OK");

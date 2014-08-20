@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.effect;
+package jme3test.effect;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -50,20 +50,19 @@ import com.jme3.texture.Texture.WrapMode;
 import com.jme3.util.SkyFactory;
 import com.jme3.util.TangentBinormalGenerator;
 
-//TODO:select
 public class TestEverything extends SimpleApplication {
 
     private BasicShadowRenderer bsr;
     private HDRRenderer hdrRender;
     private Vector3f lightDir = new Vector3f(-1, -1, .5f).normalizeLocal();
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestEverything app = new TestEverything();
         app.start();
     }
 
-    public void setupHdr() {
-        if (renderer.getCaps().contains(Caps.GLSL100)) {
+    public void setupHdr(){
+        if (renderer.getCaps().contains(Caps.GLSL100)){
             hdrRender = new HDRRenderer(assetManager, renderer);
             hdrRender.setMaxIterations(40);
             hdrRender.setSamples(settings.getSamples());
@@ -72,62 +71,62 @@ public class TestEverything extends SimpleApplication {
             hdrRender.setExposure(0.72f);
             hdrRender.setThrottle(1);
 
-            //        setPauseOnLostFocus(false);
-            //        new HDRConfig(hdrRender).setVisible(true);
+    //        setPauseOnLostFocus(false);
+    //        new HDRConfig(hdrRender).setVisible(true);
 
             viewPort.addProcessor(hdrRender);
         }
     }
 
-    public void setupBasicShadow() {
-        if (renderer.getCaps().contains(Caps.GLSL100)) {
+    public void setupBasicShadow(){
+        if (renderer.getCaps().contains(Caps.GLSL100)){
             bsr = new BasicShadowRenderer(assetManager, 1024);
             bsr.setDirection(lightDir);
             viewPort.addProcessor(bsr);
         }
     }
 
-    public void setupSkyBox() {
+    public void setupSkyBox(){
         Texture envMap;
-        if (renderer.getCaps().contains(Caps.FloatTexture)) {
+        if (renderer.getCaps().contains(Caps.FloatTexture)){
             envMap = assetManager.loadTexture("Textures/Sky/St Peters/StPeters.hdr");
-        } else {
+        }else{
             envMap = assetManager.loadTexture("Textures/Sky/St Peters/StPeters.jpg");
         }
-        rootNode.attachChild(SkyFactory.createSky(assetManager, envMap, new Vector3f(-1, -1, -1), true));
+        rootNode.attachChild(SkyFactory.createSky(assetManager, envMap, new Vector3f(-1,-1,-1), true));
     }
 
-    public void setupLighting() {
+    public void setupLighting(){
         boolean hdr = false;
-        if (hdrRender != null) {
+        if (hdrRender != null){
             hdr = hdrRender.isEnabled();
         }
 
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(lightDir);
-        if (hdr) {
+        if (hdr){
             dl.setColor(new ColorRGBA(3, 3, 3, 1));
-        } else {
+        }else{
             dl.setColor(new ColorRGBA(.9f, .9f, .9f, 1));
         }
         rootNode.addLight(dl);
 
         dl = new DirectionalLight();
         dl.setDirection(new Vector3f(1, 0, -1).normalizeLocal());
-        if (hdr) {
+        if (hdr){
             dl.setColor(new ColorRGBA(1, 1, 1, 1));
-        } else {
+        }else{
             dl.setColor(new ColorRGBA(.4f, .4f, .4f, 1));
         }
         rootNode.addLight(dl);
     }
 
-    public void setupFloor() {
+    public void setupFloor(){
         Material mat = assetManager.loadMaterial("Textures/Terrain/BrickWall/BrickWall.j3m");
         mat.getTextureParam("DiffuseMap").getTextureValue().setWrap(WrapMode.Repeat);
         mat.getTextureParam("NormalMap").getTextureValue().setWrap(WrapMode.Repeat);
         mat.getTextureParam("ParallaxMap").getTextureValue().setWrap(WrapMode.Repeat);
-
+        
         Box floor = new Box(Vector3f.ZERO, 50, 1f, 50);
         TangentBinormalGenerator.generate(floor);
         floor.scaleTextureCoordinates(new Vector2f(5, 5));
@@ -158,7 +157,7 @@ public class TestEverything extends SimpleApplication {
 //
 //    }
 
-    public void setupRobotGuy() {
+    public void setupRobotGuy(){
         Node model = (Node) assetManager.loadModel("Models/Oto/Oto.mesh.xml");
         Material mat = assetManager.loadMaterial("Models/Oto/Oto.j3m");
         model.getChild(0).setMaterial(mat);
@@ -169,7 +168,7 @@ public class TestEverything extends SimpleApplication {
         rootNode.attachChild(model);
     }
 
-    public void setupSignpost() {
+    public void setupSignpost(){
         Spatial signpost = assetManager.loadModel("Models/Sign Post/Sign Post.mesh.xml");
         Material mat = assetManager.loadMaterial("Models/Sign Post/Sign Post.j3m");
         signpost.setMaterial(mat);
@@ -202,7 +201,7 @@ public class TestEverything extends SimpleApplication {
 //        setupRobotGuy();
         setupSignpost();
 
-
+        
     }
 
 }

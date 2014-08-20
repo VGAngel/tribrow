@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.HttpZipLocator;
@@ -50,7 +50,6 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.plugins.ogre.OgreMeshKey;
-
 import java.io.File;
 
 public class TestQ3 extends SimpleApplication implements ActionListener {
@@ -60,7 +59,7 @@ public class TestQ3 extends SimpleApplication implements ActionListener {
     private PhysicsCharacter player;
     private Vector3f walkDirection = new Vector3f();
     private static boolean useHttp = false;
-    private boolean left = false, right = false, up = false, down = false;
+    private boolean left=false,right=false,up=false,down=false;
 
     public static void main(String[] args) {
         File file = new File("quake3level.zip");
@@ -117,7 +116,7 @@ public class TestQ3 extends SimpleApplication implements ActionListener {
         getPhysicsSpace().add(player);
     }
 
-    private PhysicsSpace getPhysicsSpace() {
+    private PhysicsSpace getPhysicsSpace(){
         return bulletAppState.getPhysicsSpace();
     }
 
@@ -125,14 +124,14 @@ public class TestQ3 extends SimpleApplication implements ActionListener {
     public void simpleUpdate(float tpf) {
         Vector3f camDir = cam.getDirection().clone().multLocal(0.6f);
         Vector3f camLeft = cam.getLeft().clone().multLocal(0.4f);
-        walkDirection.set(0, 0, 0);
-        if (left)
+        walkDirection.set(0,0,0);
+        if(left)
             walkDirection.addLocal(camLeft);
-        if (right)
+        if(right)
             walkDirection.addLocal(camLeft.negate());
-        if (up)
+        if(up)
             walkDirection.addLocal(camDir);
-        if (down)
+        if(down)
             walkDirection.addLocal(camDir.negate());
         player.setWalkDirection(walkDirection);
         cam.setLocation(player.getPhysicsLocation());
@@ -144,35 +143,35 @@ public class TestQ3 extends SimpleApplication implements ActionListener {
         inputManager.addMapping("Ups", new KeyTrigger(KeyInput.KEY_W));
         inputManager.addMapping("Downs", new KeyTrigger(KeyInput.KEY_S));
         inputManager.addMapping("Space", new KeyTrigger(KeyInput.KEY_SPACE));
-        inputManager.addListener(this, "Lefts");
-        inputManager.addListener(this, "Rights");
-        inputManager.addListener(this, "Ups");
-        inputManager.addListener(this, "Downs");
-        inputManager.addListener(this, "Space");
+        inputManager.addListener(this,"Lefts");
+        inputManager.addListener(this,"Rights");
+        inputManager.addListener(this,"Ups");
+        inputManager.addListener(this,"Downs");
+        inputManager.addListener(this,"Space");
     }
 
     public void onAction(String binding, boolean value, float tpf) {
 
         if (binding.equals("Lefts")) {
-            if (value)
-                left = true;
+            if(value)
+                left=true;
             else
-                left = false;
+                left=false;
         } else if (binding.equals("Rights")) {
-            if (value)
-                right = true;
+            if(value)
+                right=true;
             else
-                right = false;
+                right=false;
         } else if (binding.equals("Ups")) {
-            if (value)
-                up = true;
+            if(value)
+                up=true;
             else
-                up = false;
+                up=false;
         } else if (binding.equals("Downs")) {
-            if (value)
-                down = true;
+            if(value)
+                down=true;
             else
-                down = false;
+                down=false;
         } else if (binding.equals("Space")) {
             player.jump();
         }

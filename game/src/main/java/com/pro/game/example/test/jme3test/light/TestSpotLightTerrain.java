@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.light;
+package jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingBox;
@@ -80,9 +80,9 @@ public class TestSpotLightTerrain extends SimpleApplication {
         app.start();
     }
 
-
+  
     @Override
-    public void simpleInitApp() {
+    public void simpleInitApp() {  
         makeTerrain();
         flyCam.setMoveSpeed(50);
 
@@ -104,8 +104,8 @@ public class TestSpotLightTerrain extends SimpleApplication {
         sl.setPosition(cam.getLocation());
 
     }
-
-    @Override
+    
+      @Override
     public void simpleUpdate(float tpf) {
         super.simpleUpdate(tpf);
         sl.setDirection(cam.getDirection());
@@ -190,7 +190,7 @@ public class TestSpotLightTerrain extends SimpleApplication {
 
         terrain = new TerrainQuad("terrain", 65, 513, heightmap.getHeightMap());//, new LodPerspectiveCalculatorFactory(getCamera(), 4)); // add this in to see it use entropy for LOD calculations
         TerrainLodControl control = new TerrainLodControl(terrain, getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f));
+        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) );
         terrain.addControl(control);
         terrain.setMaterial(matTerrain);
         terrain.setModelBound(new BoundingBox());
@@ -212,5 +212,5 @@ public class TestSpotLightTerrain extends SimpleApplication {
         rootNode.attachChild(sky);
     }
 
-
+  
 }

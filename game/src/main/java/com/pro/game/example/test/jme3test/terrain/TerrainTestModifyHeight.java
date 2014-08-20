@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,14 +68,13 @@ import com.jme3.terrain.noise.fractal.FractalSum;
 import com.jme3.terrain.noise.modulator.NoiseModulator;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * @author Brent Owens
  */
-//TODO:select
 public class TerrainTestModifyHeight extends SimpleApplication {
 
     private TerrainQuad terrain;
@@ -89,10 +88,10 @@ public class TerrainTestModifyHeight extends SimpleApplication {
     private float grassScale = 64;
     private float dirtScale = 16;
     private float rockScale = 128;
-
+    
     private boolean raiseTerrain = false;
     private boolean lowerTerrain = false;
-
+    
     private Geometry marker;
     private Geometry markerNormal;
 
@@ -102,48 +101,48 @@ public class TerrainTestModifyHeight extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){
         Vector3f intersection = getWorldIntersection();
         updateHintText(intersection);
-
-        if (raiseTerrain) {
-
+        
+        if (raiseTerrain){
+            
             if (intersection != null) {
                 adjustHeight(intersection, 64, tpf * 60);
             }
-        } else if (lowerTerrain) {
+        }else if (lowerTerrain){
             if (intersection != null) {
                 adjustHeight(intersection, 64, -tpf * 60);
             }
         }
-
+        
         if (terrain != null && intersection != null) {
             float h = terrain.getHeight(new Vector2f(intersection.x, intersection.z));
             Vector3f tl = terrain.getWorldTranslation();
-            marker.setLocalTranslation(tl.add(new Vector3f(intersection.x, h, intersection.z)));
-            markerNormal.setLocalTranslation(tl.add(new Vector3f(intersection.x, h, intersection.z)));
-
+            marker.setLocalTranslation(tl.add(new Vector3f(intersection.x, h, intersection.z)) );
+            markerNormal.setLocalTranslation(tl.add(new Vector3f(intersection.x, h, intersection.z)) );
+            
             Vector3f normal = terrain.getNormal(new Vector2f(intersection.x, intersection.z));
-            ((Arrow) markerNormal.getMesh()).setArrowExtent(normal);
+            ((Arrow)markerNormal.getMesh()).setArrowExtent(normal);
         }
     }
-
+    
     @Override
     public void simpleInitApp() {
         loadHintText();
         initCrossHairs();
         setupKeys();
-
+        
         createMarker();
 
         // WIREFRAME material
         matWire = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         matWire.getAdditionalRenderState().setWireframe(true);
         matWire.setColor("Color", ColorRGBA.Green);
-
+        
         createTerrain();
         //createTerrainGrid();
-
+        
         DirectionalLight light = new DirectionalLight();
         light.setDirection((new Vector3f(-0.5f, -1f, -0.5f)).normalize());
         rootNode.addLight(light);
@@ -155,7 +154,7 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         cam.setLocation(new Vector3f(0, 256, 0));
         cam.lookAtDirection(new Vector3f(0, -1f, 0).normalizeLocal(), Vector3f.UNIT_X);
     }
-
+    
     public void loadHintText() {
         hintText = new BitmapText(guiFont, false);
         hintText.setLocalTranslation(0, getCamera().getHeight(), 0);
@@ -168,9 +167,9 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         int y = (int) getCamera().getLocation().y;
         int z = (int) getCamera().getLocation().z;
         String targetText = "";
-        if (target != null)
-            targetText = "  intersect: " + target.toString();
-        hintText.setText("Press left mouse button to raise terrain, press right mouse button to lower terrain.  " + x + "," + y + "," + z + targetText);
+        if (target!= null)
+            targetText = "  intersect: "+target.toString();
+        hintText.setText("Press left mouse button to raise terrain, press right mouse button to lower terrain.  " + x + "," + y + "," + z+targetText);
     }
 
     protected void initCrossHairs() {
@@ -192,7 +191,6 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         inputManager.addMapping("Lower", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
         inputManager.addListener(actionListener, "Lower");
     }
-
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean pressed, float tpf) {
@@ -222,7 +220,7 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         long start = System.currentTimeMillis();
         List<Vector2f> locs = new ArrayList<Vector2f>();
         List<Float> heights = new ArrayList<Float>();
-
+        
         for (int z = -radiusStepsZ; z < radiusStepsZ; z++) {
             for (int x = -radiusStepsX; x < radiusStepsX; x++) {
 
@@ -274,7 +272,7 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         }
         return null;
     }
-
+    
     private void createTerrain() {
         // First, we load up our textures and the heightmap texture for the terrain
 
@@ -316,11 +314,11 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         // CREATE THE TERRAIN
         terrain = new TerrainQuad("terrain", 65, 513, heightmap.getHeightMap());
         TerrainLodControl control = new TerrainLodControl(terrain, getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
         terrain.addControl(control);
         terrain.setMaterial(matTerrain);
         terrain.setLocalTranslation(0, -100, 0);
@@ -329,7 +327,7 @@ public class TerrainTestModifyHeight extends SimpleApplication {
     }
 
     private void createTerrainGrid() {
-
+        
         // TERRAIN TEXTURE material
         matTerrain = new Material(this.assetManager, "Common/MatDefs/Terrain/HeightBasedTerrain.j3md");
 
@@ -410,7 +408,7 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         terrain.setMaterial(matTerrain);
         terrain.setLocalTranslation(0, 0, 0);
         terrain.setLocalScale(2f, 1f, 2f);
-
+        
         rootNode.attachChild(this.terrain);
 
         TerrainLodControl control = new TerrainLodControl(this.terrain, getCamera());
@@ -422,17 +420,17 @@ public class TerrainTestModifyHeight extends SimpleApplication {
         Sphere sphere = new Sphere(8, 8, 0.5f);
         marker = new Geometry("Marker");
         marker.setMesh(sphere);
-
+        
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", new ColorRGBA(251f / 255f, 130f / 255f, 0f, 0.6f));
+        mat.setColor("Color", new ColorRGBA(251f/255f, 130f/255f, 0f, 0.6f));
         mat.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
-
+        
         marker.setMaterial(mat);
         rootNode.attachChild(marker);
-
-
+        
+        
         // surface normal marker
-        Arrow arrow = new Arrow(new Vector3f(0, 1, 0));
+        Arrow arrow = new Arrow(new Vector3f(0,1,0));
         markerNormal = new Geometry("MarkerNormal");
         markerNormal.setMesh(arrow);
         markerNormal.setMaterial(mat);

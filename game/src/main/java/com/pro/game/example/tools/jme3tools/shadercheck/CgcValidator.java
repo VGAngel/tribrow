@@ -96,7 +96,7 @@ public class CgcValidator implements Validator {
     }
 
     public void validate(Shader shader, StringBuilder results) {
-        String language = shader.getLanguage();
+        String language = shader.toString();
         for (ShaderSource source : shader.getSources()) {
             results.append("Checking: ").append(source.getName());
             switch (source.getType()) {

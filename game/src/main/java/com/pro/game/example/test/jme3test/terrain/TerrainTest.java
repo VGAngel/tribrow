@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -157,11 +157,11 @@ public class TerrainTest extends SimpleApplication {
          */
         terrain = new TerrainQuad("terrain", 65, 513, heightmap.getHeightMap());
         TerrainLodControl control = new TerrainLodControl(terrain, getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
         terrain.addControl(control);
         terrain.setMaterial(matRock);
         terrain.setLocalTranslation(0, -100, 0);
-        terrain.setLocalScale(2f, 1f, 2f);
+        terrain.setLocalScale(2f, 0.5f, 2f);
         rootNode.attachChild(terrain);
 
         DirectionalLight light = new DirectionalLight();
@@ -187,7 +187,6 @@ public class TerrainTest extends SimpleApplication {
         inputManager.addMapping("triPlanar", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addListener(actionListener, "triPlanar");
     }
-
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean pressed, float tpf) {

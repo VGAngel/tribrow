@@ -1,4 +1,35 @@
-package com.pro.game.example.test.jme3test.bullet;
+/*
+ * Copyright (c) 2009-2012 jMonkeyEngine
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package jme3test.bullet;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.PhysicsSpace;
@@ -19,11 +50,11 @@ import com.jme3.export.JmeImporter;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-
 import java.io.IOException;
 import java.util.Iterator;
 
 /**
+ *
  * @author normenhansen
  */
 public class BombControl extends RigidBodyControl implements PhysicsCollisionListener, PhysicsTickListener {
@@ -102,14 +133,14 @@ public class BombControl extends RigidBodyControl implements PhysicsCollisionLis
             spatial.removeFromParent();
         }
     }
-
+    
     public void prePhysicsTick(PhysicsSpace space, float f) {
         space.removeCollisionListener(this);
     }
 
     public void physicsTick(PhysicsSpace space, float f) {
         //get all overlapping objects and apply impulse to them
-        for (Iterator<PhysicsCollisionObject> it = ghostObject.getOverlappingObjects().iterator(); it.hasNext(); ) {
+        for (Iterator<PhysicsCollisionObject> it = ghostObject.getOverlappingObjects().iterator(); it.hasNext();) {            
             PhysicsCollisionObject physicsCollisionObject = it.next();
             if (physicsCollisionObject instanceof PhysicsRigidBody) {
                 PhysicsRigidBody rBody = (PhysicsRigidBody) physicsCollisionObject;
@@ -130,10 +161,10 @@ public class BombControl extends RigidBodyControl implements PhysicsCollisionLis
     @Override
     public void update(float tpf) {
         super.update(tpf);
-        if (enabled) {
-            timer += tpf;
-            if (timer > maxTime) {
-                if (spatial.getParent() != null) {
+        if(enabled){
+            timer+=tpf;
+            if(timer>maxTime){
+                if(spatial.getParent()!=null){
                     space.removeCollisionListener(this);
                     space.remove(this);
                     spatial.removeFromParent();
@@ -171,8 +202,8 @@ public class BombControl extends RigidBodyControl implements PhysicsCollisionLis
     public void setForceFactor(float forceFactor) {
         this.forceFactor = forceFactor;
     }
-
-
+    
+    
     @Override
     public void read(JmeImporter im) throws IOException {
         throw new UnsupportedOperationException("Reading not supported.");

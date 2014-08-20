@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -53,7 +53,6 @@ public class TestMultiViewsFilters extends SimpleApplication {
         TestMultiViewsFilters app = new TestMultiViewsFilters();
         app.start();
     }
-
     private boolean filterEnabled = true;
 
     public void simpleInitApp() {
@@ -117,7 +116,7 @@ public class TestMultiViewsFilters extends SimpleApplication {
 //          1046,1266,112,332
         Camera cam5 = cam.clone();
         cam5.setName("cam5");
-        cam5.setViewPort(1046f / settings.getWidth(), 1266f / settings.getWidth(), 112f / settings.getHeight(), 332f / settings.getHeight());
+        cam5.setViewPort(1046f/settings.getWidth(), 1266f/settings.getWidth(), 112f/settings.getHeight(), 332f/settings.getHeight());
         cam5.setLocation(new Vector3f(0.2846221f, 6.4271426f, 0.23380789f));
         cam5.setRotation(new Quaternion(0.004381671f, 0.72363687f, -0.69015175f, 0.0045953835f));
 
@@ -125,7 +124,8 @@ public class TestMultiViewsFilters extends SimpleApplication {
         view5.setClearFlags(true, true, true);
         view5.attachScene(rootNode);
 
-
+        
+        
         rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/Sky/Bright/BrightSky.dds", false));
 
         final FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
@@ -147,11 +147,10 @@ public class TestMultiViewsFilters extends SimpleApplication {
         fpp.addFilter(rbf);
 
 
-        SSAOFilter f = new SSAOFilter(1.8899765f, 20.490374f, 0.4699998f, 0.1f);
-        ;
+        SSAOFilter f = new SSAOFilter(1.8899765f, 20.490374f, 0.4699998f, 0.1f);;
         fpp4.addFilter(f);
         SSAOUI ui = new SSAOUI(inputManager, f);
-
+        
         fpp5.addFilter(new BloomFilter(BloomFilter.GlowMode.Objects));
 
         viewPort.addProcessor(fpp);
@@ -159,6 +158,7 @@ public class TestMultiViewsFilters extends SimpleApplication {
         view3.addProcessor(fpp3);
         view4.addProcessor(fpp4);
         view5.addProcessor(fpp5);
+
 
 
         inputManager.addListener(new ActionListener() {

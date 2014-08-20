@@ -1,4 +1,4 @@
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.collision.CollisionResult;
@@ -21,16 +21,13 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 import com.jme3.util.SkyFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * test
- *
  * @author Nehon
  */
-//TODO:select
 public class TestDepthOfField extends SimpleApplication {
 
     private FilterPostProcessor fpp;
@@ -73,8 +70,13 @@ public class TestDepthOfField extends SimpleApplication {
         mainScene.attachChild(sky);
 
 
+
         fpp = new FilterPostProcessor(assetManager);
         //     fpp.setNumSamples(4);
+        int numSamples = getContext().getSettings().getSamples();
+        if( numSamples > 0 ) {
+            fpp.setNumSamples(numSamples); 
+        }
 
         dofFilter = new DepthOfFieldFilter();
         dofFilter.setFocusDistance(0);
@@ -195,8 +197,8 @@ public class TestDepthOfField extends SimpleApplication {
         int numCollisions = terrain.collideWith(ray, results);
         if (numCollisions > 0) {
             CollisionResult hit = results.getClosestCollision();
-            fpsText.setText("" + hit.getDistance());
-            dofFilter.setFocusDistance(hit.getDistance() / 10.0f);
+            fpsText.setText(""+hit.getDistance());
+            dofFilter.setFocusDistance(hit.getDistance()/10.0f);
         }
     }
 }

@@ -1,4 +1,35 @@
-package com.pro.game.example.test.jme3test.bullet;
+/*
+ * Copyright (c) 2009-2012 jMonkeyEngine
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package jme3test.bullet;
 
 import com.jme3.app.Application;
 import com.jme3.asset.AssetManager;
@@ -22,13 +53,13 @@ import com.jme3.scene.shape.Sphere.TextureMode;
 import com.jme3.texture.Texture;
 
 /**
+ *
  * @author normenhansen
  */
 public class PhysicsTestHelper {
 
     /**
      * creates a simple physics test world with a floor, an obstacle and some test boxes
-     *
      * @param rootNode
      * @param assetManager
      * @param space
@@ -74,7 +105,7 @@ public class PhysicsTestHelper {
         space.add(sphereGeometry);
 
     }
-
+    
     public static void createPhysicsTestWorldSoccer(Node rootNode, AssetManager assetManager, PhysicsSpace space) {
         AmbientLight light = new AmbientLight();
         light.setColor(ColorRGBA.LightGray);
@@ -83,7 +114,7 @@ public class PhysicsTestHelper {
         Material material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         material.setTexture("ColorMap", assetManager.loadTexture("Interface/Logo/Monkey.jpg"));
 
-        Box floorBox = new Box(140, 0.25f, 140);
+        Box floorBox = new Box(20, 0.25f, 20);
         Geometry floorGeometry = new Geometry("Floor", floorBox);
         floorGeometry.setMaterial(material);
         floorGeometry.setLocalTranslation(0, -0.25f, 0);
@@ -106,7 +137,7 @@ public class PhysicsTestHelper {
             rootNode.attachChild(ballGeometry);
             space.add(ballGeometry);
         }
-
+        {
         //immovable Box with mesh collision shape
         Box box = new Box(1, 1, 1);
         Geometry boxGeometry = new Geometry("Box", box);
@@ -115,12 +146,21 @@ public class PhysicsTestHelper {
         boxGeometry.addControl(new RigidBodyControl(new MeshCollisionShape(box), 0));
         rootNode.attachChild(boxGeometry);
         space.add(boxGeometry);
-
+        }
+        {
+        //immovable Box with mesh collision shape
+        Box box = new Box(1, 1, 1);
+        Geometry boxGeometry = new Geometry("Box", box);
+        boxGeometry.setMaterial(material);
+        boxGeometry.setLocalTranslation(4, 3, 4);
+        boxGeometry.addControl(new RigidBodyControl(new MeshCollisionShape(box), 0));
+        rootNode.attachChild(boxGeometry);
+        space.add(boxGeometry);
+        }
     }
 
     /**
      * creates a box geometry with a RigidBodyControl
-     *
      * @param assetManager
      * @return
      */
@@ -137,7 +177,6 @@ public class PhysicsTestHelper {
 
     /**
      * creates a sphere geometry with a RigidBodyControl
-     *
      * @param assetManager
      * @return
      */
@@ -154,7 +193,6 @@ public class PhysicsTestHelper {
 
     /**
      * creates an empty node with a RigidBodyControl
-     *
      * @param manager
      * @param shape
      * @param mass
@@ -169,7 +207,6 @@ public class PhysicsTestHelper {
 
     /**
      * creates the necessary inputlistener and action to shoot balls from teh camera
-     *
      * @param app
      * @param rootNode
      * @param space
@@ -190,7 +227,7 @@ public class PhysicsTestHelper {
                     bulletg.setMaterial(mat2);
                     bulletg.setShadowMode(ShadowMode.CastAndReceive);
                     bulletg.setLocalTranslation(app.getCamera().getLocation());
-                    RigidBodyControl bulletControl = new RigidBodyControl(1);
+                    RigidBodyControl bulletControl = new RigidBodyControl(10);
                     bulletg.addControl(bulletControl);
                     bulletControl.setLinearVelocity(app.getCamera().getDirection().mult(25));
                     bulletg.addControl(bulletControl);

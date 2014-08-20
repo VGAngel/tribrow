@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.light;
+package jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -50,7 +50,7 @@ public class TestLightNode extends SimpleApplication {
     float angle;
     Node movingNode;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestLightNode app = new TestLightNode();
         app.start();
     }
@@ -63,12 +63,12 @@ public class TestLightNode extends SimpleApplication {
         g.rotate(-FastMath.HALF_PI, 0, 0);
         g.center();
 //        g.move(0, 1, 0);
-
+        
         Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         mat.setFloat("Shininess", 32f);
         mat.setBoolean("UseMaterialColors", true);
-        mat.setColor("Ambient", ColorRGBA.Black);
-        mat.setColor("Diffuse", ColorRGBA.White);
+        mat.setColor("Ambient",  ColorRGBA.Black);
+        mat.setColor("Diffuse",  ColorRGBA.White);
         mat.setColor("Specular", ColorRGBA.White);
 //        mat.setBoolean("VertexLighting", true);
 //        mat.setBoolean("LowQuality", true);
@@ -78,17 +78,17 @@ public class TestLightNode extends SimpleApplication {
 
         Geometry lightMdl = new Geometry("Light", new Sphere(10, 10, 0.1f));
         lightMdl.setMaterial(assetManager.loadMaterial("Common/Materials/RedColor.j3m"));
-
-        movingNode = new Node("lightParentNode");
-        movingNode.attachChild(lightMdl);
+        
+        movingNode=new Node("lightParentNode");
+        movingNode.attachChild(lightMdl);  
         rootNode.attachChild(movingNode);
 
         PointLight pl = new PointLight();
         pl.setColor(ColorRGBA.Green);
         pl.setRadius(4f);
         rootNode.addLight(pl);
-
-        LightNode lightNode = new LightNode("pointLight", pl);
+        
+        LightNode lightNode=new LightNode("pointLight", pl);
         movingNode.attachChild(lightNode);
 
         DirectionalLight dl = new DirectionalLight();
@@ -98,7 +98,7 @@ public class TestLightNode extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){
 //        cam.setLocation(new Vector3f(5.0347548f, 6.6481347f, 3.74853f));
 //        cam.setRotation(new Quaternion(-0.19183293f, 0.80776674f, -0.37974006f, -0.40805697f));
 

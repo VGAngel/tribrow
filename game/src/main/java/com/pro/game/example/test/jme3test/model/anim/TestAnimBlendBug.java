@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.model.anim;
+package jme3test.model.anim;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -47,12 +47,12 @@ import com.jme3.scene.debug.SkeletonDebugger;
 
 public class TestAnimBlendBug extends SimpleApplication implements ActionListener {
 
-    //    private AnimControl control;
+//    private AnimControl control;
     private AnimChannel channel1, channel2;
     private String[] animNames;
 
     private float blendTime = 0.5f;
-    private float lockAfterBlending = blendTime + 0.25f;
+    private float lockAfterBlending =  blendTime + 0.25f;
     private float blendingAnimationLock;
 
     public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class TestAnimBlendBug extends SimpleApplication implements ActionListene
     }
 
     public void onAction(String name, boolean value, float tpf) {
-        if (name.equals("One") && value) {
+        if (name.equals("One") && value){
             channel1.setAnim(animNames[4], blendTime);
             channel2.setAnim(animNames[4], 0);
             channel1.setSpeed(0.25f);
@@ -90,8 +90,8 @@ public class TestAnimBlendBug extends SimpleApplication implements ActionListene
         inputManager.addListener(this, "One");
 
         flyCam.setMoveSpeed(100f);
-        cam.setLocation(new Vector3f(0f, 150f, -325f));
-        cam.lookAt(new Vector3f(0f, 100f, 0f), Vector3f.UNIT_Y);
+        cam.setLocation( new Vector3f( 0f, 150f, -325f ) );
+        cam.lookAt( new Vector3f( 0f, 100f, 0f ), Vector3f.UNIT_Y );
 
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(-0.1f, -0.7f, 1).normalizeLocal());
@@ -108,7 +108,7 @@ public class TestAnimBlendBug extends SimpleApplication implements ActionListene
         AnimControl control1 = model1.getControl(AnimControl.class);
         animNames = control1.getAnimationNames().toArray(new String[0]);
         channel1 = control1.createChannel();
-
+        
         AnimControl control2 = model2.getControl(AnimControl.class);
         channel2 = control2.createChannel();
 

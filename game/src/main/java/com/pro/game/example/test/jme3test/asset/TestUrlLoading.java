@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.asset;
+package jme3test.asset;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.TextureKey;
@@ -43,12 +43,11 @@ import com.jme3.texture.Texture;
 
 /**
  * Load an image and display it from the internet using the UrlLocator.
- *
  * @author Kirill Vainer
  */
 public class TestUrlLoading extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestUrlLoading app = new TestUrlLoading();
         app.start();
     }
@@ -61,9 +60,9 @@ public class TestUrlLoading extends SimpleApplication {
 
         Geometry quad = new Geometry("Textured Quad", quadMesh);
 
-        assetManager.registerLocator("http://www.jmonkeyengine.com/wp-content/uploads/2010/09/",
-                UrlLocator.class);
-        TextureKey key = new TextureKey("planet-2.jpg", false);
+        assetManager.registerLocator("https://jmonkeyengine.googlecode.com/svn/BookSamples/assets/Textures/",
+                                UrlLocator.class);
+        TextureKey key = new TextureKey("mucha-window.png", false);
         key.setGenerateMips(true);
         Texture tex = assetManager.loadTexture(key);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.light;
+package jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -47,7 +47,6 @@ import com.jme3.scene.shape.Quad;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.TangentBinormalGenerator;
-
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -58,7 +57,7 @@ public class TestTangentGen extends SimpleApplication {
     PointLight pl;
     Geometry lightMdl;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestTangentGen app = new TestTangentGen();
         app.start();
     }
@@ -77,7 +76,7 @@ public class TestTangentGen extends SimpleApplication {
 
         Mesh strip = createTriangleStripMesh();
         addMesh("strip", strip, new Vector3f(0, -3, 0));
-
+        
         DirectionalLight dl = new DirectionalLight();
         dl.setDirection(new Vector3f(1, -1, -1).normalizeLocal());
         dl.setColor(ColorRGBA.White);
@@ -105,52 +104,34 @@ public class TestTangentGen extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){
     }
 
     private Mesh createTriangleStripMesh() {
         Mesh strip = new Mesh();
         strip.setMode(Mode.TriangleStrip);
-        FloatBuffer vb = BufferUtils.createFloatBuffer(3 * 3 * 3); // 3 rows * 3 columns * 3 floats
+        FloatBuffer vb = BufferUtils.createFloatBuffer(3*3*3); // 3 rows * 3 columns * 3 floats
         vb.rewind();
-        vb.put(new float[]{0, 2, 0});
-        vb.put(new float[]{1, 2, 0});
-        vb.put(new float[]{2, 2, 0});
-        vb.put(new float[]{0, 1, 0});
-        vb.put(new float[]{1, 1, 0});
-        vb.put(new float[]{2, 1, 0});
-        vb.put(new float[]{0, 0, 0});
-        vb.put(new float[]{1, 0, 0});
-        vb.put(new float[]{2, 0, 0});
-        FloatBuffer nb = BufferUtils.createFloatBuffer(3 * 3 * 3);
+        vb.put(new float[]{0,2,0}); vb.put(new float[]{1,2,0}); vb.put(new float[]{2,2,0});
+        vb.put(new float[]{0,1,0}); vb.put(new float[]{1,1,0}); vb.put(new float[]{2,1,0});
+        vb.put(new float[]{0,0,0}); vb.put(new float[]{1,0,0}); vb.put(new float[]{2,0,0});
+        FloatBuffer nb = BufferUtils.createFloatBuffer(3*3*3);
         nb.rewind();
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        nb.put(new float[]{0, 0, 1});
-        FloatBuffer tb = BufferUtils.createFloatBuffer(3 * 3 * 2);
+        nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1});
+        nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1});
+        nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1}); nb.put(new float[]{0,0,1});
+        FloatBuffer tb = BufferUtils.createFloatBuffer(3*3*2);
         tb.rewind();
-        tb.put(new float[]{0, 0});
-        tb.put(new float[]{0.5f, 0});
-        tb.put(new float[]{1, 0});
-        tb.put(new float[]{0, 0.5f});
-        tb.put(new float[]{0.5f, 0.5f});
-        tb.put(new float[]{1, 0.5f});
-        tb.put(new float[]{0, 1});
-        tb.put(new float[]{0.5f, 1});
-        tb.put(new float[]{1, 1});
-        int[] indexes = new int[]{0, 3, 1, 4, 2, 5, 5, 3, 3, 6, 4, 7, 5, 8};
+        tb.put(new float[]{0,0}); tb.put(new float[]{0.5f,0}); tb.put(new float[]{1,0});
+        tb.put(new float[]{0,0.5f}); tb.put(new float[]{0.5f,0.5f}); tb.put(new float[]{1,0.5f});
+        tb.put(new float[]{0,1}); tb.put(new float[]{0.5f,1}); tb.put(new float[]{1,1});
+        int[] indexes = new int[]{0,3,1,4,2,5, 5,3, 3,6,4,7,5,8};
         IntBuffer ib = BufferUtils.createIntBuffer(indexes.length);
         ib.put(indexes);
         strip.setBuffer(Type.Position, 3, vb);
-        strip.setBuffer(Type.Normal, 3, nb);
-        strip.setBuffer(Type.TexCoord, 2, tb);
-        strip.setBuffer(Type.Index, 3, ib);
+		strip.setBuffer(Type.Normal, 3, nb);
+		strip.setBuffer(Type.TexCoord, 2, tb);
+		strip.setBuffer(Type.Index, 3, ib);
         strip.updateBound();
         return strip;
     }

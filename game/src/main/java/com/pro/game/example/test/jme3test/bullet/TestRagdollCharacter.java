@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -83,14 +83,14 @@ public class TestRagdollCharacter extends SimpleApplication implements AnimEvent
 
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         PhysicsTestHelper.createPhysicsTestWorld(rootNode, assetManager, bulletAppState.getPhysicsSpace());
-        initWall(2, 1, 1);
+        initWall(2,1,1);
         setupLight();
 
-        cam.setLocation(new Vector3f(-8, 0, -4));
-        cam.lookAt(new Vector3f(4, 0, -7), Vector3f.UNIT_Y);
+        cam.setLocation(new Vector3f(-8,0,-4));
+        cam.lookAt(new Vector3f(4,0,-7), Vector3f.UNIT_Y);
 
         model = (Node) assetManager.loadModel("Models/Sinbad/Sinbad.mesh.xml");
-        model.lookAt(new Vector3f(0, 0, -1), Vector3f.UNIT_Y);
+        model.lookAt(new Vector3f(0,0,-1), Vector3f.UNIT_Y);
         model.setLocalTranslation(4, 0, -7f);
 
         ragdoll = new KinematicRagdollControl(0.5f);
@@ -146,7 +146,7 @@ public class TestRagdollCharacter extends SimpleApplication implements AnimEvent
         key.setGenerateMips(true);
         Texture tex = assetManager.loadTexture(key);
         mat2.setTexture("ColorMap", tex);
-
+        
         float startpt = bLength / 4;
         float height = -5;
         for (int j = 0; j < 15; j++) {
@@ -179,7 +179,7 @@ public class TestRagdollCharacter extends SimpleApplication implements AnimEvent
 
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) {
     }
-
+    
     public void onAction(String binding, boolean value, float tpf) {
         if (binding.equals("Rotate Left")) {
             if (value) {
@@ -215,13 +215,13 @@ public class TestRagdollCharacter extends SimpleApplication implements AnimEvent
 
     @Override
     public void simpleUpdate(float tpf) {
-        if (forward) {
-            model.move(model.getLocalRotation().multLocal(new Vector3f(0, 0, 1)).multLocal(tpf));
-        } else if (backward) {
-            model.move(model.getLocalRotation().multLocal(new Vector3f(0, 0, 1)).multLocal(-tpf));
-        } else if (leftRotate) {
+        if(forward){
+            model.move(model.getLocalRotation().multLocal(new Vector3f(0,0,1)).multLocal(tpf));
+        }else if(backward){
+            model.move(model.getLocalRotation().multLocal(new Vector3f(0,0,1)).multLocal(-tpf));
+        }else if(leftRotate){
             model.rotate(0, tpf, 0);
-        } else if (rightRotate) {
+        }else if(rightRotate){
             model.rotate(0, -tpf, 0);
         }
         fpsText.setText(cam.getLocation() + "/" + cam.getRotation());

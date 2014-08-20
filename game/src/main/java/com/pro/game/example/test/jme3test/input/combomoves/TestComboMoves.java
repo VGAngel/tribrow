@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.input.combomoves;
+package jme3test.input.combomoves;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
@@ -38,7 +38,6 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.ColorRGBA;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -67,7 +66,7 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
     private float currentMoveCastTime = 0;
     private float time = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestComboMoves app = new TestComboMoves();
         app.start();
     }
@@ -81,10 +80,10 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
         BitmapText helpText = new BitmapText(guiFont);
         helpText.setLocalTranslation(0, settings.getHeight(), 0);
         helpText.setText("Moves:\n" +
-                "Fireball: Down, Down+Right, Right\n" +
-                "Shuriken: Left, Down, Attack1(Z)\n" +
-                "Jab: Attack1(Z)\n" +
-                "Punch: Attack1(Z), Attack1(Z)\n");
+                         "Fireball: Down, Down+Right, Right\n"+
+                         "Shuriken: Left, Down, Attack1(Z)\n"+
+                         "Jab: Attack1(Z)\n"+
+                         "Punch: Attack1(Z), Attack1(Z)\n");
         guiNode.attachChild(helpText);
 
         fireballText = new BitmapText(guiFont);
@@ -94,23 +93,23 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
 
         shurikenText = new BitmapText(guiFont);
         shurikenText.setColor(ColorRGBA.Cyan);
-        shurikenText.setLocalTranslation(0, shurikenText.getLineHeight() * 2f, 0);
+        shurikenText.setLocalTranslation(0, shurikenText.getLineHeight()*2f, 0);
         guiNode.attachChild(shurikenText);
 
         jabText = new BitmapText(guiFont);
         jabText.setColor(ColorRGBA.Red);
-        jabText.setLocalTranslation(0, jabText.getLineHeight() * 3f, 0);
+        jabText.setLocalTranslation(0, jabText.getLineHeight()*3f, 0);
         guiNode.attachChild(jabText);
 
         punchText = new BitmapText(guiFont);
         punchText.setColor(ColorRGBA.Green);
-        punchText.setLocalTranslation(0, punchText.getLineHeight() * 4f, 0);
+        punchText.setLocalTranslation(0, punchText.getLineHeight()*4f, 0);
         guiNode.attachChild(punchText);
 
-        inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_RIGHT));
-        inputManager.addMapping("Up", new KeyTrigger(KeyInput.KEY_UP));
-        inputManager.addMapping("Down", new KeyTrigger(KeyInput.KEY_DOWN));
+        inputManager.addMapping("Left",    new KeyTrigger(KeyInput.KEY_LEFT));
+        inputManager.addMapping("Right",   new KeyTrigger(KeyInput.KEY_RIGHT));
+        inputManager.addMapping("Up",      new KeyTrigger(KeyInput.KEY_UP));
+        inputManager.addMapping("Down",    new KeyTrigger(KeyInput.KEY_DOWN));
         inputManager.addMapping("Attack1", new KeyTrigger(KeyInput.KEY_Z));
         inputManager.addListener(this, "Left", "Right", "Up", "Down", "Attack1");
 
@@ -143,7 +142,7 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){
         time += tpf;
 
         // check every frame if any executions are expired
@@ -159,9 +158,9 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
         punchExec.updateExpiration(time);
         punchText.setText("Punch Exec: " + punchExec.getDebugString());
 
-        if (currentMove != null) {
+        if (currentMove != null){
             currentMoveCastTime -= tpf;
-            if (currentMoveCastTime <= 0) {
+            if (currentMoveCastTime <= 0){
                 System.out.println("DONE CASTING " + currentMove.getMoveName());
                 currentMoveCastTime = 0;
                 currentMove = null;
@@ -170,41 +169,41 @@ public class TestComboMoves extends SimpleApplication implements ActionListener 
     }
 
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (isPressed) {
+        if (isPressed){
             pressedMappings.add(name);
-        } else {
+        }else{
             pressedMappings.remove(name);
         }
 
         // the pressed mappings was changed. update combo executions
         List<ComboMove> invokedMoves = new ArrayList<ComboMove>();
-        if (shurikenExec.updateState(pressedMappings, time)) {
+        if (shurikenExec.updateState(pressedMappings, time)){
             invokedMoves.add(shuriken);
         }
 
-        if (fireballExec.updateState(pressedMappings, time)) {
+        if (fireballExec.updateState(pressedMappings, time)){
             invokedMoves.add(fireball);
         }
 
-        if (jabExec.updateState(pressedMappings, time)) {
+        if (jabExec.updateState(pressedMappings, time)){
             invokedMoves.add(jab);
         }
 
-        if (punchExec.updateState(pressedMappings, time)) {
+        if (punchExec.updateState(pressedMappings, time)){
             invokedMoves.add(punch);
         }
 
-        if (invokedMoves.size() > 0) {
+        if (invokedMoves.size() > 0){
             // choose move with highest priority
             float priority = 0;
             ComboMove toExec = null;
-            for (ComboMove move : invokedMoves) {
-                if (move.getPriority() > priority) {
+            for (ComboMove move : invokedMoves){
+                if (move.getPriority() > priority){
                     priority = move.getPriority();
                     toExec = move;
                 }
             }
-            if (currentMove != null && currentMove.getPriority() > toExec.getPriority()) {
+            if (currentMove != null && currentMove.getPriority() > toExec.getPriority()){
                 return;
             }
 

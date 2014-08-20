@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
@@ -74,13 +74,11 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 import com.jme3.util.SkyFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A walking animated character followed by a 3rd person camera on a terrain with LOD.
- *
  * @author normenhansen
  */
 public class TestWalkingChar extends SimpleApplication implements ActionListener, PhysicsCollisionListener, AnimEventListener {
@@ -201,7 +199,7 @@ public class TestWalkingChar extends SimpleApplication implements ActionListener
         bulletCollisionShape = new SphereCollisionShape(0.4f);
         matBullet = new Material(getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         matBullet.setColor("Color", ColorRGBA.Green);
-        matBullet.setColor("m_GlowColor", ColorRGBA.Green);
+        matBullet.setColor("GlowColor", ColorRGBA.Green);
         getPhysicsSpace().addCollisionListener(this);
     }
 

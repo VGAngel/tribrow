@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.material;
+package jme3test.material;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -62,7 +62,6 @@ public class TestParallax extends SimpleApplication {
     public void setupSkyBox() {
         rootNode.attachChild(SkyFactory.createSky(assetManager, "Scenes/Beach/FullskiesSunset0068.dds", false));
     }
-
     DirectionalLight dl;
 
     public void setupLighting() {
@@ -72,7 +71,6 @@ public class TestParallax extends SimpleApplication {
         dl.setColor(new ColorRGBA(.9f, .9f, .9f, 1));
         rootNode.addLight(dl);
     }
-
     Material mat;
 
     public void setupFloor() {
@@ -80,23 +78,23 @@ public class TestParallax extends SimpleApplication {
         mat.getTextureParam("DiffuseMap").getTextureValue().setWrap(WrapMode.Repeat);
         mat.getTextureParam("NormalMap").getTextureValue().setWrap(WrapMode.Repeat);
 
-        // Node floorGeom = (Node) assetManager.loadAsset("Models/WaterTest/WaterTest.mesh.xml");
+       // Node floorGeom = (Node) assetManager.loadAsset("Models/WaterTest/WaterTest.mesh.xml");
         //Geometry g = ((Geometry) floorGeom.getChild(0));
         //g.getMesh().scaleTextureCoordinates(new Vector2f(10, 10));
-
+                
         Node floorGeom = new Node("floorGeom");
         Quad q = new Quad(100, 100);
         q.scaleTextureCoordinates(new Vector2f(10, 10));
         Geometry g = new Geometry("geom", q);
         g.setLocalRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, Vector3f.UNIT_X));
         floorGeom.attachChild(g);
-
-
+        
+        
         TangentBinormalGenerator.generate(floorGeom);
         floorGeom.setLocalTranslation(-50, 22, 60);
         //floorGeom.setLocalScale(100);
 
-        floorGeom.setMaterial(mat);
+        floorGeom.setMaterial(mat);        
         rootNode.attachChild(floorGeom);
     }
 
@@ -153,7 +151,6 @@ public class TestParallax extends SimpleApplication {
         }, "toggleSteep");
         inputManager.addMapping("toggleSteep", new KeyTrigger(KeyInput.KEY_SPACE));
     }
-
     float parallaxHeigh = 0.05f;
     float time = 0;
     boolean steep = false;

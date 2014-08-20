@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.conversion;
+package jme3test.conversion;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -43,7 +43,7 @@ import jme3tools.converters.model.ModelConverter;
 public class TestTriangleStrip extends SimpleApplication {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestTriangleStrip app = new TestTriangleStrip();
         app.start();
     }
@@ -56,8 +56,8 @@ public class TestTriangleStrip extends SimpleApplication {
         // show normals as material
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
 
-        for (int y = -10; y < 10; y++) {
-            for (int x = -10; x < 10; x++) {
+        for (int y = -10; y < 10; y++){
+            for (int x = -10; x < 10; x++){
                 Geometry teaClone = new Geometry("teapot", teaMesh);
                 teaClone.setMaterial(mat);
 

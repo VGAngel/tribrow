@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.renderer;
+package jme3test.renderer;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -41,11 +41,11 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 
-public class TestParallelProjection extends SimpleApplication implements AnalogListener {
+public class TestParallelProjection  extends SimpleApplication implements AnalogListener {
 
     private float frustumSize = 1;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestParallelProjection app = new TestParallelProjection();
         app.start();
     }

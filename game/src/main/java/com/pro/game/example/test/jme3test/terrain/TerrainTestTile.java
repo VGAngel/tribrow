@@ -1,6 +1,33 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2009-2012 jMonkeyEngine
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.pro.game.example.test.jme3test.terrain;
 
@@ -26,7 +53,6 @@ import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.jme3.terrain.geomipmap.lodcalc.DistanceLodCalculator;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.util.List;
 
 /**
@@ -34,7 +60,7 @@ import java.util.List;
  * allowing you to tile terrains together without having to use
  * TerrainGrid. It also introduces the MultiTerrainLodControl that
  * will seam the edges of all the terrains supplied.
- *
+ * 
  * @author sploreg
  */
 public class TerrainTestTile extends SimpleApplication {
@@ -48,14 +74,15 @@ public class TerrainTestTile extends SimpleApplication {
     boolean minnaert = false;
     protected BitmapText hintText;
     private float grassScale = 256;
-
+    
 
     public static void main(String[] args) {
         TerrainTestTile app = new TerrainTestTile();
         app.start();
     }
 
-
+    
+    
     @Override
     public void simpleInitApp() {
         loadHintText();
@@ -65,10 +92,10 @@ public class TerrainTestTile extends SimpleApplication {
         matWire = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         matWire.getAdditionalRenderState().setWireframe(true);
         matWire.setColor("Color", ColorRGBA.Green);
-
+        
         terrain = new TiledTerrain();
         rootNode.attachChild(terrain);
-
+        
         DirectionalLight light = new DirectionalLight();
         light.setDirection((new Vector3f(-0.5f, -1f, -0.5f)).normalize());
         rootNode.addLight(light);
@@ -79,8 +106,8 @@ public class TerrainTestTile extends SimpleApplication {
 
         cam.setLocation(new Vector3f(0, 256, 0));
         cam.lookAtDirection(new Vector3f(0, -1, -1).normalizeLocal(), Vector3f.UNIT_Y);
-
-
+        
+        
         Sphere s = new Sphere(12, 12, 3);
         Geometry g = new Geometry("marker");
         g.setMesh(s);
@@ -89,14 +116,14 @@ public class TerrainTestTile extends SimpleApplication {
         g.setMaterial(mat);
         g.setLocalTranslation(0, -100, 0);
         rootNode.attachChild(g);
-
+        
         Geometry g2 = new Geometry("marker");
         g2.setMesh(s);
         mat.setColor("Color", ColorRGBA.Red);
         g2.setMaterial(mat);
         g2.setLocalTranslation(10, -100, 0);
         rootNode.attachChild(g2);
-
+        
         Geometry g3 = new Geometry("marker");
         g3.setMesh(s);
         mat.setColor("Color", ColorRGBA.Red);
@@ -104,7 +131,7 @@ public class TerrainTestTile extends SimpleApplication {
         g3.setLocalTranslation(0, -100, 10);
         rootNode.attachChild(g3);
     }
-
+    
     public void loadHintText() {
         hintText = new BitmapText(guiFont, false);
         hintText.setLocalTranslation(0, getCamera().getHeight(), 0);
@@ -118,7 +145,6 @@ public class TerrainTestTile extends SimpleApplication {
         inputManager.addMapping("wireframe", new KeyTrigger(KeyInput.KEY_T));
         inputManager.addListener(actionListener, "wireframe");
     }
-
     private ActionListener actionListener = new ActionListener() {
 
         public void onAction(String name, boolean pressed, float tpf) {
@@ -147,7 +173,7 @@ public class TerrainTestTile extends SimpleApplication {
         private TerrainQuad terrain2;
         private TerrainQuad terrain3;
         private TerrainQuad terrain4;
-
+        
         TiledTerrain() {
             // TERRAIN TEXTURE material
             matTerrain = new Material(assetManager, "Common/MatDefs/Terrain/TerrainLighting.j3md");
@@ -185,22 +211,22 @@ public class TerrainTestTile extends SimpleApplication {
             terrain4.setLocalTranslation(256, -100, 256);
             terrain4.setLocalScale(1f, 1f, 1f);
             this.attachChild(terrain4);
-
+            
             terrain1.setNeighbourFinder(this);
             terrain2.setNeighbourFinder(this);
             terrain3.setNeighbourFinder(this);
             terrain4.setNeighbourFinder(this);
-
+            
             MultiTerrainLodControl lodControl = new MultiTerrainLodControl(getCamera());
-            lodControl.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+            lodControl.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
             lodControl.addTerrain(terrain1);
             lodControl.addTerrain(terrain2);
             lodControl.addTerrain(terrain3);// order of these seems to matter
             lodControl.addTerrain(terrain4);
             this.addControl(lodControl);
-
+            
         }
-
+        
         /**
          * 1  3
          * 2  4
@@ -211,7 +237,7 @@ public class TerrainTestTile extends SimpleApplication {
                 return terrain3;
             if (center == terrain2)
                 return terrain4;
-
+            
             return null;
         }
 
@@ -225,7 +251,7 @@ public class TerrainTestTile extends SimpleApplication {
                 return terrain1;
             if (center == terrain4)
                 return terrain2;
-
+            
             return null;
         }
 
@@ -239,7 +265,7 @@ public class TerrainTestTile extends SimpleApplication {
                 return terrain1;
             if (center == terrain4)
                 return terrain3;
-
+            
             return null;
         }
 
@@ -253,10 +279,10 @@ public class TerrainTestTile extends SimpleApplication {
                 return terrain2;
             if (center == terrain3)
                 return terrain4;
-
+            
             return null;
         }
-
+        
         public float getHeight(Vector2f xz) {
             // you will have to offset the coordinate for each terrain, to center on it
             throw new UnsupportedOperationException("Not supported yet.");
@@ -324,6 +350,7 @@ public class TerrainTestTile extends SimpleApplication {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
-
+        
+        
     }
 }

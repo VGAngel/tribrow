@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.animation.*;
 import com.jme3.app.SimpleApplication;
@@ -63,7 +63,6 @@ import com.jme3.texture.Texture;
 
 /**
  * PHYSICS RAGDOLLS ARE NOT WORKING PROPERLY YET!
- *
  * @author normenhansen
  */
 public class TestBoneRagdoll extends SimpleApplication implements RagdollCollisionListener, AnimEventListener {
@@ -289,7 +288,6 @@ public class TestBoneRagdoll extends SimpleApplication implements RagdollCollisi
         ragdoll.addBoneName("Clavicle.R");
 
     }
-
     float elTime = 0;
     boolean forward = true;
     AnimControl animControl;

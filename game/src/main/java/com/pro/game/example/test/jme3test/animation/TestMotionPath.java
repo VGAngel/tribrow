@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.com.pro.game.example.test.jme3test.animation;
+package jme3test.animation;
 
 import com.jme3.animation.LoopMode;
 import com.jme3.app.SimpleApplication;
@@ -81,11 +81,11 @@ public class TestMotionPath extends SimpleApplication {
         path.addWayPoint(new Vector3f(15, 8, 10));
         path.enableDebugShape(assetManager, rootNode);
 
-        motionControl = new MotionEvent(teapot, path);
+        motionControl = new MotionEvent(teapot,path);
         motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(10f);
-        motionControl.setSpeed(2f);
+        motionControl.setSpeed(2f);       
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         final BitmapText wayPointsText = new BitmapText(guiFont, false);
         wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
@@ -109,7 +109,7 @@ public class TestMotionPath extends SimpleApplication {
 //        motionControl.setSpeed(-3f);
 //        motionControl.setLoopMode(LoopMode.Loop);
 //        path.setCycle(true);
-
+        
 
         // chaser.setEnabled(false);
         chaser.registerWithInput(inputManager);
@@ -175,7 +175,7 @@ public class TestMotionPath extends SimpleApplication {
                 }
 
                 if (name.equals("SwitchPathInterpolation") && keyPressed) {
-                    if (path.getPathSplineType() == SplineType.CatmullRom) {
+                    if (path.getPathSplineType() == SplineType.CatmullRom){
                         path.setPathSplineType(SplineType.Linear);
                     } else {
                         path.setPathSplineType(SplineType.CatmullRom);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.effect;
+package jme3test.effect;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.effect.ParticleEmitter;
@@ -49,7 +49,7 @@ public class TestExplosionEffect extends SimpleApplication {
     private int state = 0;
     private Node explosionEffect = new Node("explosionFX");
     private ParticleEmitter flame, flash, spark, roundspark, smoketrail, debris,
-            shockwave;
+                            shockwave;
 
 
     private static final int COUNT_FACTOR = 1;
@@ -58,12 +58,12 @@ public class TestExplosionEffect extends SimpleApplication {
     private static final boolean POINT_SPRITE = true;
     private static final Type EMITTER_TYPE = POINT_SPRITE ? Type.Point : Type.Triangle;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestExplosionEffect app = new TestExplosionEffect();
         app.start();
     }
 
-    private void createFlame() {
+    private void createFlame(){
         flame = new ParticleEmitter("Flame", EMITTER_TYPE, 32 * COUNT_FACTOR);
         flame.setSelectRandomImage(true);
         flame.setStartColor(new ColorRGBA(1f, 0.4f, 0.05f, (float) (1f / COUNT_FACTOR_F)));
@@ -86,7 +86,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(flame);
     }
 
-    private void createFlash() {
+    private void createFlash(){
         flash = new ParticleEmitter("Flash", EMITTER_TYPE, 24 * COUNT_FACTOR);
         flash.setSelectRandomImage(true);
         flash.setStartColor(new ColorRGBA(1f, 0.8f, 0.36f, (float) (1f / COUNT_FACTOR_F)));
@@ -109,7 +109,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(flash);
     }
 
-    private void createRoundSpark() {
+    private void createRoundSpark(){
         roundspark = new ParticleEmitter("RoundSpark", EMITTER_TYPE, 20 * COUNT_FACTOR);
         roundspark.setStartColor(new ColorRGBA(1f, 0.29f, 0.34f, (float) (1.0 / COUNT_FACTOR_F)));
         roundspark.setEndColor(new ColorRGBA(0, 0, 0, (float) (0.5f / COUNT_FACTOR_F)));
@@ -131,7 +131,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(roundspark);
     }
 
-    private void createSpark() {
+    private void createSpark(){
         spark = new ParticleEmitter("Spark", Type.Triangle, 30 * COUNT_FACTOR);
         spark.setStartColor(new ColorRGBA(1f, 0.8f, 0.36f, (float) (1.0f / COUNT_FACTOR_F)));
         spark.setEndColor(new ColorRGBA(1f, 0.8f, 0.36f, 0f));
@@ -152,7 +152,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(spark);
     }
 
-    private void createSmokeTrail() {
+    private void createSmokeTrail(){
         smoketrail = new ParticleEmitter("SmokeTrail", Type.Triangle, 22 * COUNT_FACTOR);
         smoketrail.setStartColor(new ColorRGBA(1f, 0.8f, 0.36f, (float) (1.0f / COUNT_FACTOR_F)));
         smoketrail.setEndColor(new ColorRGBA(1f, 0.8f, 0.36f, 0f));
@@ -175,7 +175,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(smoketrail);
     }
 
-    private void createDebris() {
+    private void createDebris(){
         debris = new ParticleEmitter("Debris", Type.Triangle, 15 * COUNT_FACTOR);
         debris.setSelectRandomImage(true);
         debris.setRandomAngle(true);
@@ -200,7 +200,7 @@ public class TestExplosionEffect extends SimpleApplication {
         explosionEffect.attachChild(debris);
     }
 
-    private void createShockwave() {
+    private void createShockwave(){
         shockwave = new ParticleEmitter("Shockwave", Type.Triangle, 1 * COUNT_FACTOR);
 //        shockwave.setRandomAngle(true);
         shockwave.setFaceNormal(Vector3f.UNIT_Y);
@@ -243,9 +243,9 @@ public class TestExplosionEffect extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){  
         time += tpf / speed;
-        if (time > 1f && state == 0) {
+        if (time > 1f && state == 0){
             flash.emitAllParticles();
             spark.emitAllParticles();
             smoketrail.emitAllParticles();
@@ -253,14 +253,14 @@ public class TestExplosionEffect extends SimpleApplication {
             shockwave.emitAllParticles();
             state++;
         }
-        if (time > 1f + .05f / speed && state == 1) {
+        if (time > 1f + .05f / speed && state == 1){
             flame.emitAllParticles();
             roundspark.emitAllParticles();
             state++;
         }
-
+        
         // rewind the effect
-        if (time > 5 / speed && state == 2) {
+        if (time > 5 / speed && state == 2){
             state = 0;
             time = 0;
 

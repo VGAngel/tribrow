@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,14 +30,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.awt;
+package jme3test.awt;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
-
 import java.applet.Applet;
 import java.awt.Canvas;
 import java.awt.Graphics;
@@ -51,10 +50,10 @@ public class TestApplet extends Applet {
     private static Canvas canvas;
     private static TestApplet applet;
 
-    public TestApplet() {
+    public TestApplet(){
     }
 
-    public static void createCanvas(String appClass) {
+    public static void createCanvas(String appClass){
         AppSettings settings = new AppSettings(true);
         settings.setWidth(640);
         settings.setHeight(480);
@@ -62,32 +61,32 @@ public class TestApplet extends Applet {
 
         JmeSystem.setLowPermissions(true);
 
-        try {
+        try{
             Class<? extends Application> clazz = (Class<? extends Application>) Class.forName(appClass);
             app = clazz.newInstance();
-        } catch (ClassNotFoundException ex) {
+        }catch (ClassNotFoundException ex){
             ex.printStackTrace();
-        } catch (InstantiationException ex) {
+        }catch (InstantiationException ex){
             ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
+        }catch (IllegalAccessException ex){
             ex.printStackTrace();
         }
 
         app.setSettings(settings);
         app.createCanvas();
-
+        
         context = (JmeCanvasContext) app.getContext();
         canvas = context.getCanvas();
         canvas.setSize(settings.getWidth(), settings.getHeight());
     }
 
-    public static void startApp() {
+    public static void startApp(){
         applet.add(canvas);
         app.startCanvas();
 
-        app.enqueue(new Callable<Void>() {
-            public Void call() {
-                if (app instanceof SimpleApplication) {
+        app.enqueue(new Callable<Void>(){
+            public Void call(){
+                if (app instanceof SimpleApplication){
                     SimpleApplication simpleApp = (SimpleApplication) app;
                     simpleApp.getFlyByCamera().setDragToRotate(true);
                     simpleApp.getInputManager().setCursorVisible(true);
@@ -97,11 +96,11 @@ public class TestApplet extends Applet {
         });
     }
 
-    public void freezeApp() {
+    public void freezeApp(){
         remove(canvas);
     }
 
-    public void unfreezeApp() {
+    public void unfreezeApp(){
         add(canvas);
     }
 
@@ -111,7 +110,7 @@ public class TestApplet extends Applet {
     }
 
     @Override
-    public void init() {
+    public void init(){
         applet = this;
         createCanvas("jme3test.model.shape.TestBox");
         startApp();
@@ -120,21 +119,21 @@ public class TestApplet extends Applet {
     }
 
     @Override
-    public void start() {
+    public void start(){
 //        context.setAutoFlushFrames(true);
         System.out.println("applet:start");
     }
 
     @Override
-    public void stop() {
+    public void stop(){
 //        context.setAutoFlushFrames(false);
         System.out.println("applet:stop");
     }
 
     @Override
-    public void destroy() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+    public void destroy(){
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
                 removeAll();
                 System.out.println("applet:destroyStart");
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,12 +30,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.network;
+package jme3test.network;
 
 import com.jme3.network.*;
 import com.jme3.network.serializing.Serializable;
 import com.jme3.network.serializing.Serializer;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -46,20 +45,20 @@ public class TestSerialization implements MessageListener<HostedConnection> {
 
         private int val;
 
-        public SomeObject() {
+        public SomeObject(){
         }
 
-        public SomeObject(int val) {
+        public SomeObject(int val){
             this.val = val;
         }
 
-        public int getVal() {
+        public int getVal(){
             return val;
         }
 
         @Override
-        public String toString() {
-            return "SomeObject[val=" + val + "]";
+        public String toString(){
+            return "SomeObject[val="+val+"]";
         }
     }
 
@@ -80,7 +79,7 @@ public class TestSerialization implements MessageListener<HostedConnection> {
         float f;
         long l;
         double d;
-
+        
         int[] ia;
         List<Object> ls;
         Map<String, SomeObject> mp;
@@ -90,13 +89,13 @@ public class TestSerialization implements MessageListener<HostedConnection> {
 
         Date date;
 
-        public TestSerializationMessage() {
+        public TestSerializationMessage(){
             super(true);
         }
 
-        public TestSerializationMessage(boolean initIt) {
+        public TestSerializationMessage(boolean initIt){
             super(true);
-            if (initIt) {
+            if (initIt){
                 z = true;
                 b = -88;
                 c = 'Y';
@@ -105,7 +104,7 @@ public class TestSerialization implements MessageListener<HostedConnection> {
                 f = -75.4e8f;
                 l = 9438345072805034L;
                 d = -854834.914703e88;
-                ia = new int[]{456, 678, 999};
+                ia = new int[]{ 456, 678, 999 };
 
                 ls = new ArrayList<Object>();
                 ls.add("hello");
@@ -140,19 +139,19 @@ public class TestSerialization implements MessageListener<HostedConnection> {
         System.out.println(cm.date);
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException{
         Serializer.registerClass(SomeObject.class);
         Serializer.registerClass(TestSerializationMessage.class);
 
-        Server server = Network.createServer(5110);
+        Server server = Network.createServer( 5110 );
         server.start();
 
-        Client client = Network.connectToServer("localhost", 5110);
+        Client client = Network.connectToServer( "localhost", 5110 ); 
         client.start();
 
         server.addMessageListener(new TestSerialization(), TestSerializationMessage.class);
         client.send(new TestSerializationMessage(true));
-
+        
         Thread.sleep(10000);
     }
 

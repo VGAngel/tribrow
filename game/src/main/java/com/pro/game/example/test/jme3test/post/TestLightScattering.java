@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -48,12 +48,11 @@ import com.jme3.shadow.PssmShadowRenderer;
 import com.jme3.util.SkyFactory;
 import com.jme3.util.TangentBinormalGenerator;
 
-//TODO:select
 public class TestLightScattering extends SimpleApplication {
 
     public static void main(String[] args) {
         TestLightScattering app = new TestLightScattering();
-
+        
         app.start();
     }
 
@@ -68,7 +67,7 @@ public class TestLightScattering extends SimpleApplication {
         flyCam.setMoveSpeed(10);
         Material mat = assetManager.loadMaterial("Textures/Terrain/Rocky/Rocky.j3m");
         Spatial scene = assetManager.loadModel("Models/Terrain/Terrain.mesh.xml");
-        TangentBinormalGenerator.generate(((Geometry) ((Node) scene).getChild(0)).getMesh());
+        TangentBinormalGenerator.generate(((Geometry)((Node)scene).getChild(0)).getMesh());
         scene.setMaterial(mat);
         scene.setShadowMode(ShadowMode.CastAndReceive);
         scene.setLocalScale(400);
@@ -85,10 +84,10 @@ public class TestLightScattering extends SimpleApplication {
         sun.setColor(ColorRGBA.White.clone().multLocal(2));
         scene.addLight(sun);
 
-        PssmShadowRenderer pssmRenderer = new PssmShadowRenderer(assetManager, 1024, 4);
+        PssmShadowRenderer pssmRenderer = new PssmShadowRenderer(assetManager,1024,4);
         pssmRenderer.setDirection(lightDir);
         pssmRenderer.setShadowIntensity(0.55f);
-        //   viewPort.addProcessor(pssmRenderer);
+     //   viewPort.addProcessor(pssmRenderer);
 
         FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
 //        SSAOFilter ssaoFilter= new SSAOFilter(viewPort, new SSAOConfig(0.36f,1.8f,0.84f,0.16f,false,true));

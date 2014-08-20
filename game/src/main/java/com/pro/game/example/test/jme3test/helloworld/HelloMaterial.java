@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.helloworld;
+package jme3test.helloworld;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -45,72 +45,60 @@ import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
 import com.jme3.util.TangentBinormalGenerator;
 
-/**
- * Sample 6 - how to give an object's surface a material and texture.
- * How to make objects transparent, or let colors "leak" through partially
- * transparent textures. How to make bumpy and shiny surfaces.
- */
+/** Sample 6 - how to give an object's surface a material and texture.
+ * How to make objects transparent. How to make bumpy and shiny surfaces.  */
 public class HelloMaterial extends SimpleApplication {
 
-    public static void main(String[] args) {
-        HelloMaterial app = new HelloMaterial();
-        app.start();
-    }
+  public static void main(String[] args) {
+    HelloMaterial app = new HelloMaterial();
+    app.start();
+  }
 
-    @Override
-    public void simpleInitApp() {
+  @Override
+  public void simpleInitApp() {
 
-        /** A simple textured cube -- in good MIP map quality. */
-        Box boxshape1 = new Box(new Vector3f(-3f, 1.1f, 0f), 1f, 1f, 1f);
-        Geometry cube = new Geometry("My Textured Box", boxshape1);
-        Material mat_stl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        Texture tex_ml = assetManager.loadTexture("Interface/Logo/Monkey.jpg");
-        mat_stl.setTexture("ColorMap", tex_ml);
-        cube.setMaterial(mat_stl);
-        rootNode.attachChild(cube);
+    /** A simple textured cube -- in good MIP map quality. */
+    Box cube1Mesh = new Box( 1f,1f,1f);
+    Geometry cube1Geo = new Geometry("My Textured Box", cube1Mesh);
+    cube1Geo.setLocalTranslation(new Vector3f(-3f,1.1f,0f));
+    Material cube1Mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    Texture cube1Tex = assetManager.loadTexture("Interface/Logo/Monkey.jpg");
+    cube1Mat.setTexture("ColorMap", cube1Tex);
+    cube1Geo.setMaterial(cube1Mat);
+    rootNode.attachChild(cube1Geo);
 
-        /** A translucent/transparent texture, similar to a window frame. */
-        Box boxshape3 = new Box(new Vector3f(0f, 0f, 0f), 1f, 1f, 0.01f);
-        Geometry window_frame = new Geometry("window frame", boxshape3);
-        Material mat_tt = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_tt.setTexture("ColorMap", assetManager.loadTexture("Textures/ColoredTex/Monkey.png"));
-        mat_tt.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);  // activate transparency
-        window_frame.setQueueBucket(Bucket.Transparent);
-        window_frame.setMaterial(mat_tt);
-        rootNode.attachChild(window_frame);
+    /** A translucent/transparent texture, similar to a window frame. */
+    Box cube2Mesh = new Box( 1f,1f,0.01f);
+    Geometry cube2Geo = new Geometry("window frame", cube2Mesh);
+    Material cube2Mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    cube2Mat.setTexture("ColorMap", assetManager.loadTexture("Textures/ColoredTex/Monkey.png"));
+    cube2Mat.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);  // activate transparency
+    cube2Geo.setQueueBucket(Bucket.Transparent);
+    cube2Geo.setMaterial(cube2Mat);
+    rootNode.attachChild(cube2Geo);
 
-        /** A cube with its base color "leaking" through a partially transparent texture */
-        Box boxshape4 = new Box(new Vector3f(3f, -1f, 0f), 1f, 1f, 1f);
-        Geometry cube_leak = new Geometry("Leak-through color cube", boxshape4);
-        Material mat_tl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_tl.setTexture("ColorMap", assetManager.loadTexture("Textures/ColoredTex/Monkey.png"));
-        mat_tl.setColor("Color", new ColorRGBA(1f, 0f, 1f, 1f)); // purple
-        cube_leak.setMaterial(mat_tl);
-        rootNode.attachChild(cube_leak);
-        // cube_leak.setMaterial((Material) assetManager.loadAsset( "Materials/LeakThrough.j3m"));
-
-        /** A bumpy rock with a shiny light effect. To make bumpy objects you must create a NormalMap. */
-        Sphere rock = new Sphere(32, 32, 2f);
-        Geometry shiny_rock = new Geometry("Shiny rock", rock);
-        rock.setTextureMode(Sphere.TextureMode.Projected); // better quality on spheres
-        TangentBinormalGenerator.generate(rock);           // for lighting effect
-        Material mat_lit = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        mat_lit.setTexture("DiffuseMap", assetManager.loadTexture("Textures/Terrain/Pond/Pond.jpg"));
-        mat_lit.setTexture("NormalMap", assetManager.loadTexture("Textures/Terrain/Pond/Pond_normal.png"));
-        mat_lit.setBoolean("UseMaterialColors", true);
-        mat_lit.setColor("Specular", ColorRGBA.White);
-        mat_lit.setColor("Diffuse", ColorRGBA.White);
-        mat_lit.setFloat("Shininess", 5f); // [0,128]
-        shiny_rock.setMaterial(mat_lit);
-        shiny_rock.setLocalTranslation(0, 2, -2); // Move it a bit
-        shiny_rock.rotate(1.6f, 0, 0);          // Rotate it a bit
-        rootNode.attachChild(shiny_rock);
-
-        /** Must add a light to make the lit object visible! */
-        DirectionalLight sun = new DirectionalLight();
-        sun.setDirection(new Vector3f(1, 0, -2).normalizeLocal());
-        sun.setColor(ColorRGBA.White);
-        rootNode.addLight(sun);
-
-    }
+    /** A bumpy rock with a shiny light effect. To make bumpy objects you must create a NormalMap. */
+    Sphere sphereMesh = new Sphere(32,32, 2f);
+    Geometry sphereGeo = new Geometry("Shiny rock", sphereMesh);
+    sphereMesh.setTextureMode(Sphere.TextureMode.Projected); // better quality on spheres
+    TangentBinormalGenerator.generate(sphereMesh);           // for lighting effect
+    Material sphereMat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+    sphereMat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/Terrain/Pond/Pond.jpg"));
+    sphereMat.setTexture("NormalMap", assetManager.loadTexture("Textures/Terrain/Pond/Pond_normal.png"));
+    sphereMat.setBoolean("UseMaterialColors",true);    
+    sphereMat.setColor("Diffuse",ColorRGBA.White);
+    sphereMat.setColor("Specular",ColorRGBA.White);
+    sphereMat.setFloat("Shininess", 64f); // [0,128]
+    sphereGeo.setMaterial(sphereMat);
+    //sphereGeo.setMaterial((Material) assetManager.loadMaterial("Materials/MyCustomMaterial.j3m"));
+    sphereGeo.setLocalTranslation(0,2,-2); // Move it a bit
+    sphereGeo.rotate(1.6f, 0, 0);          // Rotate it a bit
+    rootNode.attachChild(sphereGeo);
+    
+    /** Must add a light to make the lit object visible! */
+    DirectionalLight sun = new DirectionalLight();
+    sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
+    sun.setColor(ColorRGBA.White);
+    rootNode.addLight(sun);
+  }
 }

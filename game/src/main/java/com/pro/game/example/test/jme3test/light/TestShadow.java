@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.light;
+package jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -62,7 +62,7 @@ public class TestShadow extends SimpleApplication {
         for (int i = 0; i < points.length; i++) points[i] = new Vector3f();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestShadow app = new TestShadow();
         app.start();
     }
@@ -79,7 +79,7 @@ public class TestShadow extends SimpleApplication {
         Box floor = new Box(Vector3f.ZERO, 3, 0.1f, 3);
         Geometry floorGeom = new Geometry("Floor", floor);
         floorGeom.setMaterial(mat);
-        floorGeom.setLocalTranslation(0, -0.2f, 0);
+        floorGeom.setLocalTranslation(0,-0.2f,0);
         floorGeom.setShadowMode(ShadowMode.Receive);
         rootNode.attachChild(floorGeom);
 
@@ -109,7 +109,7 @@ public class TestShadow extends SimpleApplication {
     }
 
     @Override
-    public void simpleUpdate(float tpf) {
+    public void simpleUpdate(float tpf){
         Camera shadowCam = bsr.getShadowCamera();
         ShadowUtil.updateFrustumPoints2(shadowCam, points);
 

@@ -1,23 +1,53 @@
-package com.pro.game.example.test.jme3test.network;
+/*
+ * Copyright (c) 2011 jMonkeyEngine
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the distribution.
+ *
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
+ *   may be used to endorse or promote products derived from this software
+ *   without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package jme3test.network;
 
 import com.jme3.network.Client;
 import com.jme3.network.Message;
 import com.jme3.network.MessageListener;
 import com.jme3.network.Network;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-
 import javax.swing.*;
+import jme3test.network.TestChatServer.ChatMessage;
 
 /**
- * A simple test chat server.  When SM implements a set
- * of standard chat classes this can become a lot simpler.
+ *  A simple test chat server.  When SM implements a set
+ *  of standard chat classes this can become a lot simpler.
  *
- * @author Paul Speed
- * @version $Revision: 8843 $
+ *  @version   $Revision$
+ *  @author    Paul Speed
  */
 public class TestChatClient extends JFrame {
 
@@ -59,7 +89,7 @@ public class TestChatClient extends JFrame {
 
         client = Network.connectToServer(TestChatServer.NAME, TestChatServer.VERSION,
                 host, TestChatServer.PORT, TestChatServer.UDP_PORT);
-        client.addMessageListener(new ChatHandler(), TestChatServer.ChatMessage.class);
+        client.addMessageListener(new ChatHandler(), ChatMessage.class);
         client.start();
     }
 
@@ -85,7 +115,7 @@ public class TestChatClient extends JFrame {
     private class ChatHandler implements MessageListener<Client> {
 
         public void messageReceived(Client source, Message m) {
-            TestChatServer.ChatMessage chat = (TestChatServer.ChatMessage) m;
+            ChatMessage chat = (ChatMessage) m;
 
             System.out.println("Received:" + chat);
 
@@ -117,7 +147,7 @@ public class TestChatClient extends JFrame {
             String name = nameField.getText();
             String message = messageField.getText();
 
-            TestChatServer.ChatMessage chat = new TestChatServer.ChatMessage(name, message);
+            ChatMessage chat = new ChatMessage(name, message);
             chat.setReliable(reliable);
             System.out.println("Sending:" + chat);
             client.send(chat);

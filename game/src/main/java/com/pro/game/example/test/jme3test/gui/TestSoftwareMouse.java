@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.gui;
+package jme3test.gui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.RawInputListener;
@@ -47,22 +47,16 @@ public class TestSoftwareMouse extends SimpleApplication {
 
     private RawInputListener inputListener = new RawInputListener() {
 
-        private float x = 0
-                ,
-                y = 0;
+        private float x = 0, y = 0;
 
         public void beginInput() {
         }
-
         public void endInput() {
         }
-
         public void onJoyAxisEvent(JoyAxisEvent evt) {
         }
-
         public void onJoyButtonEvent(JoyButtonEvent evt) {
         }
-
         public void onMouseMotionEvent(MouseMotionEvent evt) {
             x += evt.getDX();
             y += evt.getDY();
@@ -75,18 +69,15 @@ public class TestSoftwareMouse extends SimpleApplication {
             // adjust for hotspot
             cursor.setPosition(x, y - 64);
         }
-
         public void onMouseButtonEvent(MouseButtonEvent evt) {
         }
-
         public void onKeyEvent(KeyInputEvent evt) {
         }
-
         public void onTouchEvent(TouchEvent evt) {
         }
     };
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestSoftwareMouse app = new TestSoftwareMouse();
 
 //        AppSettings settings = new AppSettings(true);

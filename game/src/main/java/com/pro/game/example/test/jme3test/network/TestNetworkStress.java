@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,37 +30,36 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.network;
+package jme3test.network;
 
 import com.jme3.network.*;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TestNetworkStress implements ConnectionListener {
-
+    
     public void connectionAdded(Server server, HostedConnection conn) {
-        System.out.println("Client Connected: " + conn.getId());
+        System.out.println("Client Connected: "+conn.getId());
         //conn.close("goodbye");
     }
 
     public void connectionRemoved(Server server, HostedConnection conn) {
     }
-
-    public static void main(String[] args) throws IOException, InterruptedException {
+    
+    public static void main(String[] args) throws IOException, InterruptedException{
         Logger.getLogger("").getHandlers()[0].setLevel(Level.OFF);
-
+        
         Server server = Network.createServer(5110);
         server.start();
         server.addConnectionListener(new TestNetworkStress());
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++){
             Client client = Network.connectToServer("localhost", 5110);
             client.start();
 
             Thread.sleep(10);
-
+            
             client.close();
         }
     }

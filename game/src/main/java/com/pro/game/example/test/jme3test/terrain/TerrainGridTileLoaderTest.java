@@ -10,11 +10,14 @@ import com.jme3.bullet.collision.shapes.HeightfieldCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.terrain.Terrain;
 import com.jme3.terrain.geomipmap.TerrainGrid;
 import com.jme3.terrain.geomipmap.TerrainGridListener;
 import com.jme3.terrain.geomipmap.TerrainGridLodControl;
@@ -24,7 +27,6 @@ import com.jme3.terrain.geomipmap.grid.AssetTileLoader;
 import com.jme3.terrain.geomipmap.lodcalc.DistanceLodCalculator;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.io.File;
 
 public class TerrainGridTileLoaderTest extends SimpleApplication {
@@ -41,7 +43,6 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
         TerrainGridTileLoaderTest app = new TerrainGridTileLoaderTest();
         app.start();
     }
-
     private CharacterControl player3;
 
     @Override
@@ -108,13 +109,13 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
 //        } catch (IOException ex) {
 //            Logger.getLogger(TerrainFractalGridTest.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
+        
         this.rootNode.attachChild(this.terrain);
-
+        
         TerrainLodControl control = new TerrainGridLodControl(this.terrain, getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
         this.terrain.addControl(control);
-
+        
         final BulletAppState bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
 
@@ -138,12 +139,8 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
                 public void gridMoved(Vector3f newCenter) {
                 }
 
-                public Material tileLoaded(Material material, Vector3f cell) {
-                    return material;
-                }
-
                 public void tileAttached(Vector3f cell, TerrainQuad quad) {
-                    while (quad.getControl(RigidBodyControl.class) != null) {
+                    while(quad.getControl(RigidBodyControl.class)!=null){
                         quad.removeControl(RigidBodyControl.class);
                     }
                     quad.addControl(new RigidBodyControl(new HeightfieldCollisionShape(quad.getHeightMap(), terrain.getLocalScale()), 0));
@@ -151,13 +148,15 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
                 }
 
                 public void tileDetached(Vector3f cell, TerrainQuad quad) {
-                    bulletAppState.getPhysicsSpace().remove(quad);
-                    quad.removeControl(RigidBodyControl.class);
+                    if (quad.getControl(RigidBodyControl.class) != null) {
+                        bulletAppState.getPhysicsSpace().remove(quad);
+                        quad.removeControl(RigidBodyControl.class);
+                    }
                 }
 
             });
         }
-
+        
         this.initKeys();
     }
 
@@ -168,13 +167,14 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
         this.inputManager.addMapping("Ups", new KeyTrigger(KeyInput.KEY_W));
         this.inputManager.addMapping("Downs", new KeyTrigger(KeyInput.KEY_S));
         this.inputManager.addMapping("Jumps", new KeyTrigger(KeyInput.KEY_SPACE));
+        this.inputManager.addMapping("pick", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         this.inputManager.addListener(this.actionListener, "Lefts");
         this.inputManager.addListener(this.actionListener, "Rights");
         this.inputManager.addListener(this.actionListener, "Ups");
         this.inputManager.addListener(this.actionListener, "Downs");
         this.inputManager.addListener(this.actionListener, "Jumps");
+        this.inputManager.addListener(this.actionListener, "pick");
     }
-
     private boolean left;
     private boolean right;
     private boolean up;
@@ -209,6 +209,10 @@ public class TerrainGridTileLoaderTest extends SimpleApplication {
                 }
             } else if (name.equals("Jumps")) {
                 TerrainGridTileLoaderTest.this.player3.jump();
+            } else if (name.equals("pick") && keyPressed) {
+                //Terrain picked = terrain.getTerrainAt(player3.getPhysicsLocation());
+                Terrain picked = terrain.getTerrainAtCell(terrain.getCurrentCell());
+                System.out.println("** cell "+player3.getPhysicsLocation()+" picked terrain: "+picked);
             }
         }
     };

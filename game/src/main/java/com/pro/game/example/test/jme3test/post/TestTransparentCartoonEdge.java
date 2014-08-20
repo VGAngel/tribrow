@@ -1,4 +1,4 @@
-package com.pro.game.example.test.jme3test.post;
+package jme3test.post;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.AmbientLight;
@@ -17,7 +17,7 @@ import com.jme3.texture.Texture;
 
 public class TestTransparentCartoonEdge extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestTransparentCartoonEdge app = new TestTransparentCartoonEdge();
         app.start();
     }
@@ -37,7 +37,7 @@ public class TestTransparentCartoonEdge extends SimpleApplication {
         Geometry geom = new Geometry("floor", q);
         Material mat = assetManager.loadMaterial("Textures/Terrain/Pond/Pond.j3m");
         geom.setMaterial(mat);
-
+        
         geom.rotate(-FastMath.HALF_PI, 0, 0);
         geom.center();
         geom.setShadowMode(ShadowMode.Receive);
@@ -65,8 +65,8 @@ public class TestTransparentCartoonEdge extends SimpleApplication {
 
         rootNode.attachChild(teaGeom);
 
-        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
-        CartoonEdgeFilter toon = new CartoonEdgeFilter();
+        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
+        CartoonEdgeFilter toon=new CartoonEdgeFilter();
         toon.setEdgeWidth(0.5f);
         toon.setEdgeIntensity(1.0f);
         toon.setNormalThreshold(0.8f);
@@ -74,15 +74,15 @@ public class TestTransparentCartoonEdge extends SimpleApplication {
         viewPort.addProcessor(fpp);
     }
 
-    public void makeToonish(Spatial spatial) {
-        if (spatial instanceof Node) {
+        public void makeToonish(Spatial spatial){
+        if (spatial instanceof Node){
             Node n = (Node) spatial;
             for (Spatial child : n.getChildren())
                 makeToonish(child);
-        } else if (spatial instanceof Geometry) {
+        }else if (spatial instanceof Geometry){
             Geometry g = (Geometry) spatial;
             Material m = g.getMaterial();
-            if (m.getMaterialDef().getName().equals("Phong Lighting")) {
+            if (m.getMaterialDef().getName().equals("Phong Lighting")){
                 Texture t = assetManager.loadTexture("Textures/ColorRamp/toon.png");
 //                t.setMinFilter(Texture.MinFilter.NearestNoMipMaps);
 //                t.setMagFilter(Texture.MagFilter.Nearest);

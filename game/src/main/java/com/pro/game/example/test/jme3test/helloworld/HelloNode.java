@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.helloworld;
+package jme3test.helloworld;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -40,14 +40,12 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 
-/**
- * Sample 2 - How to use nodes as handles to manipulate objects in the scene.
+/** Sample 2 - How to use nodes as handles to manipulate objects in the scene.
  * You can rotate, translate, and scale objects by manipulating their parent nodes.
- * The Root Node is special: Only what is attached to the Root Node appears in the scene.
- */
+ * The Root Node is special: Only what is attached to the Root Node appears in the scene. */
 public class HelloNode extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         HelloNode app = new HelloNode();
         app.start();
     }
@@ -56,17 +54,19 @@ public class HelloNode extends SimpleApplication {
     public void simpleInitApp() {
 
         /** create a blue box at coordinates (1,-1,1) */
-        Box box1 = new Box(new Vector3f(1, -1, 1), 1, 1, 1);
+        Box box1 = new Box(1,1,1);
         Geometry blue = new Geometry("Box", box1);
-        Material mat1 = new Material(assetManager,
+        blue.setLocalTranslation(new Vector3f(1,-1,1));
+        Material mat1 = new Material(assetManager, 
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.Blue);
         blue.setMaterial(mat1);
 
         /** create a red box straight above the blue one at (1,3,1) */
-        Box box2 = new Box(new Vector3f(1, 3, 1), 1, 1, 1);
+        Box box2 = new Box(1,1,1);      
         Geometry red = new Geometry("Box", box2);
-        Material mat2 = new Material(assetManager,
+        red.setLocalTranslation(new Vector3f(1,3,1));
+        Material mat2 = new Material(assetManager, 
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat2.setColor("Color", ColorRGBA.Red);
         red.setMaterial(mat2);
@@ -79,7 +79,7 @@ public class HelloNode extends SimpleApplication {
         pivot.attachChild(blue);
         pivot.attachChild(red);
         /** Rotate the pivot node: Note that both boxes have rotated! */
-        pivot.rotate(.4f, .4f, 0f);
+        pivot.rotate(.4f,.4f,0f);
     }
 }
 

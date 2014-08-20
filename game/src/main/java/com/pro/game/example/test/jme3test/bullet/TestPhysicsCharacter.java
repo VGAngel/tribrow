@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine All rights reserved. <p/>
+ * Copyright (c) 2009-2012 jMonkeyEngine All rights reserved. <p/>
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  * 
@@ -22,7 +22,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
@@ -43,90 +43,88 @@ import com.jme3.scene.control.CameraControl.ControlDirection;
 
 /**
  * A walking physical character followed by a 3rd person camera. (No animation.)
- *
  * @author normenhansen, zathras
  */
 public class TestPhysicsCharacter extends SimpleApplication implements ActionListener {
 
-    private BulletAppState bulletAppState;
-    private CharacterControl physicsCharacter;
-    private Node characterNode;
-    private CameraNode camNode;
-    boolean rotate = false;
-    private Vector3f walkDirection = new Vector3f(0, 0, 0);
-    private Vector3f viewDirection = new Vector3f(0, 0, 0);
-    boolean leftStrafe = false, rightStrafe = false, forward = false, backward = false,
-            leftRotate = false, rightRotate = false;
+  private BulletAppState bulletAppState;
+  private CharacterControl physicsCharacter;
+  private Node characterNode;
+  private CameraNode camNode;
+  boolean rotate = false;
+  private Vector3f walkDirection = new Vector3f(0,0,0);
+  private Vector3f viewDirection = new Vector3f(0,0,0);
+  boolean leftStrafe = false, rightStrafe = false, forward = false, backward = false, 
+          leftRotate = false, rightRotate = false;
 
-    public static void main(String[] args) {
-        TestPhysicsCharacter app = new TestPhysicsCharacter();
-        app.start();
-    }
+  public static void main(String[] args) {
+    TestPhysicsCharacter app = new TestPhysicsCharacter();
+    app.start();
+  }
 
     private void setupKeys() {
-        inputManager.addMapping("Strafe Left",
-                new KeyTrigger(KeyInput.KEY_Q),
+        inputManager.addMapping("Strafe Left", 
+                new KeyTrigger(KeyInput.KEY_Q), 
                 new KeyTrigger(KeyInput.KEY_Z));
-        inputManager.addMapping("Strafe Right",
+        inputManager.addMapping("Strafe Right", 
                 new KeyTrigger(KeyInput.KEY_E),
                 new KeyTrigger(KeyInput.KEY_X));
-        inputManager.addMapping("Rotate Left",
-                new KeyTrigger(KeyInput.KEY_A),
+        inputManager.addMapping("Rotate Left", 
+                new KeyTrigger(KeyInput.KEY_A), 
                 new KeyTrigger(KeyInput.KEY_LEFT));
-        inputManager.addMapping("Rotate Right",
-                new KeyTrigger(KeyInput.KEY_D),
+        inputManager.addMapping("Rotate Right", 
+                new KeyTrigger(KeyInput.KEY_D), 
                 new KeyTrigger(KeyInput.KEY_RIGHT));
-        inputManager.addMapping("Walk Forward",
-                new KeyTrigger(KeyInput.KEY_W),
+        inputManager.addMapping("Walk Forward", 
+                new KeyTrigger(KeyInput.KEY_W), 
                 new KeyTrigger(KeyInput.KEY_UP));
-        inputManager.addMapping("Walk Backward",
+        inputManager.addMapping("Walk Backward", 
                 new KeyTrigger(KeyInput.KEY_S),
                 new KeyTrigger(KeyInput.KEY_DOWN));
-        inputManager.addMapping("Jump",
-                new KeyTrigger(KeyInput.KEY_SPACE),
+        inputManager.addMapping("Jump", 
+                new KeyTrigger(KeyInput.KEY_SPACE), 
                 new KeyTrigger(KeyInput.KEY_RETURN));
-        inputManager.addMapping("Shoot",
+        inputManager.addMapping("Shoot", 
                 new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addListener(this, "Strafe Left", "Strafe Right");
         inputManager.addListener(this, "Rotate Left", "Rotate Right");
         inputManager.addListener(this, "Walk Forward", "Walk Backward");
         inputManager.addListener(this, "Jump", "Shoot");
     }
+  @Override
+  public void simpleInitApp() {
+    // activate physics
+    bulletAppState = new BulletAppState();
+    stateManager.attach(bulletAppState);
 
-    @Override
-    public void simpleInitApp() {
-        // activate physics
-        bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState);
+    // init a physical test scene
+    PhysicsTestHelper.createPhysicsTestWorldSoccer(rootNode, assetManager, bulletAppState.getPhysicsSpace());
+    setupKeys();
 
-        // init a physical test scene
-        PhysicsTestHelper.createPhysicsTestWorldSoccer(rootNode, assetManager, bulletAppState.getPhysicsSpace());
-        setupKeys();
+    // Add a physics character to the world
+    physicsCharacter = new CharacterControl(new CapsuleCollisionShape(0.5f, 1.8f), .1f);
+    physicsCharacter.setPhysicsLocation(new Vector3f(0, 1, 0));
+    characterNode = new Node("character node");
+    Spatial model = assetManager.loadModel("Models/Sinbad/Sinbad.mesh.xml");
+    model.scale(0.25f);
+    characterNode.addControl(physicsCharacter);
+    getPhysicsSpace().add(physicsCharacter);
+    rootNode.attachChild(characterNode);
+    characterNode.attachChild(model);
 
-        // Add a physics character to the world
-        physicsCharacter = new CharacterControl(new CapsuleCollisionShape(0.5f, 1.8f), .1f);
-        physicsCharacter.setPhysicsLocation(new Vector3f(0, 1, 0));
-        characterNode = new Node("character node");
-        Spatial model = assetManager.loadModel("Models/Sinbad/Sinbad.mesh.xml");
-        model.scale(0.25f);
-        characterNode.addControl(physicsCharacter);
-        getPhysicsSpace().add(physicsCharacter);
-        rootNode.attachChild(characterNode);
-        characterNode.attachChild(model);
+    // set forward camera node that follows the character
+    camNode = new CameraNode("CamNode", cam);
+    camNode.setControlDir(ControlDirection.SpatialToCamera);
+    camNode.setLocalTranslation(new Vector3f(0, 1, -5));
+    camNode.lookAt(model.getLocalTranslation(), Vector3f.UNIT_Y);
+    characterNode.attachChild(camNode);
 
-        // set forward camera node that follows the character
-        camNode = new CameraNode("CamNode", cam);
-        camNode.setControlDir(ControlDirection.SpatialToCamera);
-        camNode.setLocalTranslation(new Vector3f(0, 1, -5));
-        camNode.lookAt(model.getLocalTranslation(), Vector3f.UNIT_Y);
-        characterNode.attachChild(camNode);
+    //disable the default 1st-person flyCam (don't forget this!!)
+    flyCam.setEnabled(false);
 
-        //disable the default 1st-person flyCam (don't forget this!!)
-        flyCam.setEnabled(false);
+  }
 
-    }
-
-    @Override
+   @Override
     public void simpleUpdate(float tpf) {
         Vector3f camDir = cam.getDirection().mult(0.2f);
         Vector3f camLeft = cam.getLeft().mult(0.2f);
@@ -136,17 +134,20 @@ public class TestPhysicsCharacter extends SimpleApplication implements ActionLis
         walkDirection.set(0, 0, 0);
         if (leftStrafe) {
             walkDirection.addLocal(camLeft);
-        } else if (rightStrafe) {
+        } else
+        if (rightStrafe) {
             walkDirection.addLocal(camLeft.negate());
         }
         if (leftRotate) {
             viewDirection.addLocal(camLeft.mult(0.02f));
-        } else if (rightRotate) {
+        } else
+        if (rightRotate) {
             viewDirection.addLocal(camLeft.mult(0.02f).negate());
         }
         if (forward) {
             walkDirection.addLocal(camDir);
-        } else if (backward) {
+        } else
+        if (backward) {
             walkDirection.addLocal(camDir.negate());
         }
         physicsCharacter.setWalkDirection(walkDirection);
@@ -195,12 +196,12 @@ public class TestPhysicsCharacter extends SimpleApplication implements ActionLis
         }
     }
 
-    private PhysicsSpace getPhysicsSpace() {
-        return bulletAppState.getPhysicsSpace();
-    }
+  private PhysicsSpace getPhysicsSpace() {
+    return bulletAppState.getPhysicsSpace();
+  }
 
-    @Override
-    public void simpleRender(RenderManager rm) {
-        //TODO: add render code
-    }
+  @Override
+  public void simpleRender(RenderManager rm) {
+    //TODO: add render code
+  }
 }

@@ -26,7 +26,6 @@ import com.jme3.terrain.geomipmap.lodcalc.DistanceLodCalculator;
 import com.jme3.terrain.heightmap.Namer;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.io.File;
 
 public class TerrainGridTest extends SimpleApplication {
@@ -43,7 +42,6 @@ public class TerrainGridTest extends SimpleApplication {
         TerrainGridTest app = new TerrainGridTest();
         app.start();
     }
-
     private CharacterControl player3;
 
     @Override
@@ -104,27 +102,28 @@ public class TerrainGridTest extends SimpleApplication {
                 return "Scenes/TerrainMountains/terrain_" + x + "_" + y + ".png";
             }
         }));
-
+        
         this.terrain.setMaterial(mat_terrain);
         this.terrain.setLocalTranslation(0, 0, 0);
         this.terrain.setLocalScale(1f, 1f, 1f);
         this.rootNode.attachChild(this.terrain);
 
         TerrainLodControl control = new TerrainGridLodControl(this.terrain, getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+        control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
         this.terrain.addControl(control);
 
         final BulletAppState bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
 
-        this.getCamera().setLocation(new Vector3f(0, 200, 0));
-
+        this.getCamera().setLocation(new Vector3f(0, 400, 0));
+        this.getCamera().lookAt(new Vector3f(0,0,0), Vector3f.UNIT_Y);
+        
         this.viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 
         DirectionalLight light = new DirectionalLight();
         light.setDirection((new Vector3f(-0.5f, -1f, -0.5f)).normalize());
         rootNode.addLight(light);
-
+        
         if (usePhysics) {
             CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(0.5f, 1.8f, 1);
             player3 = new CharacterControl(capsuleShape, 0.5f);
@@ -141,12 +140,8 @@ public class TerrainGridTest extends SimpleApplication {
                 public void gridMoved(Vector3f newCenter) {
                 }
 
-                public Material tileLoaded(Material material, Vector3f cell) {
-                    return material;
-                }
-
                 public void tileAttached(Vector3f cell, TerrainQuad quad) {
-                    while (quad.getControl(RigidBodyControl.class) != null) {
+                    while(quad.getControl(RigidBodyControl.class)!=null){
                         quad.removeControl(RigidBodyControl.class);
                     }
                     quad.addControl(new RigidBodyControl(new HeightfieldCollisionShape(quad.getHeightMap(), terrain.getLocalScale()), 0));
@@ -154,13 +149,15 @@ public class TerrainGridTest extends SimpleApplication {
                 }
 
                 public void tileDetached(Vector3f cell, TerrainQuad quad) {
-                    bulletAppState.getPhysicsSpace().remove(quad);
-                    quad.removeControl(RigidBodyControl.class);
+                    if (quad.getControl(RigidBodyControl.class) != null) {
+                        bulletAppState.getPhysicsSpace().remove(quad);
+                        quad.removeControl(RigidBodyControl.class);
+                    }
                 }
 
             });
         }
-
+        
         this.initKeys();
     }
 
@@ -177,7 +174,6 @@ public class TerrainGridTest extends SimpleApplication {
         this.inputManager.addListener(this.actionListener, "Downs");
         this.inputManager.addListener(this.actionListener, "Jumps");
     }
-
     private boolean left;
     private boolean right;
     private boolean up;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.stress;
+package jme3test.stress;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.DirectionalLight;
@@ -43,7 +43,7 @@ import com.jme3.scene.control.LodControl;
 
 public class TestLodStress extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestLodStress app = new TestLodStress();
         app.setShowSettings(false);
         app.setPauseOnLostFocus(false);
@@ -52,12 +52,12 @@ public class TestLodStress extends SimpleApplication {
 
     public void simpleInitApp() {
         DirectionalLight dl = new DirectionalLight();
-        dl.setDirection(new Vector3f(-1, -1, -1).normalizeLocal());
+        dl.setDirection(new Vector3f(-1,-1,-1).normalizeLocal());
         rootNode.addLight(dl);
 
         Node teapotNode = (Node) assetManager.loadModel("Models/Teapot/Teapot.mesh.xml");
         Geometry teapot = (Geometry) teapotNode.getChild(0);
-
+        
 //        Sphere sph = new Sphere(16, 16, 4);
 //        Geometry teapot = new Geometry("teapot", sph);
 
@@ -65,18 +65,18 @@ public class TestLodStress extends SimpleApplication {
         mat.setFloat("Shininess", 16f);
         mat.setBoolean("VertexLighting", true);
         teapot.setMaterial(mat);
-
-        // show normals as material
+        
+       // show normals as material
         //Material mat = new Material(assetManager, "Common/MatDefs/Misc/ShowNormals.j3md");
 
-        for (int y = -10; y < 10; y++) {
-            for (int x = -10; x < 10; x++) {
+        for (int y = -10; y < 10; y++){
+            for (int x = -10; x < 10; x++){
                 Geometry clonePot = teapot.clone();
-
+                
                 //clonePot.setMaterial(mat);
                 clonePot.setLocalTranslation(x * .5f, 0, y * .5f);
                 clonePot.setLocalScale(.15f);
-
+                
                 LodControl control = new LodControl();
                 clonePot.addControl(control);
                 rootNode.attachChild(clonePot);

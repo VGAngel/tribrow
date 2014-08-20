@@ -1,4 +1,4 @@
-package com.pro.game.example.test.jme3test.material;
+package jme3test.material;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.light.AmbientLight;
@@ -12,7 +12,7 @@ import com.jme3.util.TangentBinormalGenerator;
 
 public class TestUnshadedModel extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestUnshadedModel app = new TestUnshadedModel();
         app.start();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,14 +30,14 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.light;
+package jme3test.light;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.scene.Node;
 
 public class TestManyLights extends SimpleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TestManyLights app = new TestManyLights();
         app.start();
     }

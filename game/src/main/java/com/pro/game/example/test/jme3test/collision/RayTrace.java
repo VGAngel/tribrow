@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.collision;
+package jme3test.collision;
 
 import com.jme3.collision.CollisionResults;
 import com.jme3.math.Ray;
@@ -38,7 +38,6 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Spatial;
-
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -54,13 +53,13 @@ public class RayTrace {
     private JFrame frame;
     private JLabel label;
 
-    public RayTrace(Spatial scene, Camera cam, int width, int height) {
+    public RayTrace(Spatial scene, Camera cam, int width, int height){
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         this.scene = scene;
         this.cam = cam;
     }
 
-    public void show() {
+    public void show(){
         frame = new JFrame("HDR View");
         label = new JLabel(new ImageIcon(image));
         frame.getContentPane().add(label);
@@ -69,18 +68,18 @@ public class RayTrace {
         frame.setVisible(true);
     }
 
-    public void update() {
+    public void update(){
         int w = image.getWidth();
         int h = image.getHeight();
 
-        float wr = (float) cam.getWidth() / image.getWidth();
+        float wr = (float) cam.getWidth()  / image.getWidth();
         float hr = (float) cam.getHeight() / image.getHeight();
 
         scene.updateGeometricState();
 
-        for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w; x++) {
-                Vector2f v = new Vector2f(x * wr, y * hr);
+        for (int y = 0; y < h; y++){
+            for (int x = 0; x < w; x++){
+                Vector2f v = new Vector2f(x * wr,y * hr);
                 Vector3f pos = cam.getWorldCoordinates(v, 0.0f);
                 Vector3f dir = cam.getWorldCoordinates(v, 0.3f);
                 dir.subtractLocal(pos).normalizeLocal();
@@ -89,9 +88,9 @@ public class RayTrace {
 
                 results.clear();
                 scene.collideWith(r, results);
-                if (results.size() > 0) {
+                if (results.size() > 0){
                     image.setRGB(x, h - y - 1, 0xFFFFFFFF);
-                } else {
+                }else{
                     image.setRGB(x, h - y - 1, 0xFF000000);
                 }
             }

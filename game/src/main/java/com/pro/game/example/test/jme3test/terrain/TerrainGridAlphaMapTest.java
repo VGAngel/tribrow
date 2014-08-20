@@ -39,7 +39,6 @@ import com.jme3.terrain.noise.fractal.FractalSum;
 import com.jme3.terrain.noise.modulator.NoiseModulator;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.io.File;
 
 public class TerrainGridAlphaMapTest extends SimpleApplication {
@@ -54,7 +53,6 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
         TerrainGridAlphaMapTest app = new TerrainGridAlphaMapTest();
         app.start();
     }
-
     private CharacterControl player3;
     private FractalSum base;
     private PerturbFilter perturb;
@@ -159,7 +157,7 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
         this.rootNode.attachChild(this.terrain);
 
         TerrainLodControl control = new TerrainGridLodControl(this.terrain, this.getCamera());
-        control.setLodCalculator(new DistanceLodCalculator(33, 2.7f)); // patch size, and a multiplier
+        control.setLodCalculator( new DistanceLodCalculator(33, 2.7f) ); // patch size, and a multiplier
         this.terrain.addControl(control);
 
         final BulletAppState bulletAppState = new BulletAppState();
@@ -190,7 +188,7 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
             public void tileAttached(Vector3f cell, TerrainQuad quad) {
                 Texture alpha = null;
                 try {
-                    alpha = assetManager.loadTexture("TerrainAlphaTest/alpha_" + (int) cell.x + "_" + (int) cell.z + ".png");
+                    alpha = assetManager.loadTexture("TerrainAlphaTest/alpha_" + (int)cell.x+ "_" + (int)cell.z + ".png");
                 } catch (Exception e) {
                     alpha = assetManager.loadTexture("TerrainAlphaTest/alpha_default.png");
                 }
@@ -204,33 +202,35 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
 
             public void tileDetached(Vector3f cell, TerrainQuad quad) {
                 if (usePhysics) {
-                    bulletAppState.getPhysicsSpace().remove(quad);
-                    quad.removeControl(RigidBodyControl.class);
+                    if (quad.getControl(RigidBodyControl.class) != null) {
+                        bulletAppState.getPhysicsSpace().remove(quad);
+                        quad.removeControl(RigidBodyControl.class);
+                    }
                 }
                 updateMarkerElevations();
             }
         });
-
+        
         this.initKeys();
-
+    
         markers = new Node();
         rootNode.attachChild(markers);
         createMarkerPoints(1);
     }
-
+    
     Node markers;
-
-
+    
+    
     private void createMarkerPoints(float count) {
         Node center = createAxisMarker(10);
         markers.attachChild(center);
-
-        float xS = (count - 1) * terrain.getTerrainSize() - (terrain.getTerrainSize() / 2);
-        float zS = (count - 1) * terrain.getTerrainSize() - (terrain.getTerrainSize() / 2);
+        
+        float xS = (count-1)*terrain.getTerrainSize() - (terrain.getTerrainSize()/2);
+        float zS = (count-1)*terrain.getTerrainSize() - (terrain.getTerrainSize()/2);
         float xSi = xS;
         float zSi = zS;
-        for (int x = 0; x < count * 2; x++) {
-            for (int z = 0; z < count * 2; z++) {
+        for (int x=0; x<count*2; x++) {
+            for (int z=0; z<count*2; z++) {
                 Node m = createAxisMarker(5);
                 m.setLocalTranslation(xSi, 0, zSi);
                 markers.attachChild(m);
@@ -240,14 +240,14 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
             xSi += terrain.getTerrainSize();
         }
     }
-
+    
     private void updateMarkerElevations() {
         for (Spatial s : markers.getChildren()) {
             float h = terrain.getHeight(new Vector2f(s.getLocalTranslation().x, s.getLocalTranslation().z));
-            s.setLocalTranslation(s.getLocalTranslation().x, h + 1, s.getLocalTranslation().z);
+            s.setLocalTranslation(s.getLocalTranslation().x, h+1, s.getLocalTranslation().z);
         }
     }
-
+    
     private void initKeys() {
         // You can map one or several inputs to one named action
         this.inputManager.addMapping("Lefts", new KeyTrigger(KeyInput.KEY_A));
@@ -261,7 +261,6 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
         this.inputManager.addListener(this.actionListener, "Downs");
         this.inputManager.addListener(this.actionListener, "Jumps");
     }
-
     private boolean left;
     private boolean right;
     private boolean up;
@@ -324,17 +323,17 @@ public class TerrainGridAlphaMapTest extends SimpleApplication {
             this.cam.setLocation(this.player3.getPhysicsLocation());
         }
     }
-
+    
     protected Node createAxisMarker(float arrowSize) {
 
         Material redMat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         redMat.getAdditionalRenderState().setWireframe(true);
         redMat.setColor("Color", ColorRGBA.Red);
-
+        
         Material greenMat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         greenMat.getAdditionalRenderState().setWireframe(true);
         greenMat.setColor("Color", ColorRGBA.Green);
-
+        
         Material blueMat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         blueMat.getAdditionalRenderState().setWireframe(true);
         blueMat.setColor("Color", ColorRGBA.Blue);

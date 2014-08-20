@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,6 @@ import com.jme3.terrain.heightmap.AbstractHeightMap;
 import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
-
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,13 +154,13 @@ public class TerrainTestReadWrite extends SimpleApplication {
             // create the terrain as normal, and give it a control for LOD management
             TerrainQuad terrainQuad = new TerrainQuad("terrain", 65, 129, heightmap.getHeightMap());//, new LodPerspectiveCalculatorFactory(getCamera(), 4)); // add this in to see it use entropy for LOD calculations
             TerrainLodControl control = new TerrainLodControl(terrainQuad, getCamera());
-            control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
+            control.setLodCalculator( new DistanceLodCalculator(65, 2.7f) ); // patch size, and a multiplier
             terrainQuad.addControl(control);
             terrainQuad.setMaterial(matTerrain);
             terrainQuad.setLocalTranslation(0, -100, 0);
             terrainQuad.setLocalScale(4f, 0.25f, 4f);
             rootNode.attachChild(terrainQuad);
-
+            
             this.terrain = terrainQuad;
         }
 
@@ -194,7 +193,6 @@ public class TerrainTestReadWrite extends SimpleApplication {
         hintText.setText("Hit T to save, and Y to load");
         guiNode.attachChild(hintText);
     }
-
     private ActionListener saveActionListener = new ActionListener() {
 
         public void onAction(String name, boolean pressed, float tpf) {
@@ -206,7 +204,7 @@ public class TerrainTestReadWrite extends SimpleApplication {
                     fos = new FileOutputStream(new File("terrainsave.jme"));
 
                     // we just use the exporter and pass in the terrain
-                    BinaryExporter.getInstance().save((Savable) terrain, new BufferedOutputStream(fos));
+                    BinaryExporter.getInstance().save((Savable)terrain, new BufferedOutputStream(fos));
 
                     fos.flush();
                     float duration = (System.currentTimeMillis() - start) / 1000.0f;
@@ -232,7 +230,7 @@ public class TerrainTestReadWrite extends SimpleApplication {
             long start = System.currentTimeMillis();
             // remove the existing terrain and detach it from the root node.
             if (terrain != null) {
-                Node existingTerrain = (Node) terrain;
+                Node existingTerrain = (Node)terrain;
                 existingTerrain.removeFromParent();
                 existingTerrain.removeControl(TerrainLodControl.class);
                 existingTerrain.detachAllChildren();
@@ -245,13 +243,13 @@ public class TerrainTestReadWrite extends SimpleApplication {
             BinaryImporter imp = BinaryImporter.getInstance();
             imp.setAssetManager(assetManager);
             terrain = (TerrainQuad) imp.load(new BufferedInputStream(fis));
-            rootNode.attachChild((Node) terrain);
+            rootNode.attachChild((Node)terrain);
 
             float duration = (System.currentTimeMillis() - start) / 1000.0f;
             System.out.println("Load took " + duration + " seconds");
 
             // now we have to add back the camera to the LOD control
-            TerrainLodControl lodControl = ((Node) terrain).getControl(TerrainLodControl.class);
+            TerrainLodControl lodControl = ((Node)terrain).getControl(TerrainLodControl.class);
             if (lodControl != null)
                 lodControl.setCamera(getCamera());
 
@@ -267,7 +265,6 @@ public class TerrainTestReadWrite extends SimpleApplication {
             }
         }
     }
-
     private ActionListener loadActionListener = new ActionListener() {
 
         public void onAction(String name, boolean pressed, float tpf) {
@@ -281,10 +278,10 @@ public class TerrainTestReadWrite extends SimpleApplication {
         public void onAction(String name, boolean pressed, float tpf) {
             if (name.equals("clone") && !pressed) {
 
-                Terrain clone = (Terrain) ((Node) terrain).clone();
-                ((Node) terrain).removeFromParent();
+                Terrain clone = (Terrain) ((Node)terrain).clone();
+                ((Node)terrain).removeFromParent();
                 terrain = clone;
-                getRootNode().attachChild((Node) terrain);
+                getRootNode().attachChild((Node)terrain);
             }
         }
     };

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2010 jMonkeyEngine
+ * Copyright (c) 2009-2012 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.pro.game.example.test.jme3test.bullet;
+package jme3test.bullet;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
@@ -43,6 +43,7 @@ import com.jme3.scene.shape.Sphere;
 import com.jme3.scene.shape.Sphere.TextureMode;
 
 /**
+ *
  * @author normenhansen
  */
 public class TestCollisionListener extends SimpleApplication implements PhysicsCollisionListener {
@@ -72,7 +73,7 @@ public class TestCollisionListener extends SimpleApplication implements PhysicsC
         getPhysicsSpace().addCollisionListener(this);
     }
 
-    private PhysicsSpace getPhysicsSpace() {
+    private PhysicsSpace getPhysicsSpace(){
         return bulletAppState.getPhysicsSpace();
     }
 
