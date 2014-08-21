@@ -35,7 +35,6 @@ package com.pro.game.example.test.jme3test.audio;
 import com.jme3.asset.AssetInfo;
 import com.jme3.asset.AssetLoader;
 import com.jme3.audio.*;
-import com.jme3.audio.AudioNode.Status;
 import com.jme3.audio.plugins.OGGLoader;
 import com.jme3.audio.plugins.WAVLoader;
 import com.jme3.system.AppSettings;
@@ -227,7 +226,7 @@ public class TestMusicPlayer extends javax.swing.JFrame {
             return;
         }
 
-        if (musicSource.getStatus() == Status.Playing) {
+        if (musicSource.getStatus() == AudioSource.Status.Playing) {
             musicSource.setPitch(1);
             ar.pauseSource(musicSource);
         } else {
@@ -253,7 +252,7 @@ public class TestMusicPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStopActionPerformed
 
     private void btnFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFFActionPerformed
-        if (musicSource.getStatus() == Status.Playing) {
+        if (musicSource.getStatus() == AudioSource.Status.Playing) {
             musicSource.setPitch(2);
         }
     }//GEN-LAST:event_btnFFActionPerformed

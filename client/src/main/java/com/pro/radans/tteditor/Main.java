@@ -60,6 +60,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nonnull;
 import javax.imageio.ImageIO;
 import jme3tools.converters.ImageToAwt;
 
@@ -109,16 +110,6 @@ public class Main extends SimpleApplication implements ScreenController,Controll
     private Integer mapRevision;
     private TerrainTiler tiledTerrain;
     private boolean useJars;
-
-    @Override
-    public void bind(Nifty nifty, Screen screen, Element element, Properties parameter, Attributes controlDefinitionAttributes) {
-        this.nifty = nifty;
-    }
-
-    @Override
-    public void init(Properties parameter, Attributes controlDefinitionAttributes) {
-        
-    }
 
     @Override
     public void onFocus(boolean getFocus) {
@@ -473,6 +464,16 @@ public class Main extends SimpleApplication implements ScreenController,Controll
     @Override
     public void bind(Nifty nifty, Screen screen) {
         // 
+    }
+
+    @Override
+    public void bind(@Nonnull Nifty nifty, @Nonnull Screen screen, @Nonnull Element element, @Nonnull Parameters parameters) {
+        this.nifty = nifty;
+    }
+
+    @Override
+    public void init(@Nonnull Parameters parameters) {
+
     }
 
     @Override

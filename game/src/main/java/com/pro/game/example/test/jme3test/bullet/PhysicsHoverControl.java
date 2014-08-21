@@ -149,14 +149,14 @@ public class PhysicsHoverControl extends PhysicsVehicle implements PhysicsContro
 
     public void render(RenderManager rm, ViewPort vp) {
         if (enabled && space != null && space.getDebugManager() != null) {
-            if (debugShape == null) {
-                attachDebugShape(space.getDebugManager());
-            }
-            debugShape.setLocalTranslation(motionState.getWorldLocation());
-            debugShape.setLocalRotation(motionState.getWorldRotation());
-            debugShape.updateLogicalState(0);
-            debugShape.updateGeometricState();
-            rm.renderScene(debugShape, vp);
+//            if (debugShape == null) {
+//                attachDebugShape(space.getDebugManager());
+//            }
+//            debugShape.setLocalTranslation(motionState.getWorldLocation());
+//            debugShape.setLocalRotation(motionState.getWorldRotation());
+//            debugShape.updateLogicalState(0);
+//            debugShape.updateGeometricState();
+//            rm.renderScene(debugShape, vp);
         }
     }
 
