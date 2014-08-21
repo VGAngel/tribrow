@@ -49,7 +49,7 @@ public class TerrainGridSerializationTest extends SimpleApplication {
         ScreenshotAppState state = new ScreenshotAppState();
         this.stateManager.attach(state);
 
-        this.terrain = (TerrainGrid) assetManager.loadModel("TerrainGrid/TerrainGrid.j3o");
+        this.terrain = (TerrainGrid) assetManager.loadModel("assets/TerrainGrid/TerrainGrid.j3o");
 
         this.rootNode.attachChild(this.terrain);
 
