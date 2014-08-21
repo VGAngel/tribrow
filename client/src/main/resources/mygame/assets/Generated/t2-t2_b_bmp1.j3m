@@ -1,6 +1,6 @@
 Material MyMaterial : Common/MatDefs/Light/Lighting.j3md {
     MaterialParameters {
-        DiffuseMap : Flip Repeat Models/tree2/t2_b.bmp
+        DiffuseMap : Flip Repeat mygame/assets/Models/tree2/t2_b.bmp
         Minnaert : false
         Specular : 0.0 0.0 0.0 1.0
         Diffuse : 1.0 1.0 1.0 1.0

@@ -157,7 +157,7 @@ public class Main extends SimpleApplication implements ScreenController,Controll
         // setup Start menu
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, viewPort);
         nifty = niftyDisplay.getNifty();
-        nifty.fromXml("Interface/StartGui.xml", "start", this);
+        nifty.fromXml("radans/tteditor/assets/Interface/StartGui.xml", "start", this);
         guiViewPort.addProcessor(niftyDisplay);
         flyCam.setDragToRotate(true);
         //nifty.setDebugOptionPanelColors(true);
@@ -577,14 +577,14 @@ public class Main extends SimpleApplication implements ScreenController,Controll
                 int idx = Integer.parseInt(value.substring(5));
                 texColor[idx - 1] = null;
                 Element element = nifty.getScreen("image").findElementByName(value);
-                RenderImageJme rImg = new RenderImageJme((Texture2D) assetManager.loadTexture("Textures/blank.png"));
+                RenderImageJme rImg = new RenderImageJme((Texture2D) assetManager.loadTexture("radans/tteditor/assets/Textures/blank.png"));
                 NiftyImage image = new NiftyImage(nifty.getRenderEngine(), rImg);
                 element.getRenderer(ImageRenderer.class).setImage(image);
             } else if (value.startsWith("normal")) {
                 int idx = Integer.parseInt(value.substring(6));
                 texNormal[idx - 1] = null;
                 Element element = nifty.getScreen("image").findElementByName(value);
-                RenderImageJme rImg = new RenderImageJme((Texture2D) assetManager.loadTexture("Textures/blank.png"));
+                RenderImageJme rImg = new RenderImageJme((Texture2D) assetManager.loadTexture("radans/tteditor/assets/Textures/blank.png"));
                 NiftyImage image = new NiftyImage(nifty.getRenderEngine(), rImg);
                 element.getRenderer(ImageRenderer.class).setImage(image);
             }
@@ -914,25 +914,25 @@ public class Main extends SimpleApplication implements ScreenController,Controll
         }
         Material tMat = new Material(assetManager, "Common/MatDefs/Terrain/HeightBasedTerrain.j3md");
         // SAND texture
-        Texture sand = assetManager.loadTexture("Textures/diffuse_0.png");
+        Texture sand = assetManager.loadTexture("radans/tteditor/assets/Textures/diffuse_0.png");
         sand.setWrap(Texture.WrapMode.Repeat);
         tMat.setTexture("region1ColorMap", sand);
         tMat.setVector3("region1", new Vector3f(-16f,(maxHeight*0.25f), 32f));
 
         // GRASS texture
-        Texture grass = assetManager.loadTexture("Textures/diffuse_1.png");
+        Texture grass = assetManager.loadTexture("radans/tteditor/assets/Textures/diffuse_1.png");
         grass.setWrap(Texture.WrapMode.Repeat);
         tMat.setTexture("region2ColorMap", grass);
         tMat.setVector3("region2", new Vector3f((maxHeight*0.25f),(maxHeight*0.5f), 32f));
 
         // BARK texture
-        Texture bark = this.assetManager.loadTexture("Textures/diffuse_3.png");
+        Texture bark = this.assetManager.loadTexture("radans/tteditor/assets/Textures/diffuse_3.png");
         bark.setWrap(Texture.WrapMode.Repeat);
         tMat.setTexture("region3ColorMap", bark);
         tMat.setVector3("region3", new Vector3f((maxHeight*0.5f),(maxHeight*0.75f), 32f));
 
         // ROCK texture
-        Texture rock = this.assetManager.loadTexture("Textures/diffuse_2.png");
+        Texture rock = this.assetManager.loadTexture("radans/tteditor/assets/Textures/diffuse_2.png");
         rock.setWrap(Texture.WrapMode.Repeat);
         tMat.setTexture("region4ColorMap", rock);
         tMat.setVector3("region4", new Vector3f((maxHeight*0.75f), maxHeight+16f, 32f));

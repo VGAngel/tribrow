@@ -7,10 +7,10 @@
     <!-- include the standard controls -->
     <useControls filename="nifty-default-controls.xml" />
     
-    <controlDefinition name = "loadingBar" controller = "com.radans.tteditor.Main">
-        <image filename="Interface/border.png" childLayout="absolute" 
+    <controlDefinition name = "loadingBar" controller = "com.pro.radans.tteditor.Main">
+        <image filename="radans/tteditor/assets/Interface/border.png" childLayout="absolute"
                imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15">
-            <image id="progressBar" x="0" y="0" filename="Interface/inner.png" width="32px" height="100%"
+            <image id="progressBar" x="0" y="0" filename="radans/tteditor/assets/Interface/inner.png" width="32px" height="100%"
                    imageMode="resize:15,2,15,15,15,2,15,2,15,2,15,15" />
         </image>
     </controlDefinition>
@@ -18,7 +18,7 @@
     <!-- +++++++++++++++++++++++++++++++++++++++ -->
     <!-- start screen -->
     <!-- +++++++++++++++++++++++++++++++++++++++ -->
-    <screen id="start" controller="com.radans.tteditor.Main">
+    <screen id="start" controller="com.pro.radans.tteditor.Main">
         <layer id="layer" backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="startPanel" height="240px" width="320px" visibleToMouse="true"
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -56,7 +56,7 @@
     <!-- ============================================ -->
     <!-- Generate new Terrain screen -->
     <!-- ============================================ -->
-    <screen id="generate" controller="com.radans.tteditor.Main">
+    <screen id="generate" controller="com.pro.radans.tteditor.Main">
         <layer id="genlayer" backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="generatePanel" height="240px" width="320px" visibleToMouse="true"
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -96,7 +96,7 @@
     <!-- ============================================ -->
     <!--  LOAD FILE dialog  -->
     <!-- ============================================ -->
-    <screen id="loadfile" controller="com.radans.tteditor.Main">
+    <screen id="loadfile" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="loadfilePanel" height="320px" width="480px" visibleToMouse="true"
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -131,7 +131,7 @@
     <!-- ============================================ -->
     <!--  Save FILE dialog  -->
     <!-- ============================================ -->
-    <screen id="savefile" controller="com.radans.tteditor.Main">
+    <screen id="savefile" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="loadfilePanel" height="360px" width="480px" visibleToMouse="true"
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -170,7 +170,7 @@
     <!-- ============================================ -->
     <!-- Generate from Image -->
     <!-- ============================================ -->
-    <screen id="image" controller="com.radans.tteditor.Main">
+    <screen id="image" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="newPanel" height="600px" width="900px" visibleToMouse="true"
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -189,7 +189,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(color1)"
                                           onSecondaryClick="imageAction(delcolor1)"/>
-                                <image id="color1" filename="Textures/blank.png" 
+                                <image id="color1" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                             <panel height="104px" width="104px" padding="2px" visibleToMouse="true"
@@ -199,7 +199,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(normal1)"
                                           onSecondaryClick="imageAction(delnormal1)"/>
-                                <image id="normal1" filename="Textures/blank.png" 
+                                <image id="normal1" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                         </panel>
@@ -218,7 +218,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(color2)"
                                           onSecondaryClick="imageAction(delcolor2)"/>
-                                <image id="color2" filename="Textures/blank.png" 
+                                <image id="color2" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                             <panel height="104px" width="104px" padding="2px" visibleToMouse="true"
@@ -228,7 +228,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(normal2)"
                                           onSecondaryClick="imageAction(delnormal2)"/>
-                                <image id="normal2" filename="Textures/blank.png" 
+                                <image id="normal2" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                         </panel>
@@ -247,7 +247,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(color3)"
                                           onSecondaryClick="imageAction(delcolor3)"/>
-                                <image id="color3" filename="Textures/blank.png" 
+                                <image id="color3" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                             <panel height="104px" width="104px" padding="2px" visibleToMouse="true"
@@ -257,7 +257,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(normal3)"
                                           onSecondaryClick="imageAction(delnormal3)"/>
-                                <image id="normal3" filename="Textures/blank.png" 
+                                <image id="normal3" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                         </panel>
@@ -276,7 +276,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(color4)"
                                           onSecondaryClick="imageAction(delcolor4)"/>
-                                <image id="color4" filename="Textures/blank.png" 
+                                <image id="color4" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                             <panel height="104px" width="104px" padding="2px" visibleToMouse="true"
@@ -286,7 +286,7 @@
                                 </effect>
                                 <interact onPrimaryClick="imageAction(normal4)"
                                           onSecondaryClick="imageAction(delnormal4)"/>
-                                <image id="normal4" filename="Textures/blank.png" 
+                                <image id="normal4" filename="radans/tteditor/assets/Textures/blank.png"
                                        height="100px" width="100px" />
                             </panel>
                         </panel>
@@ -351,7 +351,7 @@
                                   color="#000f" text="Image Size: 0000x0000" align="center" />
                         </panel>
                         <panel height="70%" childLayout="center">
-                            <image id="miniMapGen" filename="Textures/blank.png" height="320px" width="320px" />
+                            <image id="miniMapGen" filename="radans/tteditor/assets/Textures/blank.png" height="320px" width="320px" />
                         </panel>
                         <panel height="15%" align="center" childLayout="center">
                             <text id="imgType" font="Interface/Fonts/Default.fnt" 
@@ -365,7 +365,7 @@
     <!-- ============================================ -->
     <!-- Loading Screen -->
     <!-- ============================================ -->
-    <screen id="loadingScreen" controller="com.radans.tteditor.Main">
+    <screen id="loadingScreen" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="newPanel" height="240px" width="320px" 
                    align="center" valign="center" padding="16px" childLayout="vertical">
@@ -383,7 +383,7 @@
     <!-- ============================================ -->
     <!-- Generate PNG Tiles Confirmation -->
     <!-- ============================================ -->
-    <screen id="pngGenConfirm" controller="com.radans.tteditor.Main">
+    <screen id="pngGenConfirm" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="pngGenPanel" height="240px" width="320px"
                    align="center" valign="center" childLayout="vertical">
@@ -407,7 +407,7 @@
     <!-- ============================================ -->
     <!-- Generate MAP Tiles Confirmation -->
     <!-- ============================================ -->
-    <screen id="mapGenConfirm" controller="com.radans.tteditor.Main">
+    <screen id="mapGenConfirm" controller="com.pro.radans.tteditor.Main">
         <layer backgroundColor="#4448" childLayout="center">
             <panel style="nifty-panel" id="mapGenPanel" height="240px" width="320px"
                    align="center" valign="center" childLayout="vertical">
@@ -431,7 +431,7 @@
     <!-- ============================================ -->
     <!-- TerrainGrid Fly-Over HUD                     -->
     <!-- ============================================ -->
-    <screen id="terraingrid" controller="com.radans.tteditor.Main">
+    <screen id="terraingrid" controller="com.pro.radans.tteditor.Main">
         <layer childLayout="horizontal">
             <panel id="lefttoolbar" width="2px" backgroundColor="#4448"></panel>
             <panel id="centerpanel" width="*" childLayout="vertical">
@@ -454,7 +454,7 @@
     <!-- ============================================ -->
     <!-- TiledTerrain Editor HUD                     -->
     <!-- ============================================ -->
-    <screen id="editorhud" controller="com.radans.tteditor.Main">
+    <screen id="editorhud" controller="com.pro.radans.tteditor.Main">
         <layer childLayout="horizontal">
             <panel id="LeftToolbar" width="2px" backgroundColor="#4448"></panel>
             <panel id="CenterPanel" width="*" childLayout="vertical">
