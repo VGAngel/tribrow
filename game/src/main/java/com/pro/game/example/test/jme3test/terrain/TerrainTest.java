@@ -155,7 +155,7 @@ public class TerrainTest extends SimpleApplication {
          * The total size is up to you. At 1025 it ran fine for me (200+FPS), however at
          * size=2049, it got really slow. But that is a jump from 2 million to 8 million triangles...
          */
-        terrain = new TerrainQuad("terrain", 65, 513, heightmap.getHeightMap());
+        terrain = new TerrainQuad("terrain", 10, 65, new float[]{});
         TerrainLodControl control = new TerrainLodControl(terrain, getCamera());
         control.setLodCalculator(new DistanceLodCalculator(65, 2.7f)); // patch size, and a multiplier
         terrain.addControl(control);

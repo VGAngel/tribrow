@@ -14,8 +14,8 @@ MaterialDef Unshaded {
     }
 
     Technique {
-        VertexShader GLSL100:   jme3test/texture/UnshadedArray.vert
-        FragmentShader GLSL100: jme3test/texture/UnshadedArray.frag
+        VertexShader GLSL100:   assets/texture/UnshadedArray.vert
+        FragmentShader GLSL100: assets/texture/UnshadedArray.frag
 
         WorldParameters {
             WorldViewProjectionMatrix

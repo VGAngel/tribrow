@@ -467,12 +467,12 @@ public class Main extends SimpleApplication implements ScreenController,Controll
     }
 
     @Override
-    public void bind(@Nonnull Nifty nifty, @Nonnull Screen screen, @Nonnull Element element, @Nonnull Parameters parameters) {
+    public void bind(Nifty nifty, Screen screen, Element element, Properties properties, Attributes attributes) {
         this.nifty = nifty;
     }
 
     @Override
-    public void init(@Nonnull Parameters parameters) {
+    public void init(Properties properties, Attributes attributes) {
 
     }
 
