@@ -18,6 +18,7 @@
         <module>Mythruna-client</module>
         <module>Mythruna-core</module>
         <module>run-lua</module>
+	<module>Salem-Map-Stitcher-master</module>
     </modules>
 
     <properties>
