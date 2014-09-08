@@ -42,15 +42,13 @@ import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.spi.render.RenderImage;
 import de.lessvoid.nifty.tools.SizeValue;
 import de.lessvoid.xml.xpp3.Attributes;
+import jme3tools.converters.ImageToAwt;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Properties;
@@ -60,9 +58,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nonnull;
-import javax.imageio.ImageIO;
-import jme3tools.converters.ImageToAwt;
 
 /**
  * Tiled Terrain Editor
@@ -467,12 +462,12 @@ public class Main extends SimpleApplication implements ScreenController,Controll
     }
 
     @Override
-    public void bind(@Nonnull Nifty nifty, @Nonnull Screen screen, @Nonnull Element element, @Nonnull Parameters parameters) {
-        this.nifty = nifty;
+    public void bind(Nifty nifty, Screen screen, Element element, Properties properties, Attributes attributes) {
+
     }
 
     @Override
-    public void init(@Nonnull Parameters parameters) {
+    public void init(Properties properties, Attributes attributes) {
 
     }
 
