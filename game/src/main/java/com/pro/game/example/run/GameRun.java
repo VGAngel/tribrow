@@ -1,14 +1,17 @@
 package com.pro.game.example.run;
 
+import com.jme3.app.FlyCamAppState;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.debug.Arrow;
 import com.jme3.scene.debug.Grid;
+import com.pro.game.example.RtsCamNew;
 
 /**
  * Created by Valentyn.Polishchuk on 12/30/13
@@ -27,9 +30,24 @@ public class GameRun extends SimpleApplication {
         attachCoordinateAxes(centerPos);
         attachGrid(centerPos, 1, ColorRGBA.Gray);
 
-        RtsCameraControl rtsCam = new RtsCameraControl(cam, rootNode);
-        rtsCam.registerWithInput(inputManager);
-        rtsCam.setCenter(centerPos);
+//        RtsCameraControl rtsCam = new RtsCameraControl(cam, rootNode);
+//        rtsCam.registerWithInput(inputManager);
+//        rtsCam.setCenter(centerPos);
+
+         getStateManager().detach(getStateManager().getState(FlyCamAppState.class));
+
+         RtsCamNew rtsCam = new RtsCamNew(RtsCamNew.UpVector.Y_UP);
+         rtsCam.setCenter(new Vector3f(0, 0, 0));
+         rtsCam.setDistance(200);
+         rtsCam.setMaxSpeed(RtsCamNew.DoF.FWD, 100, 0.5f);
+         rtsCam.setMaxSpeed(RtsCamNew.DoF.SIDE, 100, 0.5f);
+         rtsCam.setMaxSpeed(RtsCamNew.DoF.DISTANCE, 100, 0.5f);
+//         rtsCam.setHeightProvider(new HeightProvider() {
+//                 public float getHeight(Vector2f coord) {
+//                         return terrain.getHeight(coord)+10;
+//                     }
+//             });
+         getStateManager().attach(rtsCam);
 
         viewPort.setBackgroundColor(ColorRGBA.Gray);
 
