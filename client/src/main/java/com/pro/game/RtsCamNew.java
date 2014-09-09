@@ -1,4 +1,4 @@
-package com.pro.game.example;
+package com.pro.game;
 
 import com.jme3.app.Application;
 import com.jme3.app.FlyCamAppState;
@@ -113,7 +113,7 @@ public class RtsCamNew extends AbstractAppState {
     private static final int TILT = DoF.TILT.ordinal();
     private static final int DISTANCE = DoF.DISTANCE.ordinal();
 
-    private static final float WHEEL_SPEED = 1f / 25;
+    private static final float WHEEL_SPEED = 1f / 15;
 
     private static String[] mappings = new String[]{
             "+SIDE", "+FWD", "+ROTATE", "+TILT", "+DISTANCE", "-SIDE", "-FWD", "-ROTATE", "-TILT", "-DISTANCE", "+WHEEL", "-WHEEL", "-MOUSEX", "+MOUSEX", "-MOUSEY", "+MOUSEY",
@@ -548,7 +548,7 @@ public class RtsCamNew extends AbstractAppState {
 
         RtsCamNew rtsCam = new RtsCamNew(RtsCamNew.UpVector.Y_UP);
         rtsCam.setCenter(new Vector3f(0, 0, 0));
-        rtsCam.setDistance(50);
+        rtsCam.setDistance(200);
         rtsCam.setMaxSpeed(RtsCamNew.DoF.FWD, 100, 0.5f);
         rtsCam.setMaxSpeed(RtsCamNew.DoF.SIDE, 100, 0.5f);
         rtsCam.setMaxSpeed(RtsCamNew.DoF.DISTANCE, 100, 0.5f);

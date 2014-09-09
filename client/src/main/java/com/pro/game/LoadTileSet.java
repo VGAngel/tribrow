@@ -2,12 +2,20 @@ package com.pro.game;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
+import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
+import com.jme3.scene.debug.Arrow;
+import com.jme3.scene.debug.Grid;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
+import com.pro.component.TileSetGrid;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -25,7 +33,15 @@ public class LoadTileSet extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        viewPort.setBackgroundColor(ColorRGBA.Blue);
+        Vector3f centerPos = new Vector3f(0f, 0f, 0f);
+
+        attachCoordinateAxes(centerPos);
+        //attachGrid(centerPos, 1, ColorRGBA.Gray);
+
+        RtsCamNew.applyCamera(this);
+        createDebugGrid();
+
+        viewPort.setBackgroundColor(ColorRGBA.Gray);
 
         Texture[][] textures = null;
         try {
@@ -66,6 +82,8 @@ public class LoadTileSet extends SimpleApplication {
 
         rootNode.attachChild(geo);
 
+        rootNode.attachChild(new TileSetGrid(5, 3, 40, 40, assetManager));
+
     }
 
     private Texture[][] loadAlphaMap() throws IOException {
@@ -100,5 +118,48 @@ public class LoadTileSet extends SimpleApplication {
         }
 
         return groundAlpha;
+    }
+
+    private void attachCoordinateAxes(Vector3f pos) {
+        int length = 20;
+
+        Arrow arrow = new Arrow(Vector3f.UNIT_X);
+        arrow.setLineWidth(length); // make arrow thicker
+        putShape(arrow, ColorRGBA.Red).setLocalTranslation(pos);
+
+        arrow = new Arrow(Vector3f.UNIT_Y);
+        arrow.setLineWidth(length); // make arrow thicker
+        putShape(arrow, ColorRGBA.Green).setLocalTranslation(pos);
+
+        arrow = new Arrow(Vector3f.UNIT_Z);
+        arrow.setLineWidth(length); // make arrow thicker
+        putShape(arrow, ColorRGBA.Blue).setLocalTranslation(pos);
+    }
+
+
+    private Geometry putShape(Mesh shape, ColorRGBA color){
+        Geometry geo = new Geometry("coordinate axis", shape);
+        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.getAdditionalRenderState().setWireframe(true);
+        mat.setColor("Color", color);
+        geo.setMaterial(mat);
+        rootNode.attachChild(geo);
+        return geo;
+    }
+
+    public void createDebugGrid() {
+        //Create a grid plane
+        Geometry g = new Geometry("GRID", new Grid(201, 201, 10f));
+        Material floor_mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        floor_mat.getAdditionalRenderState().setWireframe(true);
+        floor_mat.setColor("Color", new ColorRGBA(0.4f, 0.4f, 0.4f, 0.15f));
+        floor_mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+        floor_mat.getAdditionalRenderState().setDepthWrite(false);
+//        g.setCullHint(Spatial.CullHint.Never);
+        g.setShadowMode(RenderQueue.ShadowMode.Off);
+        g.setQueueBucket(RenderQueue.Bucket.Transparent);
+        g.setMaterial(floor_mat);
+        g.center().move(new Vector3f(0f, 0f, 0f));
+        rootNode.attachChild(g);
     }
 }

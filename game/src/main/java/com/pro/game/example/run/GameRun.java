@@ -38,7 +38,7 @@ public class GameRun extends SimpleApplication {
 
          RtsCamNew rtsCam = new RtsCamNew(RtsCamNew.UpVector.Y_UP);
          rtsCam.setCenter(new Vector3f(0, 0, 0));
-         rtsCam.setDistance(200);
+         rtsCam.setDistance(50);
          rtsCam.setMaxSpeed(RtsCamNew.DoF.FWD, 100, 0.5f);
          rtsCam.setMaxSpeed(RtsCamNew.DoF.SIDE, 100, 0.5f);
          rtsCam.setMaxSpeed(RtsCamNew.DoF.DISTANCE, 100, 0.5f);
