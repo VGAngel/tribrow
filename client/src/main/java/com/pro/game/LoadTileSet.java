@@ -72,7 +72,7 @@ public class LoadTileSet extends SimpleApplication {
         System.out.println(tex1.getImage().getWidth());
         System.out.println(tex1.getImage().getHeight());
         material.setTexture("ColorMap", tex1);
-        material.getAdditionalRenderState().setWireframe(true);
+        //material.getAdditionalRenderState().setWireframe(true);
 
         quad = new Quad(tex1.getImage().getWidth(), tex1.getImage().getHeight());
 
@@ -82,7 +82,10 @@ public class LoadTileSet extends SimpleApplication {
 
         rootNode.attachChild(geo);
 
-        rootNode.attachChild(new TileSetGrid(5, 3, 40, 40, assetManager));
+        TileSetGrid tileSetGrid = new TileSetGrid(5, 3, 29, 33, assetManager);
+        rootNode.attachChild(tileSetGrid);
+
+        tileSetGrid.addTiles(new Texture[]{textures[0][0], textures[0][1], textures[0][2]});
 
     }
 
