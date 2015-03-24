@@ -91,7 +91,7 @@ public class LightManager {
         pssmRenderer.setShadowIntensity(0.5f);
         pssmRenderer.setCompareMode(PssmShadowRenderer.CompareMode.Hardware);
         pssmRenderer.setEdgesThickness(5);
-        pssmRenderer.setFilterMode(PssmShadowRenderer.FilterMode.PCFPOISSON);
+        //pssmRenderer.setFilterMode(PssmShadowRenderer.FilterMode.PCFPOISSON);
         //pssmRenderer.displayDebug();
         app.getViewPort().addProcessor(pssmRenderer);
     }

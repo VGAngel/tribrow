@@ -462,12 +462,12 @@ public class Main extends SimpleApplication implements ScreenController,Controll
     }
 
     @Override
-    public void bind(Nifty nifty, Screen screen, Element element, Properties properties, Attributes attributes) {
+    public void bind(Nifty nifty, Screen screen, Element element, Parameters parameters) {
 
     }
 
     @Override
-    public void init(Properties properties, Attributes attributes) {
+    public void init(Parameters parameters) {
 
     }
 
